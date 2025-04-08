@@ -1,1 +1,68 @@
-hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost & Found</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">🔍 Lost&Found!</div> 
+    <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#report">Report</a></li>
+          <li><a href="#found">Found</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="signin.html" class="auth-btn">Sign In</a></li> 
+          <li><a href="signup.html" class="auth-btn signup">Sign Up</a></li> 
+        </ul>
+      </nav>
+      
+  </header>
+  <section class="lost">
+    <h1>Lost Something? We will help you find it."</h1> 
+    <p>"Because every item has a story — let’s reunite it with its owner."</p> 
+    <div class="buttons">
+      <button onclick="window.location.href='report.html'">Report Lost Item</button> 
+      <button onclick="window.location.href='found.html'">View Found Items</button> 
+      
+    </div>
+  </section>
+  <section class="how-it-works">
+    <h2>How Lost & Found Works</h2>
+    <div class="steps-container">
+      <div class="step tooltip">
+        <span class="icon">📢</span>
+        <h3>Report Lost</h3>
+        <p>Submit details of your lost item with time, place, and description.</p>
+        <span class="tooltiptext">Click Report to start</span>
+      </div>
+      <div class="step tooltip">
+        <span class="icon">🔍</span>
+        <h3>Search Found</h3>
+        <p>Browse through items others have found to match your lost item.</p>
+        <span class="tooltiptext">See if your item is already listed</span>
+      </div>
+      <div class="step tooltip">
+        <span class="icon">🤝</span>
+        <h3>Connect & Claim</h3>
+        <p>Contact the finder and get your item back. Reunited at last!</p>
+        <span class="tooltiptext">We help protect your contact info</span>
+      </div>
+    </div>
+  </section>
+  
+
+  <footer class="footer" id="contact">
+    <p>Lost & Found. All rights reserved here.</p> 
+
+    <div class="tooltip">
+        <button>Report</button>
+        <span class="tooltiptext">Click to report a lost item</span>
+      </div>
+      
+
+</body>
+</html>

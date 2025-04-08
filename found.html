@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Found Items | Lost & Found</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🔍 Lost&Found!</div> 
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="report.html">Report</a></li>
+        <li><a href="found.html">Found</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="signin.html" class="auth-btn">Sign In</a></li> 
+        <li><a href="signup.html" class="auth-btn signup">Sign Up</a></li> 
+      </ul>
+    </nav>
+  </header>
+
+  <section class="found-items">
+    <h2>Recently Found Items</h2>
+    <div class="found-list">
+      
+      <div class="found-card" onclick="openModal('📱 iPhone 13', 'Library', 'Black iPhone 11 found without case', 'https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg')">
+        <h3>📱 iPhone 13</h3>
+        <p>Click to see details</p>
+      </div>
+
+      <div class="found-card" onclick="openModal('🗝️ Bunch of Keys', 'Barista', 'Keys found at the last corner table', 'https://i.pinimg.com/736x/42/04/0d/42040dc9ed3418cfaee1cd7da316dae0.jpg')">
+        <h3>🗝️ Bunch of Keys</h3>
+        <p>Click to see details</p>
+      </div>
+
+      <div class="found-card" onclick="openModal('👛 Wallet', 'Lecture Hall 4', 'Brown leather wallet found near last row seat', 'https://i.pinimg.com/736x/4d/92/3b/4d923bc1d354c3cc2f8fe66925825a1a.jpg')">
+        <h3>👛 Wallet</h3>
+        <p>Click to see details</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="foundModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="Item Image" />
+      <h3 id="modalTitle"></h3>
+      <p id="modalLocation"></p>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function openModal(title, location, description, imageUrl) {
+      document.getElementById("modalTitle").textContent = title;
+      document.getElementById("modalLocation").textContent = "📍 Location: " + location;
+      document.getElementById("modalDescription").textContent = description;
+      document.getElementById("modalImage").src = imageUrl;
+      document.getElementById("foundModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("foundModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("foundModal");
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
