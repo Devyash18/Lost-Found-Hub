@@ -1,65 +1,87 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #d7b0d7;
-  margin: 0;
-  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f0f4ff, #d9e9ff);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search-bar {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .search-box {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"] {
-  width: 300px;
+  border: none;
+  outline: none;
   padding: 10px;
+  width: 280px;
   font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #506596;
+  border-radius: 30px;
 }
 
 button {
   padding: 10px 20px;
+  margin-left: 10px;
   font-size: 16px;
-  background-color: #6616d5;
+  background: #007bff;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 20px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #63a3b4;
 }
 
 .list-container {
-  height: 400px;
-  overflow-y: auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #e3dfdf;
-  border-radius: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-height: 500px;
+      overflow-y: auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 1000px;
+      background-color: #88abe8;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .item-box {
-  width: 180px;
-  height: 100px;
-  background-color: #b9b5eb;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 18px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 200px;
+      height: 120px;
+      background: #eff3ee;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 18px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+}
+.item-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: #4d71a0;
 }
