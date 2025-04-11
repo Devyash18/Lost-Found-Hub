@@ -1,0 +1,98 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f9ff;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  header {
+    background-color: #005f99;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    list-style: none;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #hero {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #e3f2fd;
+  }
+  
+  #hero h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  #hero button {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #hero button:hover {
+    background-color: #005f99;
+  }
+  
+  #how-it-works {
+    padding: 4rem 2rem;
+    background: white;
+    text-align: center;
+  }
+  
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .steps {
+      flex-direction: row;
+      justify-content: center;
+    }
+  
+    .step {
+      max-width: 200px;
+    }
+  }
+  
+  footer {
+    background-color: #003d66;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  
