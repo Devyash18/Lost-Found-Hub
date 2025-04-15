@@ -6,15 +6,29 @@
   }
   
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f5f9ff;
     color: #333;
-    line-height: 1.6;
+    line-height: 1.6; */
+   
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffd1dc; /* Peachy pink */
+      color: #333;
+    
+    
+  }
+  .search-icon {
+    font-size: 30px;
+    margin-right: 8px;
+    cursor: pointer;
   }
   
+  
   header {
-    background-color: #005f99;
-    color: white;
+    /* background-color: #005f99; */
+    background-color: #ffd1dc;
+    color:black;
     padding: 2rem 1rem;
     text-align: center;
   }
@@ -36,7 +50,7 @@
   #hero {
     padding: 4rem 2rem;
     text-align: center;
-    background-color: #e3f2fd;
+    background-color: #ffd1dc;
   }
   
   #hero h2 {
@@ -48,7 +62,8 @@
     margin-top: 1rem;
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    background-color: #007acc;
+    /* background-color: #007acc; */
+    background-color: #ffd1dc;
     color: white;
     border: none;
     border-radius: 5px;
@@ -56,7 +71,8 @@
   }
   
   #hero button:hover {
-    background-color: #005f99;
+    /* background-color: #005f99; */
+    background-color: #ffd1dc;
   }
   
   #how-it-works {
