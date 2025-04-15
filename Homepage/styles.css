@@ -16,11 +16,10 @@
       background-color: #ffd1dc; /* Peachy pink */
       color: #333;
     
-    
   }
   .search-icon {
-    font-size: 30px;
-    margin-right: 8px;
+    font-size: 28px;
+    margin-right: 10px;
     cursor: pointer;
   }
   
