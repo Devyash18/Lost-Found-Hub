@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report Lost Item</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">🔍 Lost&Found!</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="report.html">Report</a></li>
+        <li><a href="found.html">Found</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="signin.html" class="auth-btn">Sign In</a></li>
+        <li><a href="signup.html" class="auth-btn signup">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="report-form">
+    <h2>Report Lost Item</h2>
+    <form>
+      <label for="item-name">Item Name</label>
+      <input type="text" id="item-name" name="item-name" required />
+
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">Select</option>
+        <option value="phone">Phone</option>
+        <option value="wallet">Wallet</option>
+        <option value="bag">Bag</option>
+        <option value="keys">Keys</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+
+      <label for="date">Date Lost</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="location">Lost Location</label>
+      <input type="text" id="location" name="location" required />
+
+      <label for="contact">Your Contact Info</label>
+      <input type="text" id="contact" name="contact" required />
+
+      <button type="submit">Submit Report</button>
+    </form>
+  </section>
+
+  <footer class="footer" id="contact">
+    <p>Lost & Found. All rights reserved.</p>
+  </footer>
+</body>
+</html>
