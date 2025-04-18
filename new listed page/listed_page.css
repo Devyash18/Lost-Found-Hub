@@ -187,15 +187,17 @@ body {
 }
 
 .flip-card-back {
-  background-color: #fff;
-  color: black;
+  background-color: #007BFF;
+  color: white;
   transform: rotateY(180deg);
   display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures spacing between details and button */
   align-items: center;
-  justify-content: center;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .search-bar {
@@ -311,4 +313,44 @@ button:hover {
 
 .navbar-search button:hover {
   background-color: #003f7f;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.filter-button i {
+  font-size: 16px;
+}
+
+.filter-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.claim-button {
+  margin-top: auto; /* Pushes the button to the bottom */
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.claim-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
 }
