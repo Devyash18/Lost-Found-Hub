@@ -8,6 +8,33 @@ const flipCards = document.querySelectorAll('.flip-card');
 const darkModeCheckbox = document.getElementById('dark-mode-checkbox');
 const sunIcon = document.getElementById('sun-icon');
 const moonIcon = document.getElementById('moon-icon');
+const particlesContainer = document.getElementById('particles-js');
+
+// Check localStorage for dark mode state
+if (localStorage.getItem('darkMode') === 'enabled') {
+  document.body.classList.add('dark-mode');
+  particlesContainer.style.background = 'linear-gradient(to right, #000000, #434343)'; // Dark mode background
+  darkModeCheckbox.checked = true;
+  sunIcon.style.display = 'none';
+  moonIcon.style.display = 'block';
+}
+
+// Toggle dark mode and save state in localStorage
+darkModeCheckbox.addEventListener('change', () => {
+  if (darkModeCheckbox.checked) {
+    document.body.classList.add('dark-mode');
+    particlesContainer.style.background = 'linear-gradient(to right, #000000, #434343)'; // Dark mode background
+    localStorage.setItem('darkMode', 'enabled');
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  } else {
+    document.body.classList.remove('dark-mode');
+    particlesContainer.style.background = 'linear-gradient(to right, #1e3c72, #2a5298)'; // Light mode background
+    localStorage.setItem('darkMode', 'disabled');
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  }
+});
 
 // Select necessary elements for filtering
 const filterButton = document.querySelector('.filter-button');
@@ -45,6 +72,8 @@ applyCategoryButton.addEventListener('click', () => {
     }
   });
 
+  updateNoResultsMessage();
+
   // Hide the dropdown after applying the filter
   filterDropdown.style.display = 'none';
 });
@@ -60,6 +89,8 @@ searchButton.addEventListener('click', () => {
       card.style.display = 'none'; // Hide non-matching cards
     }
   });
+
+  updateNoResultsMessage();
 });
 
 // Optional: Add real-time search functionality
@@ -73,21 +104,23 @@ searchInput.addEventListener('input', () => {
       card.style.display = 'none'; // Hide non-matching cards
     }
   });
+
+  updateNoResultsMessage();
 });
 
-// Add event listener for the toggle switch
-darkModeCheckbox.addEventListener('change', () => {
-  document.body.classList.toggle('dark-mode');
+// Add "No results found" message functionality
+const noResultsMessage = document.createElement('p');
+noResultsMessage.textContent = 'No results found : (';
+noResultsMessage.style.textAlign = 'center';
+noResultsMessage.style.marginTop = '20px';
+noResultsMessage.style.color = '#555';
+noResultsMessage.style.display = 'none'; // Hidden by default
+document.querySelector('.list-container').appendChild(noResultsMessage);
 
-  // Toggle sun and moon icons
-  if (document.body.classList.contains('dark-mode')) {
-    sunIcon.style.display = 'none';
-    moonIcon.style.display = 'block';
-  } else {
-    sunIcon.style.display = 'block';
-    moonIcon.style.display = 'none';
-  }
-});
+function updateNoResultsMessage() {
+  const visibleCards = Array.from(flipCards).filter(card => card.style.display !== 'none');
+  noResultsMessage.style.display = visibleCards.length === 0 ? 'block' : 'none';
+}
 
 particlesJS("particles-js", {
   particles: {
@@ -140,7 +173,7 @@ particlesJS("particles-js", {
     },
     move: {
       enable: true,
-      speed: 6,
+      speed: 3, /* Adjust speed for smoother animation */
       direction: "none",
       random: false,
       straight: false,
@@ -193,4 +226,8 @@ particlesJS("particles-js", {
     },
   },
   retina_detect: true,
+});
+
+window.addEventListener('load', () => {
+  document.getElementById('loading-spinner').style.display = 'none';
 });
