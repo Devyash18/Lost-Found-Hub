@@ -1,12 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lost & Found - Login</title>
-  <link rel="stylesheet" href="login.css">
+  <title>Lost & Found - Sign Up</title>
+  <link rel="stylesheet" href="signup.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
@@ -18,39 +18,39 @@
     <div class="right">
       <div class="form-box">
         <h2>Hello Friend!👋</h2>
-        <p>Find what’s lost, or help someone else.</p>
-        <form>
-          <!-- Name Field -->
+        <p>Find what's lost, or help someone else.</p>
+        <form id="signupForm">
           <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" id="name" placeholder="Full Name" required />
           </div>
 
-          <!-- Email Field -->
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="you@example.com" required />
+            <input type="email" id="email" placeholder="@chitkara.edu.in" required />
+            <small id="emailError" class="error-message">Please use your Chitkara University email (@chitkara.edu.in)</small>
           </div>
 
-          <!-- Password Field -->
           <div class="form-group password-toggle">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="••••••••" required />
-            <span onclick="togglePassword()">Show</span>
+            <div class="password-input-wrapper">
+              <input type="password" id="password" placeholder="••••••••" required minlength="8" />
+              <button type="button" class="toggle-password">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <small id="passwordError" class="error-message">Password must be at least 8 characters</small>
           </div>
 
           <button type="submit">Sign Up</button>
         </form>
         <div class="footer">
           Already have an account? 
-          <a href="login.html" onclick="transitionToPage(event, 'login.html')">Login</a>
-
+          <a href="login.html">Login</a>
         </div>
-        <body>
-          
       </div>
     </div>
   </div>
-  <script src="login.js"></script>
+  <script src="signup.js"></script>
 </body>
 </html>
