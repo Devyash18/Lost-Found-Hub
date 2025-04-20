@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Listed Page</title>
+  <link rel="stylesheet" href="listed_page.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="body">
+
+  <div id="particles-js"></div>
+  <div id="loading-spinner" class="spinner"></div>
+
+  <nav class="navbar">
+    <div class="navbar-logo">Lost & Found Hub</div>
+    <div class="navbar-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="navbar-search">
+      <input type="text" placeholder="Search items...">
+      <button>Search</button>
+    </div>
+    <div class="dark-mode-toggle">
+      <i class="fas fa-sun" id="sun-icon"></i>
+      <i class="fas fa-moon" id="moon-icon"></i>
+      <label class="switch">
+        <input type="checkbox" id="dark-mode-checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </nav>
+
+  <div class="filter-bar">
+    <button class="filter-button">
+      <i class="fas fa-filter"></i> Apply Filter
+    </button>
+    <div class="filter-dropdown">
+      <select>
+        <option value="">Select Category</option>
+        <option value="electronics">📱 Electronics</option>
+        <option value="clothing">👕 Clothing</option>
+        <option value="jewelry">💍 Jewelry</option>
+        <option value="others">➕ Others</option>
+      </select>
+      <button class="apply-category-button">Filter</button>
+    </div>
+  </div>
+
+  <div class="list-container">
+    <!-- Item 1 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjR3dktrFSCCyLg61k-4g2g4Vsv9rMfqueNA&s" alt="Lost Wallet">
+        </div>
+        <div class="flip-card-back">
+          <p>Black leather wallet found near Central Park.</p>
+          <a href="item_details.html?name=Lost%20Wallet&location=Central%20Park&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjR3dktrFSCCyLg61k-4g2g4Vsv9rMfqueNA&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZlJyTqZCd8lv3khBPvt7HxOWKG6wZg2v9IA&s" alt="Lost Phone">
+        </div>
+        <div class="flip-card-back">
+          <p>iPhone 12 with a blue case found at the subway station.</p>
+          <a href="item_details.html?name=Lost%20Phone&location=Subway%20Station&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZlJyTqZCd8lv3khBPvt7HxOWKG6wZg2v9IA&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://bettystreff.com/wp-content/uploads/2017/07/keys.jpg" alt="Lost Keys">
+        </div>
+        <div class="flip-card-back">
+          <p>Set of house keys with a red keychain found in the library.</p>
+          <a href="item_details.html?name=Lost%20Keys&location=Library&img=https://bettystreff.com/wp-content/uploads/2017/07/keys.jpg" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://nestasia.in/cdn/shop/files/DSC0271.jpg?v=1683532660&width=600" alt="Lost Bag">
+        </div>
+        <div class="flip-card-back">
+          <p>Black backpack with a laptop inside found at the coffee shop.</p>
+          <a href="item_details.html?name=Lost%20Bag&location=Coffee%20Shop&img=https://nestasia.in/cdn/shop/files/DSC0271.jpg?v=1683532660&width=600" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://wornandwound.com/library/uploads/2023/05/Omega_PloProf_2_header.jpg" alt="Lost Watch">
+        </div>
+        <div class="flip-card-back">
+          <p>Silver wristwatch found near the gym locker room.</p>
+          <a href="item_details.html?name=Lost%20Watch&location=Gym%20Locker%20Room&img=https://wornandwound.com/library/uploads/2023/05/Omega_PloProf_2_header.jpg" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://static.vecteezy.com/system/resources/previews/001/959/984/non_2x/pair-of-glasses-on-table-free-photo.jpg" alt="Lost Glasses">
+        </div>
+        <div class="flip-card-back">
+          <p>Pair of black-rimmed glasses found in the park.</p>
+          <a href="item_details.html?name=Lost%20Glasses&location=Park&img=https://static.vecteezy.com/system/resources/previews/001/959/984/non_2x/pair-of-glasses-on-table-free-photo.jpg" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1LBQLdpth2JrMLn8qERRqygj1eMvaBjNN7A&s" alt="Lost Umbrella">
+        </div>
+        <div class="flip-card-back">
+          <p>Blue umbrella found at the bus stop.</p>
+          <a href="item_details.html?name=Lost%20Umbrella&location=Bus%20Stop&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1LBQLdpth2JrMLn8qERRqygj1eMvaBjNN7A&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 8 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJ9Rlz5DpA8MXu16gzvgLUiNiyPQJpbNBOA&s" alt="Lost Book">
+        </div>
+        <div class="flip-card-back">
+          <p>Hardcover book titled "The Great Gatsby" found in the library.</p>
+          <a href="item_details.html?name=Lost%20Book&location=Library&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJ9Rlz5DpA8MXu16gzvgLUiNiyPQJpbNBOA&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 9 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYHX7uICP0d8LruXy9EG7RWABnK8rts2G5HA&s" alt="Lost Headphones">
+        </div>
+        <div class="flip-card-back">
+          <p>Black wireless headphones found at the train station.</p>
+          <a href="item_details.html?name=Lost%20Headphones&location=Train%20Station&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYHX7uICP0d8LruXy9EG7RWABnK8rts2G5HA&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 10 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://shop.kenanddanadesign.com/cdn/shop/products/IMG_1381_7ba77f24-c6f5-4e84-8999-64151428d647.jpg?v=1733934429&width=1946" alt="Lost Ring">
+        </div>
+        <div class="flip-card-back">
+          <p>Gold ring with an engraving found near the fountain.</p>
+          <a href="item_details.html?name=Lost%20Ring&location=Fountain&img=https://shop.kenanddanadesign.com/cdn/shop/products/IMG_1381_7ba77f24-c6f5-4e84-8999-64151428d647.jpg?v=1733934429&width=1946" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 11 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYUdRzflDrMUeXp8javSSsI-nU-cAsUZI_7A&s" alt="Lost Camera">
+        </div>
+        <div class="flip-card-back">
+          <p>Digital camera found at the park bench.</p>
+          <a href="item_details.html?name=Lost%20Camera&location=Park%20Bench&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYUdRzflDrMUeXp8javSSsI-nU-cAsUZI_7A&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 12 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqh8XYgMS2O_tFWX5CzmLeRvXRj7HCeTsAyg&s" alt="Lost Shoes">
+        </div>
+        <div class="flip-card-back">
+          <p>Pair of running shoes found near the jogging track.</p>
+          <a href="item_details.html?name=Lost%20Shoes&location=Jogging%20Track&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqh8XYgMS2O_tFWX5CzmLeRvXRj7HCeTsAyg&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 13 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-eJR6z-8vPb4kdmP8xtndSuidqToJtk5PdQ&s" alt="Lost Hat">
+        </div>
+        <div class="flip-card-back">
+          <p>Black baseball cap found at the stadium.</p>
+          <a href="item_details.html?name=Lost%20Hat&location=Stadium&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-eJR6z-8vPb4kdmP8xtndSuidqToJtk5PdQ&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 14 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp_z1qJoUVucvzhvBb5Y4_0y2YYjs4zkv5-w&s=" alt="Lost Scarf">
+        </div>
+        <div class="flip-card-back">
+          <p>Red scarf found at the bus terminal.</p>
+          <a href="item_details.html?name=Lost%20Scarf&location=Bus%20Terminal&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp_z1qJoUVucvzhvBb5Y4_0y2YYjs4zkv5-w&s=" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 15 -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuAt2c5sAZ7bZEcQQPejmvX2VZ0IEcjHQ1w&s" alt="Lost Toy">
+        </div>
+        <div class="flip-card-back">
+          <p>Stuffed teddy bear found at the playground.</p>
+          <a href="item_details.html?name=Lost%20Toy&location=Playground&img=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuAt2c5sAZ7bZEcQQPejmvX2VZ0IEcjHQ1w&s" class="view-button">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="listed_page.js"></script>
+
+</body>
+</html>
