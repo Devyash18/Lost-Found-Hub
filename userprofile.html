@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | College Lost & Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .profile-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .profile-sidebar {
+            width: 300px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .user-avatar {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .user-avatar img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #3498db;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .edit-avatar {
+            position: absolute;
+            bottom: 10px;
+            right: calc(50% - 75px + 10px);
+            background: #3498db;
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .user-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .user-email, .user-joined {
+            color: #bdc3c7;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .user-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid #34495e;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #ecf0f1;
+        }
+
+        .user-contact {
+            margin: 2rem 0;
+        }
+
+        .user-contact h3 {
+            margin-bottom: 1rem;
+            color: #3498db;
+            font-size: 1.1rem;
+        }
+
+        .user-contact p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .edit-profile {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .edit-profile:hover {
+            background-color: #2980b9;
+        }
+
+        .profile-main {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .reports-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .reports-header h1 {
+            color: #2c3e50;
+        }
+
+        .report-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            background-color: #ecf0f1;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            background-color: #d5dbdb;
+        }
+
+        .tab-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .report-section {
+            display: none;
+        }
+
+        .report-section.active {
+            display: block;
+        }
+
+        .report-card {
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .report-image {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+        }
+
+        .report-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .report-details {
+            flex: 1;
+            padding: 1.5rem;
+        }
+
+        .report-details h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .report-date, .report-location {
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .report-status {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .status-pending {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .status-resolved {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .report-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .edit-report, .delete-report {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .edit-report {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .edit-report:hover {
+            background-color: #2980b9;
+        }
+
+        .delete-report {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .delete-report:hover {
+            background-color: #c0392b;
+        }
+
+        .no-reports {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+            }
+
+            .profile-sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .profile-main {
+                padding: 1rem;
+            }
+
+            .report-card {
+                flex-direction: column;
+            }
+
+            .report-image {
+                width: 100%;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Sidebar for User Details -->
+        <div class="profile-sidebar">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <img src="https://via.placeholder.com/150" alt="User Avatar">
+                    <button class="edit-avatar">✏️</button>
+                </div>
+                <h2 class="user-name">John Doe</h2>
+                <p class="user-email">john.doe@college.edu</p>
+                <p class="user-joined">Member since: January 2023</p>
+                
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Lost Items</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Found Items</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Matches</span>
+                    </div>
+                </div>
+                
+                <div class="user-contact">
+                    <h3>Contact Information</h3>
+                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p><strong>Dorm/Room:</strong> North Hall #204</p>
+                </div>
+                
+                <button class="edit-profile">Edit Profile</button>
+            </div>
+        </div>
+        
+        <!-- Main Content Area for Reports -->
+        <div class="profile-main">
+            <div class="reports-header">
+                <h1>Your Reports</h1>
+                <div class="report-tabs">
+                    <button class="tab-btn active" data-tab="lost">Lost Items</button>
+                    <button class="tab-btn" data-tab="found">Found Items</button>
+                </div>
+            </div>
+            
+            <!-- Lost Items Section -->
+            <div class="report-section active" id="lost-section">
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://via.placeholder.com/200" alt="Lost Item">
+                    </div>
+                    <div class="report-details">
+                        <h3>Black Wireless Headphones</h3>
+                        <p class="report-date">Reported on: March 15, 2023</p>
+                        <p class="report-location">Last seen: Library, 2nd floor</p>
+                        <p class="report-status status-pending">Status: Not Found</p>
+                        <div class="report-actions">
+                            <button class="edit-report">Edit Report</button>
+                            <button class="delete-report">Delete Report</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://via.placeholder.com/200" alt="Lost Item">
+                    </div>
+                    <div class="report-details">
+                        <h3>College ID Card</h3>
+                        <p class="report-date">Reported on: April 5, 2023</p>
+                        <p class="report-location">Last seen: Science Building</p>
+                        <p class="report-status status-resolved">Status: Found</p>
+                        <div class="report-actions">
+                            <button class="edit-report">Edit Report</button>
+                            <button class="delete-report">Delete Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Found Items Section -->
+            <div class="report-section" id="found-section">
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://via.placeholder.com/200" alt="Found Item">
+                    </div>
+                    <div class="report-details">
+                        <h3>Silver Keychain with Blue Tag</h3>
+                        <p class="report-date">Reported on: February 28, 2023</p>
+                        <p class="report-location">Found at: Cafeteria</p>
+                        <p class="report-status status-resolved">Status: Returned to Owner</p>
+                        <div class="report-actions">
+                            <button class="edit-report">Edit Report</button>
+                            <button class="delete-report">Delete Report</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="https://via.placeholder.com/200" alt="Found Item">
+                    </div>
+                    <div class="report-details">
+                        <h3>Textbook: Computer Science 101</h3>
+                        <p class="report-date">Reported on: March 10, 2023</p>
+                        <p class="report-location">Found at: Computer Lab</p>
+                        <p class="report-status status-pending">Status: Waiting for Claim</p>
+                        <div class="report-actions">
+                            <button class="edit-report">Edit Report</button>
+                            <button class="delete-report">Delete Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and sections
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.report-section').forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding section
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(`${tabId}-section`).classList.add('active');
+            });
+        });
+
+        // Edit profile button functionality
+        document.querySelector('.edit-profile').addEventListener('click', () => {
+            alert('Edit profile functionality would open a modal or redirect to edit page');
+        });
+
+        // Edit avatar button functionality
+        document.querySelector('.edit-avatar').addEventListener('click', () => {
+            alert('Edit avatar functionality would open a file upload dialog');
+        });
+
+        // Edit report button functionality
+        document.querySelectorAll('.edit-report').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const reportTitle = e.target.closest('.report-card').querySelector('h3').textContent;
+                alert(`Edit report for: ${reportTitle}\nThis would open an edit form.`);
+            });
+        });
+
+        // Delete report button functionality
+        document.querySelectorAll('.delete-report').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const reportTitle = e.target.closest('.report-card').querySelector('h3').textContent;
+                if (confirm(`Are you sure you want to delete the report for "${reportTitle}"?`)) {
+                    e.target.closest('.report-card').remove();
+                    // In a real app, you would also make an API call to delete from the backend
+                    alert('Report deleted successfully!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
