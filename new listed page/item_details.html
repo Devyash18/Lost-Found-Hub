@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Details</title>
+  <link rel="stylesheet" href="item_details.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body class="body">
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Dark Mode Toggle -->
+  <div class="dark-mode-toggle">
+    <i class="fas fa-sun" id="sun-icon"></i>
+    <i class="fas fa-moon" id="moon-icon"></i>
+    <label class="switch">
+      <input type="checkbox" id="dark-mode-checkbox">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Item Details Section -->
+  <div class="item-details">
+    <h1 id="item-name">Item Name</h1>
+    <img id="item-image" src="" alt="Item Image" class="item-image">
+    <p id="item-location" class="item-location">Location: </p>
+    <p id="item-description" class="item-description">
+      <!-- Descriptions for all 15 items -->
+      <script>
+        const params = new URLSearchParams(window.location.search);
+        const itemName = params.get('name');
+        const descriptions = {
+          "Lost Wallet": "A black leather wallet containing several cards and cash. Found near Central Park. If this belongs to you, please claim it.",
+          "Lost Phone": "An iPhone 12 with a blue case. Found at the subway station. The phone is locked, and the owner can verify ownership.",
+          "Lost Keys": "A set of house keys with a red keychain. Found in the library. Please describe the keychain to claim.",
+          "Lost Bag": "A black backpack containing a laptop and some documents. Found at the coffee shop. Please provide details of the contents to verify ownership.",
+          "Lost Watch": "A silver wristwatch with a unique engraving on the back. Found near the gym locker room. Please describe the engraving to claim.",
+          "Lost Glasses": "A pair of black-rimmed glasses. Found in the park. If these are yours, please claim them.",
+          "Lost Umbrella": "A blue umbrella with a wooden handle. Found at the bus stop. Please describe any unique features to verify ownership.",
+          "Lost Book": "A hardcover book titled 'The Great Gatsby.' Found in the library. If this belongs to you, please claim it.",
+          "Lost Headphones": "A pair of black wireless headphones. Found at the train station. Please describe the brand or unique features to claim.",
+          "Lost Ring": "A gold ring with an engraving on the inside. Found near the fountain. Please describe the engraving to verify ownership.",
+          "Lost Camera": "A digital camera with a memory card. Found at the park bench. Please describe the brand or contents of the memory card to claim.",
+          "Lost Shoes": "A pair of running shoes, size 9. Found near the jogging track. Please describe the brand or color to verify ownership.",
+          "Lost Hat": "A black baseball cap with a logo on the front. Found at the stadium. Please describe the logo to claim.",
+          "Lost Scarf": "A red scarf with a unique pattern. Found at the bus terminal. Please describe the pattern to verify ownership.",
+          "Lost Toy": "A stuffed teddy bear with a bow tie. Found at the playground. If this belongs to you, please claim it."
+        };
+
+        document.getElementById('item-description').textContent = descriptions[itemName] || "Description not available.";
+      </script>
+    </p>
+
+    <!-- Buttons -->
+    <div class="button-container">
+      <button class="back-button" onclick="goBack()">Back to List</button>
+      <button class="verify-button" onclick="verifyItem()">Verify</button>
+      <button class="claim-button" onclick="claimItem()">Claim</button>
+    </div>
+  </div>
+
+  <script src="items_details.js"></script>
+</body>
+</html>
