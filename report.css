@@ -1,0 +1,351 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #dae1e7, #f1f5f9); /* Light greyish-blue gradient */
+  color: #333;
+  line-height: 1.6;
+}
+
+.navbar {
+  background-color: #2a4d79; /* Muted dark blue */
+  color: #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #4b6cf7;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4b6cf7; /* Light blue */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #f1f5f9;
+  padding: 8px 14px;
+  transition: background 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #4b6cf7;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.auth-btn {
+  background-color: transparent;
+  border: 1px solid #4b6cf7;
+  color: #4b6cf7;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.auth-btn:hover {
+  background-color: #4b6cf7;
+  color: #fff;
+}
+
+.auth-btn.signup {
+  background-color: #3b7bbf;
+  color: white;
+}
+
+.lost {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f1f5f9; /* Light grayish-blue */
+  border-bottom: 2px solid #4b6cf7;
+}
+
+.lost h1 {
+  font-size: 2.5rem;
+  color: #4b6cf7;
+  margin-bottom: 20px;
+}
+
+.lost p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #64748b;
+}
+
+.how-it-works {
+  background-color: #e2e8f0; /* Lighter background */
+  padding: 60px 20px;
+  text-align: center;
+  color: #333;
+  border-top: 2px solid #4b6cf7;
+}
+
+.how-it-works h2 {
+  font-size: 2rem;
+  color: #4b6cf7;
+  margin-bottom: 40px;
+}
+
+.steps-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.step {
+  background-color: #c4d8e0; /* Lighter muted blue */
+  border: 1px solid #4b6cf7;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 300px;
+  transition: transform 0.3s ease;
+  position: relative;
+  color: #333;
+  box-shadow: 0 8px 20px rgba(75, 108, 247, 0.1);
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  background-color: #f3f9fc;
+}
+
+.step .icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.step h3 {
+  color: #4b6cf7;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.buttons button {
+  background-color: #4b6cf7;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.buttons button:hover {
+  background-color: #3b7bbf;
+  color: #fff;
+}
+
+.report-form {
+  background-color: #ffffff; /* White background */
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: 40px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(75, 108, 247, 0.1);
+  border: 1px solid #4b6cf7;
+}
+
+.report-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #4b6cf7;
+}
+
+form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: bold;
+  color: #64748b;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #3b7bbf;
+  background-color: #f1f5f9; /* Light grayish-blue */
+  color: #333;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+form button[type="submit"] {
+  background-color: #4b6cf7;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+form button[type="submit"]:hover {
+  background-color: #3b7bbf;
+  color: #fff;
+}
+
+.footer {
+  background-color: #f1f5f9; /* Light background */
+  color: #64748b;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 2px solid #4b6cf7;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: #4b6cf7;
+  color: #fff;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 14px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #4b6cf7 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.found-items {
+  padding: 60px 20px;
+  background-color: #f1f5f9; /* Light background */
+  color: #333;
+  text-align: center;
+}
+
+.found-items h2 {
+  font-size: 2rem;
+  color: #4b6cf7;
+  margin-bottom: 40px;
+}
+
+.found-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.found-card {
+  background-color: #ffffff;
+  border: 1px solid #4b6cf7;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 280px;
+  text-align: left;
+  transition: transform 0.3s ease;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(75, 108, 247, 0.1);
+}
+
+.found-card:hover {
+  transform: translateY(-5px);
+  background-color: #e2e8f0;
+}
+
+.found-card h3 {
+  color: #4b6cf7;
+  margin-bottom: 10px;
+}
+
+.item-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: 8% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  color: #333;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.close {
+  color: #333;
+  position: absolute;
+  top: 10px;
+  right: 20px
+
+
+

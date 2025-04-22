@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard | Lost & Found</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="bg-particle-1"></div>
+    <div class="bg-particle-2"></div>
+    <div class="bg-particle-3"></div>
+  </div>
+
+  <!-- Dashboard Container -->
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar animate__animated animate__fadeInLeft">
+    <div class="sidebar-header">
+      <a href="userprofile.html">
+        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
+             alt="User Profile" class="profile-img cursor-pointer transition-transform hover:scale-105 duration-200">
+      </a>
+      <h3>John Doe</h3>
+      <p>Member since June 2023</p>
+    </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active"><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+          <li><a href="Listed page/listed_page.html"><i class="fas fa-search"></i> Search Items</a></li>
+          <li><a href="#"><i class="fas fa-question-circle"></i> Lost Items</a></li>
+          <li><a href="#"><i class="fas fa-check-circle"></i> Found Items</a></li>
+          <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+          <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
+          <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </nav>
+      
+     
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content animate__animated animate__fadeIn">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <h1><i class="fas fa-tachometer-alt"></i> Lost & Found</h1>
+        <div class="header-actions">
+          <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button><i class="fas fa-search"></i></button>
+          </div>
+         
+        </div>
+      </header>
+      
+      <!-- Stats Cards -->
+      <section class="stats-grid">
+        <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.1s">
+          <div class="stat-icon" style="background-color: #4e73df;">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <div class="stat-info">
+            <h3>5</h3>
+            <p>Active Lost Reports</p>
+          </div>
+          <div class="stat-bg-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+        </div>
+        
+        <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.2s">
+          <div class="stat-icon" style="background-color: #1cc88a;">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="stat-info">
+            <h3>3</h3>
+            <p>Found Items Reported</p>
+          </div>
+          <div class="stat-bg-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+        
+        <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.3s">
+          <div class="stat-icon" style="background-color: #f6c23e;">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div class="stat-info">
+            <h3>2</h3>
+            <p>Successful Returns</p>
+          </div>
+          <div class="stat-bg-icon">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Recent Activity -->
+      <section class="activity-section">
+        <div class="section-header">
+          <h2><i class="fas fa-history"></i> Recent Activity</h2>
+          <a href="#" class="view-all">View All</a>
+        </div>
+        
+        <div class="activity-timeline">
+          <div class="timeline-item animate__animated animate__fadeInRight">
+            <div class="timeline-icon success">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="timeline-content">
+              <h4>Wallet Returned!</h4>
+              <p>Your lost wallet has been returned by Sarah J.</p>
+              <span class="timeline-time"><i class="far fa-clock"></i> 2 hours ago</span>
+            </div>
+          </div>
+          
+          <div class="timeline-item animate__animated animate__fadeInRight">
+            <div class="timeline-icon primary">
+              <i class="fas fa-bell"></i>
+            </div>
+            <div class="timeline-content">
+              <h4>New Match Found</h4>
+              <p>Potential match found for your lost keys report.</p>
+              <span class="timeline-time"><i class="far fa-clock"></i> 1 day ago</span>
+            </div>
+          </div>
+          
+          <div class="timeline-item animate__animated animate__fadeInRight">
+            <div class="timeline-icon warning">
+              <i class="fas fa-exclamation"></i>
+            </div>
+            <div class="timeline-content">
+              <h4>Report Expiring Soon</h4>
+              <p>Your lost phone report will expire in 3 days.</p>
+              <span class="timeline-time"><i class="far fa-clock"></i> 2 days ago</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+  <!-- External JavaScript -->
+  <script src="assets/js/dashboard.js"></script>
+  <script>
+    document.getElementById('logoutBtn').addEventListener('click', function(event) {
+        const confirmLogout = confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+            window.location.href = "Login page/login.html"; // Redirect to login page
+        }
+    });
+</script>
+</body>
+</html>
