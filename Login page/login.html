@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lost & Found - Login</title>
-  <link rel="stylesheet" href="login.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="login.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    .error-message {
+      color: red;
+      font-size: 0.8rem;
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -14,18 +21,13 @@
       <div class="left-text">
         Reuniting Lost Things<br>With Their Owners 💙
       </div>
-      
-
     </div>
+
     <div class="right">
       <div class="form-box">
         <h2>Welcome Back</h2>
         <p>Find what's lost, or help someone else.</p>
         <form id="loginForm">
-          <!-- <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="@chitkara.edu.in" required>
-          </div> -->
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="@chitkara.edu.in" required />
@@ -34,20 +36,63 @@
 
           <div class="form-group password-input-wrapper">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter your password" />
-            <button id="passwordToggle" type="button" onclick="togglePassword()">
+            <input type="password" id="password" placeholder="Enter your password" required />
+            <button id="passwordToggle" type="button" onclick="togglePassword()" aria-label="Toggle Password">
               <i class="fas fa-eye" id="eyeIcon"></i>
             </button>
-          </div>          
-          
-          <button type="submit">Login</button>
+          </div>
+
+          <button type="submit" id="loginBtn">Login</button>
         </form>
+
         <div class="footer">
           Don't have an account? <a href="signup.html">Sign up</a>
         </div>
       </div>
     </div>
   </div>
-  <script src="login.js"></script>
+
+  <script>
+    // Password toggle
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      const eyeIcon = document.getElementById("eyeIcon");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+      }
+    }
+
+    // Login validation and redirection
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const emailError = document.getElementById('emailError');
+
+      if (!email.endsWith('@chitkara.edu.in')) {
+        emailError.style.display = 'block';
+        return;
+      } else {
+        emailError.style.display = 'none';
+      }
+
+      if (email && password) {
+        // Simulate successful login
+        alert('Login successful!');
+        window.location.href = "../dashboard.html";
+        // Redirect to dashboard
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+  </script>
 </body>
 </html>
