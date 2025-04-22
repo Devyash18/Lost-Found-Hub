@@ -1,14 +1,16 @@
 function toggleMore() {
-    const text = document.getElementById('moreText');
-    const button = document.querySelector('button');
-  
-    if (text.style.display === 'none' || text.style.display === '') {
-      text.style.display = 'block';
-      text.style.animation = 'fadeInText 1s ease forwards';
-      button.textContent = 'Read Less';
-    } else {
-      text.style.display = 'none';
-      button.textContent = 'Read More';
-    }
+  const moreText = document.getElementById("moreText");
+  const btn = document.getElementById("readMoreBtn");
+
+  if (moreText.style.display === "none") {
+    moreText.style.display = "block";
+    btn.textContent = "Read Less";
+  } else {
+    moreText.style.display = "none";
+    btn.textContent = "Read More";
   }
-  
+}
+document.querySelector('.read-more').addEventListener('click', function() {
+  alert('This would reveal more content!');
+});
+
