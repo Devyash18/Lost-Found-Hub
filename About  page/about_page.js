@@ -10,3 +10,7 @@ function toggleMore() {
     btn.textContent = "Read More";
   }
 }
+document.querySelector('.read-more').addEventListener('click', function() {
+  alert('This would reveal more content!');
+});
+

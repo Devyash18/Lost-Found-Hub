@@ -29,7 +29,7 @@ body {
   font-weight: 300;
 }
 
-.container {
+/* .container {
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
@@ -44,7 +44,69 @@ body {
   font-size: 2rem;
   color: #2c3e50;
   margin-bottom: 20px;
+} */
+ /* Overall container styling */
+.container {
+  background-color: #f8f9fa;  /* Soft light background */
+  border-radius: 8px;  /* Rounded corners */
+  padding: 30px;
+  max-width: 600px;
+  margin: 40px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+  opacity: 0;  /* Start invisible for fade-in effect */
+  transform: translateY(30px);  /* Start slightly lower for smooth transition */
+  transition: opacity 1s ease, transform 1s ease;  /* Smooth transition for both opacity and transform */
 }
+
+/* When the class 'fade-in' is added, the container will fade in */
+.container.fade-in {
+  opacity: 1;
+  transform: translateY(0);  /* Move to its final position */
+}
+
+/* Title styling */
+h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;  /* Dark blue color */
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Paragraph styling */
+p {
+  font-size: 1.1rem;
+  color: #34495e;  /* Slightly lighter shade of blue-gray */
+  line-height: 1.6;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Adding subtle hover effect to the paragraph */
+p:hover {
+  color: #1abc9c;  /* Change to a soft teal on hover */
+  transition: color 0.3s ease;
+}
+
+/* Animation on page load */
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Using the fadeInAnimation to apply the fade-in */
+.container.fade-in {
+  animation: fadeInAnimation 1s ease-out forwards;
+}
+
 
 .container p {
   font-size: 1.1rem;
