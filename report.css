@@ -2,31 +2,30 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background: #f5f7fa;
-  color: #111;
+  background: linear-gradient(135deg, #dae1e7, #f1f5f9); /* Light greyish-blue gradient */
+  color: #333;
   line-height: 1.6;
 }
 
-/* Navbar */
 .navbar {
-  background-color: #ffffff;
-  color: #111;
+  background-color: #2a4d79; /* Muted dark blue */
+  color: #f1f5f9;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
   flex-wrap: wrap;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 2px solid #4b6cf7;
 }
 
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: #4b6cf7;
+  color: #4b6cf7; /* Light blue */
 }
 
 nav ul {
@@ -38,18 +37,17 @@ nav ul {
 
 nav ul li a {
   text-decoration: none;
-  color: #4b6cf7;
+  color: #f1f5f9;
   padding: 8px 14px;
   transition: background 0.3s;
 }
 
 nav ul li a:hover {
-  background-color: #eaf0ff;
+  background-color: #4b6cf7;
   border-radius: 4px;
-  color: #111;
+  color: #fff;
 }
 
-/* Auth Buttons */
 .auth-btn {
   background-color: transparent;
   border: 1px solid #4b6cf7;
@@ -66,16 +64,15 @@ nav ul li a:hover {
 }
 
 .auth-btn.signup {
-  background-color: #4b6cf7;
+  background-color: #3b7bbf;
   color: white;
 }
 
-/* Lost Section */
 .lost {
   text-align: center;
   padding: 60px 20px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
+  background-color: #f1f5f9; /* Light grayish-blue */
+  border-bottom: 2px solid #4b6cf7;
 }
 
 .lost h1 {
@@ -87,16 +84,15 @@ nav ul li a:hover {
 .lost p {
   font-size: 1.2rem;
   margin-bottom: 30px;
-  color: #444;
+  color: #64748b;
 }
 
-/* How it Works */
 .how-it-works {
-  background-color: #f9fbff;
+  background-color: #e2e8f0; /* Lighter background */
   padding: 60px 20px;
   text-align: center;
-  color: #111;
-  border-top: 1px solid #e0e0e0;
+  color: #333;
+  border-top: 2px solid #4b6cf7;
 }
 
 .how-it-works h2 {
@@ -113,24 +109,26 @@ nav ul li a:hover {
 }
 
 .step {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  background-color: #c4d8e0; /* Lighter muted blue */
+  border: 1px solid #4b6cf7;
   padding: 30px;
   border-radius: 10px;
   max-width: 300px;
   transition: transform 0.3s ease;
+  position: relative;
+  color: #333;
+  box-shadow: 0 8px 20px rgba(75, 108, 247, 0.1);
 }
 
 .step:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(75, 108, 247, 0.1);
+  transform: translateY(-6px);
+  background-color: #f3f9fc;
 }
 
 .step .icon {
   font-size: 40px;
   display: block;
   margin-bottom: 15px;
-  color: #4b6cf7;
 }
 
 .step h3 {
@@ -138,7 +136,6 @@ nav ul li a:hover {
   margin-bottom: 10px;
 }
 
-/* Buttons */
 .buttons {
   display: flex;
   justify-content: center;
@@ -158,17 +155,18 @@ nav ul li a:hover {
 }
 
 .buttons button:hover {
-  background-color: #3a5dd0;
+  background-color: #3b7bbf;
+  color: #fff;
 }
 
-/* Report Form */
 .report-form {
-  background-color: #ffffff;
+  background-color: #ffffff; /* White background */
   padding: 40px 20px;
   max-width: 700px;
   margin: 40px auto;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(75, 108, 247, 0.1);
+  border: 1px solid #4b6cf7;
 }
 
 .report-form h2 {
@@ -181,7 +179,7 @@ form label {
   display: block;
   margin: 12px 0 6px;
   font-weight: bold;
-  color: #333;
+  color: #64748b;
 }
 
 form input,
@@ -189,9 +187,9 @@ form select,
 form textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  color: #111;
+  border: 1px solid #3b7bbf;
+  background-color: #f1f5f9; /* Light grayish-blue */
+  color: #333;
   border-radius: 6px;
   margin-bottom: 10px;
 }
@@ -208,20 +206,19 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-  background-color: #3a5dd0;
+  background-color: #3b7bbf;
+  color: #fff;
 }
 
-/* Footer */
 .footer {
-  background-color: #ffffff;
-  color: #666;
+  background-color: #f1f5f9; /* Light background */
+  color: #64748b;
   text-align: center;
   padding: 20px;
   margin-top: 40px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 2px solid #4b6cf7;
 }
 
-/* Tooltip */
 .tooltip {
   position: relative;
   display: inline-block;
@@ -262,11 +259,10 @@ form button[type="submit"]:hover {
   opacity: 1;
 }
 
-/* Found Items Section */
 .found-items {
   padding: 60px 20px;
-  background-color: #f9fbff;
-  color: #111;
+  background-color: #f1f5f9; /* Light background */
+  color: #333;
   text-align: center;
 }
 
@@ -285,17 +281,19 @@ form button[type="submit"]:hover {
 
 .found-card {
   background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #4b6cf7;
   border-radius: 10px;
   padding: 20px;
   max-width: 280px;
   text-align: left;
   transition: transform 0.3s ease;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(75, 108, 247, 0.1);
 }
 
 .found-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(75, 108, 247, 0.1);
+  background-color: #e2e8f0;
 }
 
 .found-card h3 {
@@ -311,7 +309,6 @@ form button[type="submit"]:hover {
   margin-bottom: 10px;
 }
 
-/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -331,7 +328,7 @@ form button[type="submit"]:hover {
   border-radius: 10px;
   width: 90%;
   max-width: 500px;
-  color: #111;
+  color: #333;
   text-align: center;
   position: relative;
 }
@@ -345,11 +342,10 @@ form button[type="submit"]:hover {
 }
 
 .close {
-  color: #444;
+  color: #333;
   position: absolute;
   top: 10px;
-  right: 20px;
-  font-size: 28px;
-  cursor: pointer;
-}
+  right: 20px
+
+
 
