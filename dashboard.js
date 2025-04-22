@@ -40,4 +40,49 @@ document.addEventListener('DOMContentLoaded', function() {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl);
     });
+    // Show/hide functions
+function showLoader(text = 'Loading Dashboard...') {
+  const spinner = document.getElementById('loading-spinner');
+  spinner.querySelector('.loading-text').textContent = text;
+  spinner.classList.remove('hidden');
+}
+
+function hideLoader() {
+  document.getElementById('loading-spinner').classList.add('hidden');
+}
+
+// Automatic page load spinner
+document.addEventListener('DOMContentLoaded', () => {
+  showLoader();
+  window.addEventListener('load', hideLoader);
+});
+
+// Show spinner immediately
+document.getElementById('loading-spinner').style.display = 'flex';
+
+// Hide when everything is loaded
+window.addEventListener('load', function() {
+  document.getElementById('loading-spinner').style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('loading-spinner').style.display = 'none';
+  }, 500); // Match this with CSS transition
+});
   });
+  // Simple timed spinner - shows for exactly 3 seconds
+// Simple timed spinner control
+(function() {
+  const spinner = document.getElementById('loading-spinner');
+  
+  // Show immediately
+  if (spinner) {
+    spinner.style.display = 'flex';
+    
+    // Hide after 3 seconds
+    setTimeout(() => {
+      spinner.style.opacity = '0';
+      setTimeout(() => {
+        spinner.style.display = 'none';
+      }, 500); // Matches the 0.5s fade out
+    }, 3000); // 3 seconds display time
+  }
+})();
