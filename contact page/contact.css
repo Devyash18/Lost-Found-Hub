@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f9f9f9;
+    background-color: #f5f5f5; /* Light gray background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,17 +25,18 @@ body {
 }
 
 .left-panel {
-    background: linear-gradient(135deg, #0056b3, #003d80);
+    background: linear-gradient(135deg, #4b6cb7, #182848); /* Blue gradient */
     color: white;
     padding: 40px;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
 }
 
 .left-panel h1 {
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 20px;
 }
 
@@ -47,6 +48,22 @@ body {
 .right-panel {
     flex: 1;
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-panel h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.right-panel p {
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: #666;
 }
 
 form {
@@ -58,6 +75,7 @@ label {
     margin-top: 15px;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #333;
 }
 
 input, textarea {
@@ -69,32 +87,49 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-    border-color: #0056b3;
-    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+    border-color: #4b6cb7; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
     outline: none;
 }
 
-input[type="password"] {
-    font-style: italic; /* Example: Add a unique style for password fields */
-}
-
 input::placeholder {
-    font-style: normal; /* Ensure placeholder text is not italic */
+    font-style: normal;
+    color: #aaa;
 }
 
 button {
     margin-top: 20px;
-    padding: 12px;
-    background: #0056b3;
+    padding: 14px;
+    background: linear-gradient(135deg, #4b6cb7, #182848); /* Gradient background */
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 1em;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-    background: #003d80;
-    transform: scale(1.02);
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 5px 15px rgba(75, 108, 183, 0.3); /* Shadow effect */
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none; /* Initially hidden */
+}
+
+a {
+    color: #4b6cb7; /* Blue links */
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: underline;
 }
