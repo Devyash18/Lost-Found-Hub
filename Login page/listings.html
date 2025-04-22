@@ -280,9 +280,9 @@
       <nav class="sidebar-nav">
         <ul>
           <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
-          <li><a href="#" class="active"><i class="fas fa-list"></i> Listings</a></li>
-          <li><a href="#"><i class="fas fa-question-circle"></i> My Lost Items</a></li>
-          <li><a href="#"><i class="fas fa-check-circle"></i> My Found Items</a></li>
+          <li><a href="listings.html"><i class="fas fa-list"></i> Listings</a></li>
+          <li><a href="listings.html?filter=lost"><i class="fas fa-question-circle"></i> My Lost Items</a></li>
+          <li><a href="listings.html?filter=found"><i class="fas fa-check-circle"></i> My Found Items</a></li>
           <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
           <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
           <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
@@ -395,6 +395,10 @@
       
       if (filter === 'lost' || filter === 'found') {
         setActiveFilter(filter);
+        updateSidebarActiveState(filter);
+      } else {
+        setActiveFilter('all');
+        updateSidebarActiveState('all');
       }
     });
 
@@ -465,9 +469,18 @@
 
     // Set up filter button event listeners
     function setupFilterButtons() {
-      allBtn.addEventListener('click', () => setActiveFilter('all'));
-      lostBtn.addEventListener('click', () => setActiveFilter('lost'));
-      foundBtn.addEventListener('click', () => setActiveFilter('found'));
+      allBtn.addEventListener('click', () => {
+        setActiveFilter('all');
+        updateSidebarActiveState('all');
+      });
+      lostBtn.addEventListener('click', () => {
+        setActiveFilter('lost');
+        updateSidebarActiveState('lost');
+      });
+      foundBtn.addEventListener('click', () => {
+        setActiveFilter('found');
+        updateSidebarActiveState('found');
+      });
     }
 
     // Set the active filter and update UI
@@ -490,6 +503,25 @@
       
       // Re-render listings
       renderListings();
+    }
+
+    // Update sidebar active state based on filter
+    function updateSidebarActiveState(filter) {
+      const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+      
+      // Remove active class from all links first
+      sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      // Set active class based on filter
+      if (filter === 'lost') {
+        document.querySelector('.sidebar-nav a[href*="filter=lost"]').classList.add('active');
+      } else if (filter === 'found') {
+        document.querySelector('.sidebar-nav a[href*="filter=found"]').classList.add('active');
+      } else {
+        document.querySelector('.sidebar-nav a[href="listings.html"]').classList.add('active');
+      }
     }
   </script>
 </body>
