@@ -129,6 +129,25 @@
     text-align: center;
     transition: transform 0.2s ease-in-out;
   }
+  .step {
+    background-color:#ddd;
+    border: 2px solid #4b6cb7 ;
+    border-radius: 12px;
+    padding: 1.5rem;
+    flex: 1 1 250px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  
+  /* Hover effect to change background color to blue */
+  .step:hover {
+    background-color: #f4f4f4 ; /* A nice soft blue */
+    transform: scale(1.03);
+    color: #fff; /* Optional: make text white on blue */
+  }
+  
   
   .step:hover {
     transform: scale(1.05);
