@@ -13,7 +13,7 @@
    
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #ffd1dc; /* Peachy pink */
+      background-color:#4b6cb7; /* Peachy pink */
       color: #333;
     
   }
@@ -26,7 +26,7 @@
   
   header {
     /* background-color: #005f99; */
-    background-color: #ffd1dc;
+    background-color: #4b6cb7;
     color:black;
     padding: 2rem 1rem;
     text-align: center;
@@ -49,7 +49,7 @@
   #hero {
     padding: 4rem 2rem;
     text-align: center;
-    background-color: #ffd1dc;
+    background-color:white;
   }
   
   #hero h2 {
@@ -62,7 +62,7 @@
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     /* background-color: #007acc; */
-    background-color: #ffd1dc;
+    background-color:#4b6cb7;
     color: white;
     border: none;
     border-radius: 5px;
@@ -71,7 +71,7 @@
   
   #hero button:hover {
     /* background-color: #005f99; */
-    background-color: #ffd1dc;
+    background-color: #4b6cb7;
   }
   
   #how-it-works {
