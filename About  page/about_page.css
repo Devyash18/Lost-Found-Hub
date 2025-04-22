@@ -4,87 +4,85 @@
   box-sizing: border-box;
 }
 
-body, html {
-  height: 100%;
-  width: 100%;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #ece9e6, #ffffff);
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
   color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  line-height: 1.6;
+}
+
+.hero {
+  background-color: #4a90e2;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  border-bottom: 10px solid #34495e;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  font-weight: 300;
 }
 
 .container {
-  width: 90%;
   max-width: 800px;
-  background: #fff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 1.5s ease-in-out;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
-h1 {
-  text-align: center;
+.container h2 {
+  font-size: 2rem;
   color: #2c3e50;
   margin-bottom: 20px;
-  animation: slideDown 1s ease-out;
 }
 
-p {
-  line-height: 1.6;
-  font-size: 16px;
+.container p {
+  font-size: 1.1rem;
   margin-bottom: 15px;
-  opacity: 0;
-  animation: fadeInText 1.5s ease forwards;
-  animation-delay: 0.8s;
 }
 
 #moreText {
   display: none;
+  font-size: 1.1rem;
+  margin-top: 15px;
 }
 
 button {
-  display: block;
-  margin: 20px auto 0;
-  padding: 12px 24px;
-  background-color: #2c3e50;
+  background-color: #4a90e2;
   color: white;
   border: none;
-  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 button:hover {
   background-color: #34495e;
-  transform: scale(1.05);
 }
 
-/* Animations */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #34495e;
+  color: white;
+  font-size: 0.9rem;
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes fadeInText {
-  to { opacity: 1; }
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 25px;
-  }
-
-  p {
-    font-size: 15px;
+  to {
+    opacity: 1;
   }
 }
 
-  
