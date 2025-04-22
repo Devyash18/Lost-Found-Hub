@@ -28,39 +28,31 @@
   </div>
 
   <!-- Dashboard Container -->
-  <div class="dashboard-container">
-    <!-- Sidebar -->
-    <aside class="sidebar animate__animated animate__fadeInLeft">
-      <div class="sidebar-header">
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar animate__animated animate__fadeInLeft">
+    <div class="sidebar-header">
+      <a href="userprofile.html">
         <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
-             alt="User Profile" class="profile-img">
-        <h3>John Doe</h3>
-        <p>Member since June 2023</p>
-      </div>
+             alt="User Profile" class="profile-img cursor-pointer transition-transform hover:scale-105 duration-200">
+      </a>
+      <h3>John Doe</h3>
+      <p>Member since June 2023</p>
+    </div>
       
       <nav class="sidebar-nav">
         <ul>
-          <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+          <li class="active"><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
           <li><a href="#"><i class="fas fa-search"></i> Search Items</a></li>
-          <li><a href="#"><i class="fas fa-question-circle"></i> My Lost Items</a></li>
-          <li><a href="#"><i class="fas fa-check-circle"></i> My Found Items</a></li>
-          <li><a href="#"><i class="fas fa-envelope"></i> Messages <span class="notification-badge">3</span></a></li>
+          <li><a href="#"><i class="fas fa-question-circle"></i> Lost Items</a></li>
+          <li><a href="#"><i class="fas fa-check-circle"></i> Found Items</a></li>
           <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+          <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
           <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
       </nav>
       
-      <div class="sidebar-footer">
-        <div class="trust-score">
-          <div class="progress-circle" data-value="85">
-            <svg class="progress-ring" width="80" height="80">
-              <circle class="progress-ring-circle" stroke-width="4" fill="transparent" r="34" cx="40" cy="40"/>
-            </svg>
-            <span>85%</span>
-          </div>
-          <p>Trust Score</p>
-        </div>
-      </div>
+     
     </aside>
 
     <!-- Main Content -->
@@ -73,10 +65,7 @@
             <input type="text" placeholder="Search...">
             <button><i class="fas fa-search"></i></button>
           </div>
-          <div class="notifications">
-            <i class="fas fa-bell"></i>
-            <span class="notification-badge">2</span>
-          </div>
+         
         </div>
       </header>
       
@@ -118,19 +107,6 @@
           </div>
           <div class="stat-bg-icon">
             <i class="fas fa-exchange-alt"></i>
-          </div>
-        </div>
-        
-        <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.4s">
-          <div class="stat-icon" style="background-color: #e74a3b;">
-            <i class="fas fa-comments"></i>
-          </div>
-          <div class="stat-info">
-            <h3>3</h3>
-            <p>Unread Messages</p>
-          </div>
-          <div class="stat-bg-icon">
-            <i class="fas fa-comments"></i>
           </div>
         </div>
       </section>
@@ -177,63 +153,6 @@
           </div>
         </div>
       </section>
-      
-      <!-- Recent Items -->
-      <section class="items-section">
-        <div class="section-header">
-          <h2><i class="fas fa-box-open"></i> Your Recent Items</h2>
-          <div class="tabs">
-            <button class="tab-btn active">Lost Items</button>
-            <button class="tab-btn">Found Items</button>
-          </div>
-        </div>
-        
-        <div class="items-grid">
-          <div class="item-card animate__animated animate__fadeInUp">
-            <div class="item-img" style="background-image: url('https://images.unsplash.com/photo-1600267176111-2af550e9a7d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bG9zdCUyMGtleXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=200&q=60')">
-              <span class="item-status lost">Lost</span>
-            </div>
-            <div class="item-info">
-              <h4>Car Keys</h4>
-              <p><i class="fas fa-map-marker-alt"></i> Downtown Parking</p>
-              <div class="item-meta">
-                <span><i class="far fa-calendar"></i> Jun 10, 2023</span>
-                <span class="badge warning">Active</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="item-card animate__animated animate__fadeInUp">
-            <div class="item-img" style="background-image: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2FsbGV0fGVufDB8fDB8fHww&auto=format&fit=crop&w=200&q=60')">
-              <span class="item-status returned">Returned</span>
-            </div>
-            <div class="item-info">
-              <h4>Leather Wallet</h4>
-              <p><i class="fas fa-map-marker-alt"></i> Central Park</p>
-              <div class="item-meta">
-                <span><i class="far fa-calendar"></i> Jun 5, 2023</span>
-                <span class="badge success">Resolved</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="item-card animate__animated animate__fadeInUp">
-            <div class="item-img" style="background-image: url('https://images.unsplash.com/photo-1510557880182-3d1d332f8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXBob25lfGVufDB8fDB8fHww&auto=format&fit=crop&w=200&q=60')">
-              <span class="item-status found">Found</span>
-            </div>
-            <div class="item-info">
-              <h4>iPhone 12</h4>
-              <p><i class="fas fa-map-marker-alt"></i> Coffee Shop</p>
-              <div class="item-meta">
-                <span><i class="far fa-calendar"></i> May 28, 2023</span>
-                <span class="badge info">Pending</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
 
   <!-- External JavaScript -->
   <script src="assets/js/dashboard.js"></script>

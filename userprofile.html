@@ -205,13 +205,13 @@
         <div class="sidebar-header">Lost & Found</div>
         
         <ul class="sidebar-menu">
-            <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
             <li><a href="#"><i class="fas fa-search"></i> Search Items</a></li>
             <li><a href="#"><i class="fas fa-question-circle"></i> Lost Items</a></li>
             <li><a href="#"><i class="fas fa-check-circle"></i> Found Items</a></li>
             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="#" class="active"><i class="fas fa-user"></i> User Profile</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="userprofile.html" class="active"><i class="fas fa-user"></i> User Profile</a></li>
+            <li><a href="Login page/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
 
@@ -224,9 +224,16 @@
         
         <div class="profile-section">
             <div class="profile-picture">
-                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Profile Picture">
-                <button class="upload-btn">Change Photo</button>
+                <img id="profileImage" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Profile Picture">
+                
+                <!-- Hidden file input -->
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                
+                <!-- Button to open file selector -->
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Change Photo</button>
+
             </div>
+            
             
             <div class="profile-info">
                 <h2 class="user-name">John Doe</h2>
@@ -251,15 +258,25 @@
     </div>
 
     <script>
-        // Photo upload functionality
-        document.querySelector('.upload-btn').addEventListener('click', function() {
-            alert('Photo upload functionality would go here');
+        // ✅ Image upload functionality
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                    alert('Profile image updated!');
+                };
+                reader.readAsDataURL(file);
+            }
         });
-        
-        // Edit profile button
+    
+        // ✅ Edit profile button alert
         document.querySelector('.edit-profile').addEventListener('click', function() {
             alert('Edit profile form would appear here');
         });
     </script>
+    
+    
 </body>
 </html>
