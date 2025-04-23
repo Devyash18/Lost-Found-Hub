@@ -1,88 +1,56 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Animate progress circles
-    const progressCircles = document.querySelectorAll('.progress-ring circle');
+  // Animate progress circles
+  const progressCircles = document.querySelectorAll('.progress-ring circle');
+  
+  progressCircles.forEach(circle => {
+    const radius = circle.r.baseVal.value;
+    const circumference = 2 * Math.PI * radius;
+    const parent = circle.closest('.progress-circle');
+    const value = parseInt(parent.getAttribute('data-value'));
     
-    progressCircles.forEach(circle => {
-      const radius = circle.r.baseVal.value;
-      const circumference = 2 * Math.PI * radius;
-      const parent = circle.closest('.progress-circle');
-      const value = parseInt(parent.getAttribute('data-value'));
-      
-      circle.style.strokeDasharray = circumference;
-      circle.style.strokeDashoffset = circumference - (value / 100) * circumference;
-      circle.style.stroke = 'white';
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = circumference - (value / 100) * circumference;
+    circle.style.stroke = 'white';
+  });
+
+  // Tab functionality
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
     });
-    
-    // Tab functionality
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    
-    tabButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        // Here you would load the appropriate content
-      });
-    });
-    
-    // Notification bell animation
-    const notificationBell = document.querySelector('.notifications');
-    
+  });
+
+  // Notification bell animation
+  const notificationBell = document.querySelector('.notifications');
+  
+  if (notificationBell) {
     notificationBell.addEventListener('click', () => {
       notificationBell.classList.add('animate__animated', 'animate__shakeX');
-      
       setTimeout(() => {
         notificationBell.classList.remove('animate__animated', 'animate__shakeX');
       }, 1000);
     });
-    
-    // Initialize tooltips
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-    // Show/hide functions
-function showLoader(text = 'Loading Dashboard...') {
-  const spinner = document.getElementById('loading-spinner');
-  spinner.querySelector('.loading-text').textContent = text;
-  spinner.classList.remove('hidden');
-}
+  }
 
-function hideLoader() {
-  document.getElementById('loading-spinner').classList.add('hidden');
-}
-
-// Automatic page load spinner
-document.addEventListener('DOMContentLoaded', () => {
-  showLoader();
-  window.addEventListener('load', hideLoader);
-});
-
-// Show spinner immediately
-document.getElementById('loading-spinner').style.display = 'flex';
-
-// Hide when everything is loaded
-window.addEventListener('load', function() {
-  document.getElementById('loading-spinner').style.opacity = '0';
-  setTimeout(() => {
-    document.getElementById('loading-spinner').style.display = 'none';
-  }, 500); // Match this with CSS transition
-});
+  // Initialize tooltips
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
   });
-  // Simple timed spinner - shows for exactly 3 seconds
-// Simple timed spinner control
-(function() {
+
+  // Spinner logic
   const spinner = document.getElementById('loading-spinner');
-  
-  // Show immediately
   if (spinner) {
-    spinner.style.display = 'flex';
-    
-    // Hide after 3 seconds
-    setTimeout(() => {
+    spinner.style.display = 'flex'; // Show immediately
+
+    window.addEventListener('load', function() {
       spinner.style.opacity = '0';
       setTimeout(() => {
-        spinner.style.display = 'none';
+        spinner.style.display = 'none'; // Hide after fade out
       }, 500); // Matches the 0.5s fade out
-    }, 3000); // 3 seconds display time
+    });
   }
-})();
+});
