@@ -4,73 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile | Lost & Found</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
+            min-height: 100vh;
+            background-color: #f8f9fc;
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
             display: flex;
             min-height: 100vh;
-            background-color: #f8fafc;
         }
-        
+
         /* Sidebar */
         .sidebar {
-            width: 250px;
-            background: #1e40af;
+            width: 280px;
+            background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
             color: white;
-            padding: 30px 20px;
+            padding: 20px 0;
             height: 100vh;
             position: sticky;
             top: 0;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
         }
         
         .sidebar-header {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 40px;
-            padding-left: 10px;
+            text-align: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
         }
         
-        .sidebar-menu {
-            list-style: none;
-        }
-        
-        .sidebar-menu li {
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.2);
             margin-bottom: 15px;
         }
         
-        .sidebar-menu a {
-            color: #dbeafe;
-            text-decoration: none;
-            font-size: 15px;
-            display: block;
-            padding: 10px 15px;
-            border-radius: 6px;
-            transition: all 0.2s;
+        .sidebar-header h3 {
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: 500;
         }
         
-        .sidebar-menu a:hover, 
-        .sidebar-menu a.active {
-            background: #3b82f6;
+        .sidebar-header p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin: 0;
+            font-weight: 300;
+        }
+        
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0 15px;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        
+        .sidebar-nav a:hover {
+            background: rgba(255,255,255,0.1);
             color: white;
         }
         
-        .sidebar-menu i {
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
+        .sidebar-nav a.active {
+            background: rgba(255,255,255,0.2);
+            color: white;
         }
         
+        .sidebar-nav i {
+            width: 25px;
+            text-align: center;
+            margin-right: 5px;
+            font-size: 16px;
+        }
+
         /* Main Content */
         .main-content {
             flex: 1;
             padding: 40px;
+            background-color: #f8f9fc;
         }
         
         .profile-header {
@@ -82,18 +125,23 @@
         
         .profile-title {
             font-size: 24px;
-            color: #1e293b;
+            color: #2d3748;
             font-weight: 600;
         }
         
         .edit-profile {
-            background: #3b82f6;
+            background: #4e73df;
             color: white;
             border: none;
             padding: 8px 16px;
-            border-radius: 6px;
+            border-radius: 4px;
             font-weight: 500;
             cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .edit-profile:hover {
+            background: #3b65d6;
         }
         
         /* Profile Section */
@@ -101,9 +149,9 @@
             display: flex;
             gap: 40px;
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,0.1);
         }
         
         .profile-picture {
@@ -124,14 +172,19 @@
         }
         
         .upload-btn {
-            background: #3b82f6;
+            background: #4e73df;
             color: white;
             border: none;
             padding: 8px 15px;
-            border-radius: 20px;
+            border-radius: 4px;
             font-size: 14px;
             cursor: pointer;
             width: fit-content;
+            transition: background 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background: #3b65d6;
         }
         
         .profile-info {
@@ -140,7 +193,7 @@
         
         .user-name {
             font-size: 24px;
-            color: #1e293b;
+            color: #2d3748;
             margin-bottom: 5px;
         }
         
@@ -157,10 +210,11 @@
         }
         
         .stat-card {
-            background: #f8fafc;
-            border-radius: 10px;
+            background: #f8f9fc;
+            border-radius: 8px;
             padding: 20px;
             text-align: center;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,0.1);
         }
         
         .stat-number {
@@ -177,7 +231,7 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            body {
+            .dashboard-container {
                 flex-direction: column;
             }
             
@@ -197,59 +251,68 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">Lost & Found</div>
-        
-        <ul class="sidebar-menu">
-            <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="#"><i class="fas fa-search"></i> Search Items</a></li>
-            <li><a href="#"><i class="fas fa-question-circle"></i> Lost Items</a></li>
-            <li><a href="#"><i class="fas fa-check-circle"></i> Found Items</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="userprofile.html" class="active"><i class="fas fa-user"></i> User Profile</a></li>
-            <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="profile-header">
-            <h1 class="profile-title">My Profile</h1>
-            <button class="edit-profile">Edit Profile</button>
-        </div>
-        
-        <div class="profile-section">
-            <div class="profile-picture">
-                <img id="profileImage" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Profile Picture">
-                
-                <!-- Hidden file input -->
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
-                
-                <!-- Button to open file selector -->
-                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Change Photo</button>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
+                     alt="User Profile" class="profile-img">
+                <h3>John Doe</h3>
+                <p>Member since June 2023</p>
             </div>
             
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="Listed page/listings.html"><i class="fas fa-search"></i> Search Items</a></li>
+                    <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
+                    <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="userprofile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="profile-header">
+                <h1 class="profile-title">My Profile</h1>
+                <button class="edit-profile">Edit Profile</button>
+            </div>
             
-            <div class="profile-info">
-                <h2 class="user-name">John Doe</h2>
-                <p class="user-email">john.doe@college.edu</p>
+            <div class="profile-section">
+                <div class="profile-picture">
+                    <img id="profileImage" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Profile Picture">
+                    
+                    <!-- Hidden file input -->
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    
+                    <!-- Button to open file selector -->
+                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Change Photo</button>
+                </div>
                 
-                <div class="user-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">24</div>
-                        <div class="stat-label">Lost Items</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">18</div>
-                        <div class="stat-label">Found Items</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">12</div>
-                        <div class="stat-label">Matches</div>
+                
+                <div class="profile-info">
+                    <h2 class="user-name">John Doe</h2>
+                    <p class="user-email">john.doe@college.edu</p>
+                    
+                    <div class="user-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">24</div>
+                            <div class="stat-label">Lost Items</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">18</div>
+                            <div class="stat-label">Found Items</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Matches</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -257,7 +320,7 @@
     </div>
 
     <script>
-        // ✅ Image upload functionality
+        // Image upload functionality
         document.getElementById('fileInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
@@ -270,12 +333,12 @@
             }
         });
     
-        // ✅ Edit profile button alert
+        // Edit profile button alert
         document.querySelector('.edit-profile').addEventListener('click', function() {
             alert('Edit profile form would appear here');
         });
-    </script>
-    <script>
+
+        // Logout functionality
         document.getElementById('logoutBtn').addEventListener('click', function(event) {
             const confirmLogout = confirm("Are you sure you want to log out?");
             if (confirmLogout) {
@@ -283,6 +346,5 @@
             }
         });
     </script>
-    
 </body>
-</html> 
+</html>
