@@ -10,7 +10,27 @@ function toggleMore() {
     btn.textContent = "Read More";
   }
 }
-document.querySelector('.read-more').addEventListener('click', function() {
-  alert('This would reveal more content!');
-});
 
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+  // Set initial state for more text
+  document.getElementById("moreText").style.display = "none";
+  
+  // Highlight active menu item
+  const menuItems = document.querySelectorAll('.menu-item');
+  menuItems.forEach(item => {
+    item.classList.remove('active');
+    if (item.dataset.page === 'about') {
+      item.classList.add('active');
+    }
+  });
+
+  // Logout functionality
+  document.getElementById('logoutBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+    const confirmLogout = confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      window.location.href = "Login page/login.html";
+    }
+  });
+});

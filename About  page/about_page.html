@@ -4,35 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us - Lost & Found</title>
-  <link rel="stylesheet" href="about_page.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Google Fonts for style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="about_page.css">
 </head>
 <body>
-  <div class="hero">
-    <h1>About Us</h1>
-    <p>Welcome to Lost & Found – your go-to platform for reuniting lost items with their rightful owners.</p>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
+             alt="User Profile" class="profile-img">
+        <h3>John Doe</h3>
+        <p>Member since June 2023</p>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="dashboard.html" class="menu-item" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+          <li><a href="listings.html?source=search" class="menu-item" data-page="search"><i class="fas fa-search"></i> Search Items</a></li>
+          <li><a href="listings.html?filter=lost" class="menu-item" data-page="lost"><i class="fas fa-question-circle"></i> My Lost Items</a></li>
+          <li><a href="listings.html?filter=found" class="menu-item" data-page="found"><i class="fas fa-check-circle"></i> My Found Items</a></li>
+          <li><a href="#" class="menu-item" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+          <li><a href="userprofile.html" class="menu-item" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+          <li><a href="about.html" class="menu-item active" data-page="about"><i class="fas fa-info-circle"></i> About Us</a></li>
+          <li><a href="#" id="logoutBtn" class="menu-item" data-page="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="hero">
+        <h1>About Us</h1>
+        <p>Welcome to Lost & Found – your go-to platform for reuniting lost items with their rightful owners.</p>
+      </div>
+
+      <div class="container fade-in">
+        <h2>Our Mission</h2>
+        <p>
+          At Lost & Found, we believe every lost item tells a story, and each one is important. 
+          We connect finders with seekers to help bring lost treasures back home.
+        </p>
+        
+        <p id="moreText">
+          Our mission is to build a trustworthy community where people can report, search, and recover lost belongings. 
+          Whether it's a misplaced phone, a forgotten bag, or a cherished item, we prioritize safety, transparency, and efficient solutions. 
+          Together, we help reunite individuals with their valuable possessions and restore peace of mind to those who've lost something special.
+        </p>
+
+        <button onclick="toggleMore()" id="readMoreBtn">Read More</button>
+      </div>
+    </main>
   </div>
-
-  <div class="container fade-in">
-    <h2>Our Mission</h2>
-    <p>
-      At Lost & Found, we believe every lost item tells a story, and each one is important. 
-      We connect finders with seekers to help bring lost treasures back home.
-    </p>
-    
-</div>
-
-    
-    <p id="moreText">
-      Our mission is to build a trustworthy community where people can report, search, and recover lost belongings. 
-      Whether it’s a misplaced phone, a forgotten bag, or a cherished item, we prioritize safety, transparency, and efficient solutions. 
-      Together, we help reunite individuals with their valuable possessions and restore peace of mind to those who’ve lost something special.
-    </p>
-
-    <button onclick="toggleMore()" id="readMoreBtn">Read More</button>
-  </div>
-
-  
 
   <script src="about_page.js"></script>
 </body>

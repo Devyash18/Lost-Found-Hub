@@ -6,9 +6,98 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
   line-height: 1.6;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
+  color: white;
+  padding: 20px 0;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+  text-align: center;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.2);
+  margin-bottom: 15px;
+}
+
+.sidebar-header h3 {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.sidebar-header p {
+  font-size: 12px;
+  opacity: 0.8;
+  margin: 0;
+  font-weight: 300;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0 15px;
+}
+
+.sidebar-nav li {
+  margin-bottom: 5px;
+}
+
+.sidebar-nav a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.sidebar-nav a:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.sidebar-nav a.active {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.sidebar-nav i {
+  width: 25px;
+  text-align: center;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f8f9fc;
 }
 
 .hero {
@@ -29,88 +118,42 @@ body {
   font-weight: 300;
 }
 
-/* .container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-}
-
-.container h2 {
-  font-size: 2rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
-} */
- /* Overall container styling */
 .container {
-  background-color: #f8f9fa;  /* Soft light background */
-  border-radius: 8px;  /* Rounded corners */
+  background-color: #f8f9fa;
+  border-radius: 8px;
   padding: 30px;
   max-width: 600px;
   margin: 40px auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-  opacity: 0;  /* Start invisible for fade-in effect */
-  transform: translateY(30px);  /* Start slightly lower for smooth transition */
-  transition: opacity 1s ease, transform 1s ease;  /* Smooth transition for both opacity and transform */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
-/* When the class 'fade-in' is added, the container will fade in */
 .container.fade-in {
   opacity: 1;
-  transform: translateY(0);  /* Move to its final position */
+  transform: translateY(0);
 }
 
-/* Title styling */
 h2 {
   font-size: 2.5rem;
-  color: #2c3e50;  /* Dark blue color */
+  color: #2c3e50;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 20px;
-  font-family: 'Arial', sans-serif;
 }
 
-/* Paragraph styling */
 p {
   font-size: 1.1rem;
-  color: #34495e;  /* Slightly lighter shade of blue-gray */
+  color: #34495e;
   line-height: 1.6;
   text-align: center;
-  font-family: 'Arial', sans-serif;
 }
 
-/* Adding subtle hover effect to the paragraph */
 p:hover {
-  color: #1abc9c;  /* Change to a soft teal on hover */
+  color: #1abc9c;
   transition: color 0.3s ease;
-}
-
-/* Animation on page load */
-@keyframes fadeInAnimation {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Optional: Using the fadeInAnimation to apply the fade-in */
-.container.fade-in {
-  animation: fadeInAnimation 1s ease-out forwards;
-}
-
-
-.container p {
-  font-size: 1.1rem;
-  margin-bottom: 15px;
 }
 
 #moreText {
@@ -128,23 +171,46 @@ button {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
+  display: block;
+  margin: 20px auto 0;
 }
 
 button:hover {
   background-color: #34495e;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #34495e;
-  color: white;
-  font-size: 0.9rem;
-}
-
-@keyframes fadeIn {
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
+.container.fade-in {
+  animation: fadeInAnimation 1s ease-out forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+}
