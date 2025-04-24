@@ -54,3 +54,30 @@ document.addEventListener('DOMContentLoaded', function() {
             phoneInput.value = originalValues.phone;
             showAlert('Changes discarded', 'info');
         });
+    }
+    
+    // Notification Preferences Form
+    if (notificationForm) {
+        const emailNotif = notificationForm.querySelector('#email-notifications');
+        const smsNotif = notificationForm.querySelector('#sms-notifications');
+        const pushNotif = notificationForm.querySelector('#push-notifications');
+        const frequencySelect = notificationForm.querySelector('#notification-frequency');
+        const dndStart = notificationForm.querySelector('#do-not-disturb-start');
+        const dndEnd = notificationForm.querySelector('#do-not-disturb-end');
+        const updateBtn = notificationForm.querySelector('.btn-primary');
+        
+        updateBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // In a real app, you would send this to the server
+            console.log('Notification preferences updated:', {
+                emailNotifications: emailNotif.checked,
+                smsNotifications: smsNotif.checked,
+                pushNotifications: pushNotif.checked,
+                frequency: frequencySelect.value,
+                doNotDisturb: `${dndStart.value} to ${dndEnd.value}`
+            });
+            
+            showAlert('Notification preferences updated!', 'success');
+        });
+    }
