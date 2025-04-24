@@ -11,3 +11,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const phoneInput = profileForm.querySelector('#phone');
         const saveBtn = profileForm.querySelector('.btn-primary');
         const cancelBtn = profileForm.querySelector('.btn-outline');
+             // Store original values for cancel functionality
+             const originalValues = {
+                username: usernameInput.value,
+                email: emailInput.value,
+                phone: phoneInput.value
+            };
+            
+            // Save profile changes
+            saveBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Simple validation
+                if (!usernameInput.value.trim()) {
+                    showAlert('Username cannot be empty', 'error');
+                    return;
+                }
