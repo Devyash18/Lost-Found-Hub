@@ -177,3 +177,54 @@ document.addEventListener('DOMContentLoaded', function() {
         );
     });
 }
+ // Account Actions
+ if (accountActions) {
+    const downloadDataBtn = accountActions.querySelector('.full-width:not(.delete-btn)');
+    const deleteAccountBtn = accountActions.querySelector('.delete-btn');
+    
+    // Download data
+    downloadDataBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        showModal(
+            'Request Data Download',
+            `
+            <p>We will prepare a downloadable archive containing all your personal data stored in our system.</p>
+            <p>This may include:</p>
+            <ul>
+                <li>Your profile information</li>
+                <li>Lost item reports</li>
+                <li>Found item reports</li>
+                <li>Messages and notifications</li>
+            </ul>
+            <p>The download link will be sent to your email address within 24 hours.</p>
+            <div class="form-group">
+                <label for="download-email" class="form-label">Email address for download link</label>
+                <input type="email" id="download-email" class="form-control" value="john.doe@example.com">
+            </div>
+            `,
+            [
+                {
+                    text: 'Cancel',
+                    class: 'btn-outline',
+                    handler: () => console.log('Data download canceled')
+                },
+                {
+                    text: 'Request Download',
+                    class: 'btn-primary',
+                    handler: () => {
+                        const email = document.getElementById('download-email').value;
+                        if (!validateEmail(email)) {
+                            showAlert('Please enter a valid email address', 'error');
+                            return false;
+                        }
+                        
+                        console.log('Data download requested for:', email);
+                        showAlert('Your data download has been requested. You will receive an email when it\'s ready.', 'success');
+                        return true;
+                    }
+                }
+            ]
+        );
+    });
+    
