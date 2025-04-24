@@ -4,41 +4,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const notificationForm = document.querySelector('.settings-card:nth-child(2)');
     const securityForm = document.querySelector('.settings-card:nth-child(3)');
     const accountActions = document.querySelector('.settings-card:nth-child(4)');
-     // Profile Information Form
-     if (profileForm) {
+    
+    // Profile Information Form
+    if (profileForm) {
         const usernameInput = profileForm.querySelector('#username');
         const emailInput = profileForm.querySelector('#email');
         const phoneInput = profileForm.querySelector('#phone');
         const saveBtn = profileForm.querySelector('.btn-primary');
         const cancelBtn = profileForm.querySelector('.btn-outline');
-             // Store original values for cancel functionality
-             const originalValues = {
+        
+        // Store original values for cancel functionality
+        const originalValues = {
+            username: usernameInput.value,
+            email: emailInput.value,
+            phone: phoneInput.value
+        }; // <-- Removed the extra closing brace here
+            
+        // Save profile changes
+        saveBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Simple validation
+            if (!usernameInput.value.trim()) {
+                showAlert('Username cannot be empty', 'error');
+                return;
+            }
+            if (!validateEmail(emailInput.value)) {
+                showAlert('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            console.log('Profile updated:', {
                 username: usernameInput.value,
                 email: emailInput.value,
                 phone: phoneInput.value
-            };
+            });
             
-            // Save profile changes
-            saveBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Simple validation
-                if (!usernameInput.value.trim()) {
-                    showAlert('Username cannot be empty', 'error');
-                    return;
-                }
-                if (!validateEmail(emailInput.value)) {
-                    showAlert('Please enter a valid email address', 'error');
-                    return;
-                }
-                
-                // In a real app, you would send this to the server
-                console.log('Profile updated:', {
-                    username: usernameInput.value,
-                    email: emailInput.value,
-                    phone: phoneInput.value
-                });
-                   // Update original values
+            // Update original values
             originalValues.username = usernameInput.value;
             originalValues.email = emailInput.value;
             originalValues.phone = phoneInput.value;
@@ -93,18 +95,15 @@ document.addEventListener('DOMContentLoaded', function() {
         newPass.addEventListener('input', function() {
             checkPasswordStrength(newPass.value);
         });
-         // Security Settings Form
-    if (securityForm) {
-        const currentPass = securityForm.querySelector('#current-password');
-        const newPass = securityForm.querySelector('#new-password');
-        const confirmPass = securityForm.querySelector('#confirm-password');
-        const changePassBtn = securityForm.querySelector('.btn-primary');
-        const enable2faBtn = securityForm.querySelector('.two-factor-box .btn-outline');
-        
-        // Password strength indicator
-        newPass.addEventListener('input', function() {
-            checkPasswordStrength(newPass.value);
-        });
+        // Change password
+        changePassBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Validation
+            if (!currentPass.value) {
+                showAlert('Please enter your current password', 'error');
+                return;
+            }
         if (!newPass.value) {
             showAlert('Please enter a new password', 'error');
             return;
@@ -157,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     class: 'btn-outline',
                     handler: () => console.log('2FA setup canceled')
                 },
+     
                 {
                     text: 'Verify & Enable',
                     class: 'btn-primary',
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         );
     });
-}
+     }
  // Account Actions
  if (accountActions) {
     const downloadDataBtn = accountActions.querySelector('.full-width:not(.delete-btn)');
@@ -328,8 +328,6 @@ function checkPasswordStrength(password) {
     
     // Contains numbers
     if (/\d/.test(password)) strength += 1;
-     // Contains numbers
-     if (/\d/.test(password)) strength += 1;
         
      // Contains special chars
      if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength += 1;
@@ -538,3 +536,69 @@ function checkPasswordStrength(password) {
         
         document.body.appendChild(overlay);
     }
+     // Add CSS animations
+     const style = document.createElement('style');
+     style.textContent = `
+         @keyframes fadeIn {
+             from { opacity: 0; }
+             to { opacity: 1; }
+         }
+         
+         @keyframes fadeOut {
+             from { opacity: 1; }
+             to { opacity: 0; }
+         }
+         
+         @keyframes scaleIn {
+             from { transform: scale(0.9); opacity: 0; }
+             to { transform: scale(1); opacity: 1; }
+         }
+         
+         .two-factor-setup {
+             text-align: center;
+         }
+         
+         .qr-code-placeholder {
+             width: 200px;
+             height: 200px;
+             margin: 15px auto;
+             background-color: #f5f7fb;
+             border: 1px dashed #adb5bd;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             color: #adb5bd;
+         }
+         
+         .manual-code {
+             font-family: monospace;
+             font-size: 1.2rem;
+             letter-spacing: 1px;
+             margin: 15px 0;
+             padding: 10px;
+             background-color: #f5f7fb;
+             border-radius: 4px;
+         }
+         
+         .delete-warning {
+             text-align: center;
+         }
+         
+         .warning-icon {
+             font-size: 3rem;
+             color: var(--danger);
+             margin-bottom: 15px;
+         }
+         
+         .delete-warning ul {
+             text-align: left;
+             margin: 15px 0;
+             padding-left: 20px;
+         }
+         
+         .delete-warning li {
+             margin-bottom: 5px;
+         }
+     `;
+     document.head.appendChild(style);
+});
