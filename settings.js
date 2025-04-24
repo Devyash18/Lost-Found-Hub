@@ -227,4 +227,128 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         );
     });
+    // Delete account
+    deleteAccountBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        showModal(
+            'Delete Your Account',
+            `
+            <div class="delete-warning">
+                <div class="warning-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>This action cannot be undone</h3>
+                <p>All your data will be permanently deleted, including:</p>
+                <ul>
+                    <li>Your profile information</li>
+                    <li>All lost and found item reports</li>
+                    <li>Messages and notifications</li>
+                </ul>
+                <p>You will not be able to recover this information later.</p>
+                <div class="form-group">
+                    <label for="delete-confirm" class="form-label">To confirm, type "DELETE" below</label>
+                    <input type="text" id="delete-confirm" class="form-control" placeholder="DELETE">
+                </div>
+            </div>
+            `,
+            [
+                {
+                    text: 'Cancel',
+                    class: 'btn-outline',
+                    handler: () => console.log('Account deletion canceled')
+                },
+                {
+                    text: 'Permanently Delete',
+                    class: 'btn-danger',
+                    handler: () => {
+                        const confirmation = document.getElementById('delete-confirm').value;
+                        if (confirmation !== 'DELETE') {
+                            showAlert('Please type "DELETE" to confirm', 'error');
+                            return false;
+                        }
+                        
+                        console.log('Account deletion confirmed');
+                        // In a real app, you would send this to the server
+                        showAlert('Your account has been scheduled for deletion. You will receive a confirmation email.', 'info');
+                        
+                        // Simulate logout after deletion
+                        setTimeout(() => {
+                            window.location.href = 'logout.html';
+                        }, 3000);
+                        
+                        return true;
+                    }
+                }
+            ]
+        );
+    });
+}
+ // Email validation
+ function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// Password strength check
+function isPasswordStrong(password) {
+    // At least 8 characters, one number, one special character
+    const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+    return re.test(password);
+}
+
+function checkPasswordStrength(password) {
+    const strengthBadge = document.getElementById('password-strength');
+    // Create badge if it doesn't exist
+    if (!strengthBadge) {
+        const newBadge = document.createElement('div');
+        newBadge.id = 'password-strength';
+        newBadge.style.marginTop = '8px';
+        newBadge.style.fontSize = '0.85rem';
+        newBadge.style.borderRadius = '4px';
+        newBadge.style.padding = '4px 8px';
+        newBadge.style.display = 'inline-block';
+        document.querySelector('#new-password').parentNode.appendChild(newBadge);
+    }
+    const badge = document.getElementById('password-strength');
+        
+    if (!password) {
+        badge.style.display = 'none';
+        return;
+    }
     
+    badge.style.display = 'inline-block';
+    
+    // Strength calculation
+    let strength = 0;
+    
+    // Length
+    if (password.length >= 8) strength += 1;
+    if (password.length >= 12) strength += 1;
+    
+    // Contains numbers
+    if (/\d/.test(password)) strength += 1;
+     // Contains numbers
+     if (/\d/.test(password)) strength += 1;
+        
+     // Contains special chars
+     if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength += 1;
+     
+     // Contains both lower and upper case
+     if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 1;
+     
+     // Visual feedback
+     if (strength <= 2) {
+         badge.textContent = 'Weak';
+         badge.style.backgroundColor = 'rgba(239, 35, 60, 0.1)';
+         badge.style.color = 'var(--danger)';
+     } else if (strength <= 4) {
+         badge.textContent = 'Medium';
+         badge.style.backgroundColor = 'rgba(248, 150, 30, 0.1)';
+         badge.style.color = 'var(--warning)';
+     } else {
+         badge.textContent = 'Strong';
+         badge.style.backgroundColor = 'rgba(76, 201, 240, 0.1)';
+         badge.style.color = 'var(--success)';
+     }
+    }
