@@ -53,10 +53,10 @@
           <li><a href="Listed page/listings.html"><i class="fas fa-search"></i> Search Items</a></li>
           <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
           <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
-          <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+          <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
           <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
           <li><a href="about.html"><i class="fas fa-cog"></i> About Us</a></li>
-          <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          <li><a href="landingpage.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
       </nav>
       
@@ -168,7 +168,7 @@
     document.getElementById('logoutBtn').addEventListener('click', function(event) {
         const confirmLogout = confirm("Are you sure you want to log out?");
         if (confirmLogout) {
-            window.location.href = "Login page/login.html"; // Redirect to login page
+            window.location.href = "landingpage.html"; // Redirect to login page
         }
     });
 </script>

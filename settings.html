@@ -27,19 +27,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="search.html" class="nav-link active">
+                    <a href="Listed page/listings.html" class="nav-link ">
                         <i class="fas fa-search"></i>
                         Search Items
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="lost.html" class="nav-link">
+                    <a href="Listed page/listings.html?filter=lost" class="nav-link">
                         <i class="fas fa-question-circle"></i>
                         Lost Items
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="found.html" class="nav-link">
+                    <a href="Listed page/listings.html?filter=found" class="nav-link">
                         <i class="fas fa-check-circle"></i>
                         Found Items
                     </a>
@@ -63,8 +63,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="logout.html" class="nav-link">
-                        <i class="fas fa-sign-out-alt"></i>
+                    <a href="landingpage.html" id="logoutBtn" class="nav-link">
+                        <i class="fas fa-sign-out-alt" ></i>
                         Logout
                     </a>
                 </li>
@@ -256,5 +256,13 @@
         </main>
     </div>
 </body>
+<script>
+    document.getElementById('logoutBtn').addEventListener('click', function(event) {
+        const confirmLogout = confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+            window.location.href = "landingpage.html"; // Redirect to login page
+        }
+    });
+</script>
 <script src="settings.js"></script>
 </html>
