@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Lost & Found</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #f0f4ff;
+            --secondary: #3a0ca3;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --light: #f8f9fa;
+            --medium: #e9ecef;
+            --dark: #212529;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --sidebar-width: 280px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        @supports (font-variation-settings: normal) {
+            body { font-family: 'Inter var', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
+        }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Modern Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            padding: 1.5rem;
+            border-right: 1px solid var(--medium);
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding: 1rem 0 2rem;
+            border-bottom: 1px solid var(--medium);
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        .sidebar h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--dark);
+        }
+
+        .sidebar p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .sidebar-nav a:hover {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .sidebar-nav a.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-nav i {
+            width: 24px;
+            font-size: 1rem;
+            margin-right: 12px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* About Header */
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Content Sections */
+        .about-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--medium);
+        }
+
+        .about-section:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 12px;
+            font-size: 1.25rem;
+        }
+
+        .mission-statement {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--medium);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--medium);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+        }
+
+        .member-name {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .member-role {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .social-links a {
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .app-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--medium);
+            }
+            .sidebar-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .sidebar-nav li {
+                margin-bottom: 0;
+            }
+            .sidebar-nav a {
+                padding: 0.5rem 0.75rem;
+            }
+            .main-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 2rem;
+            }
+            .about-subtitle {
+                font-size: 1.1rem;
+            }
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-header {
+                margin-bottom: 2rem;
+            }
+            .about-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Modern Sidebar -->
+        <aside class="sidebar animate__animated animate__fadeInLeft">
+            <div class="sidebar-header">
+                <a href="userprofile.html">
+                    <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
+                         alt="User Profile" class="profile-img">
+                </a>
+                <h3>John Doe</h3>
+                <p>Member since June 2023</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="listed_page.html" class="active"><i class="fas fa-search"></i> Search Items</a></li>
+                    <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
+                    <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
+                    <li><a href="Login page/login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="about-header">
+                <h1 class="about-title">About Our Lost & Found Platform</h1>
+                <p class="about-subtitle">
+                    Connecting lost items with their owners through community power and smart technology.
+                </p>
+            </header>
+
+            <!-- Our Mission -->
+            <section class="about-section animate__animated animate__fadeIn">
+                <h2 class="section-title"><i class="fas fa-bullseye"></i> Our Mission</h2>
+                <p class="mission-statement">
+                    We believe that losing personal items shouldn't mean losing them forever. Our platform was created to 
+                    revolutionize how lost items are returned to their owners by leveraging community networks and 
+                    intelligent matching algorithms. Every day, we help reunite people with their valued possessions, 
+                    one item at a time.
+                </p>
+            </section>
+
+            <!-- Our Story -->
+            <section class="about-section animate__animated animate__fadeIn">
+                <h2 class="section-title"><i class="fas fa-history"></i> Our Story</h2>
+                <p>
+                    Founded in 2023 after one of our team members lost (and fortunately found) an important family heirloom, 
+                    we set out to create a better solution for lost items. What began as a small university project has grown 
+                    into a trusted platform serving thousands of users nationwide.
+                </p>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Items Reunited</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Campuses Served</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">Average Return Time</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Team -->
+            <section class="about-section animate__animated animate__fadeIn">
+                <h2 class="section-title"><i class="fas fa-users"></i> Our Team</h2>
+                <p>
+                    We're a passionate group of technologists, designers, and community builders dedicated to making
+                    the world a little less lost.
+                </p>
+                <div class="team-grid">
+                    <article class="team-member">
+                        <div class="member-avatar">JD</div>
+                        <h3 class="member-name">John Doe</h3>
+                        <p class="member-role">Founder & CEO</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </article>
+                    <article class="team-member">
+                        <div class="member-avatar">SJ</div>
+                        <h3 class="member-name">Sarah Johnson</h3>
+                        <p class="member-role">Head of Product</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </article>
+                    <article class="team-member">
+                        <div class="member-avatar">MC</div>
+                        <h3 class="member-name">Michael Chen</h3>
+                        <p class="member-role">Lead Developer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </article>
+                    <article class="team-member">
+                        <div class="member-avatar">EW</div>
+                        <h3 class="member-name">Emma Williams</h3>
+                        <p class="member-role">Community Manager</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </article>
+                    <article class="team-member">
+                        <div class="member-avatar">AR</div>
+                        <h3 class="member-name">Alex Rodriguez</h3>
+                        <p class="member-role">UX Designer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Logout button functionality
+        document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Add logout logic here
+            console.log('User logged out');
+            alert('You have been logged out successfully');
+        });
+    </script>
+</body>
+</html>

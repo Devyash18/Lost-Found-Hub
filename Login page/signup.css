@@ -177,3 +177,16 @@ body {
     margin-top: 0.25rem;
     display: none;
   }
+  input[type="text"],
+input[type="email"],
+input[type="password"] {
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover {
+  background-color: #f0f8ff; /* light background on hover */
+  border-color: #4a90e2;     /* change border color on hover */
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.5); /* optional glow */
+}

@@ -55,6 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(() => {
         spinner.remove();
       }, 500); // Matches CSS fade transition
-    }, 3000);
+    }, 300);
   }
 });
