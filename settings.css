@@ -319,3 +319,12 @@ body {
     display: flex;
     align-items: center;
 }
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+}
