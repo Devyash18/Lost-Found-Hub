@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | Lost & Found</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styles - Matching the image */
+        .sidebar {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 30px 20px;
+        }
+        
+        .user-profile {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .user-profile h2 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+        }
+        
+        .user-profile p {
+            margin: 0;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+        
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-menu li {
+            margin: 8px 0;
+            position: relative;
+        }
+        
+        .nav-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a.active {
+            background-color: rgba(255,255,255,0.1);
+            font-weight: bold;
+        }
+        
+        .nav-menu a.active::before {
+            content: "✓";
+            margin-right: 8px;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            padding: 30px;
+            background-color: var(--light-gray);
+        }
+        
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .settings-title {
+            color: var(--secondary-color);
+            margin: 0;
+        }
+        
+        .settings-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .settings-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 25px;
+        }
+        
+        .section-title {
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--medium-gray);
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: var(--dark-gray);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #6c7a7d;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        
+        .divider {
+            border: 0;
+            height: 1px;
+            background: var(--medium-gray);
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation - Matches the image exactly -->
+        <div class="sidebar">
+            <div class="user-profile">
+                <h2>John Doe</h2>
+                <p>Member since June 2023</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#" class="active">Search Items</a></li>
+                <li><a href="#">Lost Items</a></li>
+                <li><a href="#">Found Items</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">User Profile</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="settings-header">
+                <h1 class="settings-title">Settings</h1>
+            </div>
+            
+            <div class="settings-container">
+                <!-- Account Settings -->
+                <div class="settings-section">
+                    <h2 class="section-title">Account Settings</h2>
+                    
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" value="johndoe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" value="john.doe@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" value="+1 (555) 123-4567">
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn">Save Changes</button>
+                        <button class="btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+                
+                <!-- Notification Preferences -->
+                <div class="settings-section">
+                    <h2 class="section-title">Notification Preferences</h2>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="email-notifications" checked>
+                        <label for="email-notifications">Email notifications</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="sms-notifications" checked>
+                        <label for="sms-notifications">SMS notifications</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="push-notifications">
+                        <label for="push-notifications">Push notifications</label>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="form-group">
+                        <label>Notification Frequency</label>
+                        <select class="form-control">
+                            <option>Immediately</option>
+                            <option selected>Daily Digest</option>
+                            <option>Weekly Summary</option>
+                        </select>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn">Update Preferences</button>
+                    </div>
+                </div>
+                
+                <!-- Security Settings -->
+                <div class="settings-section">
+                    <h2 class="section-title">Security</h2>
+                    
+                    <div class="form-group">
+                        <label for="current-password">Current Password</label>
+                        <input type="password" id="current-password" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <input type="password" id="new-password" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm New Password</label>
+                        <input type="password" id="confirm-password" class="form-control">
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn">Change Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
