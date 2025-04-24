@@ -81,3 +81,54 @@ document.addEventListener('DOMContentLoaded', function() {
             showAlert('Notification preferences updated!', 'success');
         });
     }
+     // Security Settings Form
+     if (securityForm) {
+        const currentPass = securityForm.querySelector('#current-password');
+        const newPass = securityForm.querySelector('#new-password');
+        const confirmPass = securityForm.querySelector('#confirm-password');
+        const changePassBtn = securityForm.querySelector('.btn-primary');
+        const enable2faBtn = securityForm.querySelector('.two-factor-box .btn-outline');
+        
+        // Password strength indicator
+        newPass.addEventListener('input', function() {
+            checkPasswordStrength(newPass.value);
+        });
+         // Security Settings Form
+    if (securityForm) {
+        const currentPass = securityForm.querySelector('#current-password');
+        const newPass = securityForm.querySelector('#new-password');
+        const confirmPass = securityForm.querySelector('#confirm-password');
+        const changePassBtn = securityForm.querySelector('.btn-primary');
+        const enable2faBtn = securityForm.querySelector('.two-factor-box .btn-outline');
+        
+        // Password strength indicator
+        newPass.addEventListener('input', function() {
+            checkPasswordStrength(newPass.value);
+        });
+        if (!newPass.value) {
+            showAlert('Please enter a new password', 'error');
+            return;
+        }
+        
+        if (newPass.value !== confirmPass.value) {
+            showAlert('New passwords do not match', 'error');
+            return;
+        }
+        
+        if (!isPasswordStrong(newPass.value)) {
+            showAlert('Password must be at least 8 characters with one number and one special character', 'error');
+            return;
+        }
+          // In a real app, you would send this to the server
+          console.log('Password change requested:', {
+            currentPassword: currentPass.value,
+            newPassword: newPass.value
+        });
+        
+        // Clear form
+        currentPass.value = '';
+        newPass.value = '';
+        confirmPass.value = '';
+        
+        showAlert('Password changed successfully!', 'success');
+    });
