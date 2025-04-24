@@ -38,3 +38,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: emailInput.value,
                     phone: phoneInput.value
                 });
+                   // Update original values
+            originalValues.username = usernameInput.value;
+            originalValues.email = emailInput.value;
+            originalValues.phone = phoneInput.value;
+            
+            showAlert('Profile updated successfully!', 'success');
+        });
+        
+        // Cancel changes
+        cancelBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            usernameInput.value = originalValues.username;
+            emailInput.value = originalValues.email;
+            phoneInput.value = originalValues.phone;
+            showAlert('Changes discarded', 'info');
+        });
