@@ -228,6 +228,104 @@
             font-size: 14px;
             color: #64748b;
         }
+
+        /* Listings Section */
+        .listings-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .listing-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,0.1);
+            transition: transform 0.3s;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .listing-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .listing-details {
+            padding: 20px;
+        }
+
+        .listing-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .status-lost {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .status-found {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-returned {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .listing-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+
+        .listing-location, .listing-date {
+            display: flex;
+            align-items: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .listing-location i, .listing-date i {
+            margin-right: 8px;
+        }
+
+        .view-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background: #4e73df;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #3b65d6;
+        }
         
         /* Responsive */
         @media (max-width: 768px) {
@@ -247,6 +345,10 @@
             }
             
             .user-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .listings-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -295,7 +397,6 @@
                     <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Change Photo</button>
                 </div>
                 
-                
                 <div class="profile-info">
                     <h2 class="user-name">John Doe</h2>
                     <p class="user-email">john.doe@college.edu</p>
@@ -314,6 +415,14 @@
                             <div class="stat-label">Matches</div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- My Lost & Found Items Section -->
+            <div class="listings-section">
+                <h2 class="section-title">My Lost & Found Items</h2>
+                <div class="listings-grid" id="user-listings-container">
+                    <!-- User's listings will be populated here -->
                 </div>
             </div>
         </div>
@@ -344,6 +453,106 @@
             if (confirmLogout) {
                 window.location.href = "Login page/login.html"; // Redirect to login page
             }
+        });
+
+        // Sample data for user's listings (in a real app, this would come from a database)
+        const userListings = [
+            {
+                id: 1,
+                title: "Lost Wallet",
+                description: "Black leather wallet with credit cards inside",
+                image: "https://i.pinimg.com/736x/65/36/a4/6536a4fd58a8caccc905733477fcfc0d.jpg",
+                location: "Tesla Block",
+                date: "2023-06-15",
+                status: "lost",
+                type: "lost"
+            },
+            {
+                id: 2,
+                title: "Found iPhone",
+                description: "iPhone 12 with blue case",
+                image: "https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg",
+                location: "Square One",
+                date: "2023-06-10",
+                status: "found",
+                type: "found"
+            },
+            {
+                id: 3,
+                title: "Lost Keys",
+                description: "Set of car and house keys",
+                image: "https://bettystreff.com/wp-content/uploads/2017/07/keys.jpg",
+                location: "Main Entrance",
+                date: "2023-06-05",
+                status: "lost",
+                type: "lost"
+            }
+        ];
+
+        // Function to create a listing card
+        function createUserListingCard(listing) {
+            const card = document.createElement('div');
+            card.className = 'listing-card';
+            
+            // Determine status class and text
+            let statusClass, statusText;
+            if (listing.status === 'lost') {
+                statusClass = 'status-lost';
+                statusText = 'Lost';
+            } else if (listing.status === 'found') {
+                statusClass = 'status-found';
+                statusText = 'Found';
+            } else {
+                statusClass = 'status-returned';
+                statusText = 'Returned';
+            }
+            
+            card.innerHTML = `
+                <div class="listing-img" style="background-image: url('${listing.image}')"></div>
+                <div class="listing-details">
+                    <span class="listing-status ${statusClass}">${statusText}</span>
+                    <h3 class="listing-title">${listing.title}</h3>
+                    <p>${listing.description}</p>
+                    <div class="listing-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>${listing.location}</span>
+                    </div>
+                    <div class="listing-date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>${formatDate(listing.date)}</span>
+                    </div>
+                    <a href="listing-detail.html?id=${listing.id}" class="view-btn">View Details</a>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        // Render user's listings
+        function renderUserListings() {
+            const container = document.getElementById('user-listings-container');
+            container.innerHTML = '';
+            
+            if (userListings.length === 0) {
+                container.innerHTML = '<p>You haven\'t posted any lost/found items yet.</p>';
+                return;
+            }
+            
+            userListings.forEach(listing => {
+                const listingCard = createUserListingCard(listing);
+                container.appendChild(listingCard);
+            });
+        }
+
+        // Initialize the user listings when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            renderUserListings();
         });
     </script>
 </body>
