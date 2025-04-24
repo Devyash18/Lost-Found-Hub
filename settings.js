@@ -27,3 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     showAlert('Username cannot be empty', 'error');
                     return;
                 }
+                if (!validateEmail(emailInput.value)) {
+                    showAlert('Please enter a valid email address', 'error');
+                    return;
+                }
+                
+                // In a real app, you would send this to the server
+                console.log('Profile updated:', {
+                    username: usernameInput.value,
+                    email: emailInput.value,
+                    phone: phoneInput.value
+                });
