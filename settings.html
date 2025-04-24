@@ -4,173 +4,217 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings | Lost & Found</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --light-gray: #f5f5f5;
-            --medium-gray: #e0e0e0;
-            --dark-gray: #7f8c8d;
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #1e40af;
+            --light: #f8f9fa;
+            --gray: #e9ecef;
+            --dark-gray: #adb5bd;
+            --danger: #ef233c;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f5f7fb;
+            color: #2b2d42;
             line-height: 1.6;
         }
         
-        .dashboard-container {
+        .dashboard {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
         
-        /* Sidebar Styles - Matching the image */
+        /* Sidebar - Exact match to your design */
         .sidebar {
-            background-color: var(--secondary-color);
+            background: var(--secondary);
             color: white;
             padding: 30px 20px;
+            position: relative;
         }
         
         .user-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin-bottom: 30px;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
-        .user-profile h2 {
-            margin: 0 0 5px 0;
-            font-size: 1.2rem;
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary);
         }
         
-        .user-profile p {
-            margin: 0;
-            color: var(--medium-gray);
-            font-size: 0.9rem;
+        .user-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .member-since {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
         }
         
         .nav-menu {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
         
-        .nav-menu li {
-            margin: 8px 0;
-            position: relative;
+        .nav-item {
+            margin: 6px 0;
         }
         
-        .nav-menu a {
-            display: block;
-            color: white;
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: var(--dark-gray);
             text-decoration: none;
-            padding: 8px 10px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 0.95rem;
         }
         
-        .nav-menu a.active {
-            background-color: rgba(255,255,255,0.1);
-            font-weight: bold;
+        .nav-link i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
         }
         
-        .nav-menu a.active::before {
-            content: "✓";
-            margin-right: 8px;
+        .nav-link.inactive::before {
+            content: "[ ]";
+            margin-right: 10px;
+            font-size: 0.8rem;
+            color: var(--dark-gray);
         }
         
-        /* Main Content Styles */
+        .nav-link.active {
+            background: rgba(67, 97, 238, 0.15);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .nav-link.active::before {
+            content: "[x]";
+            margin-right: 10px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .nav-link:hover:not(.active) {
+            background: rgba(255,255,255,0.05);
+            color: white;
+        }
+        
+        /* Main Content */
         .main-content {
-            padding: 30px;
-            background-color: var(--light-gray);
+            padding: 40px;
+            overflow-y: auto;
         }
         
-        .settings-header {
+        .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
         }
         
-        .settings-title {
-            color: var(--secondary-color);
-            margin: 0;
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
         }
         
-        .settings-container {
+        .settings-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 25px;
+            max-width: 900px;
         }
         
-        .settings-section {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 25px;
+        .settings-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            transition: var(--transition);
         }
         
-        .section-title {
-            color: var(--secondary-color);
-            margin-top: 0;
+        .settings-card:hover {
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .card-icon {
+            color: var(--primary);
             font-size: 1.2rem;
-            border-bottom: 1px solid var(--medium-gray);
-            padding-bottom: 10px;
         }
         
         .form-group {
             margin-bottom: 20px;
         }
         
-        .form-group label {
+        .form-label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            font-size: 0.95rem;
         }
         
         .form-control {
             width: 100%;
-            padding: 10px 15px;
-            border: 1px solid var(--medium-gray);
-            border-radius: 4px;
-            font-size: 1rem;
-            box-sizing: border-box;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: var(--transition);
         }
         
         .form-control:focus {
-            border-color: var(--primary-color);
+            border-color: var(--primary);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
         
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #2980b9;
-        }
-        
-        .btn-secondary {
-            background-color: var(--dark-gray);
-        }
-        
-        .btn-secondary:hover {
-            background-color: #6c7a7d;
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 10px;
+        .form-note {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            margin-top: 6px;
         }
         
         .checkbox-group {
@@ -181,73 +225,219 @@
         
         .checkbox-group input {
             margin-right: 10px;
+            accent-color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.95rem;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(67, 97, 238, 0.05);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
         }
         
         .divider {
             border: 0;
             height: 1px;
-            background: var(--medium-gray);
+            background: var(--gray);
             margin: 25px 0;
+        }
+        
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(76, 201, 240, 0.1);
+            color: var(--success);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        
+        .security-badge i {
+            margin-right: 6px;
+        }
+        
+        .two-factor-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(67, 97, 238, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .two-factor-info {
+            flex: 1;
+        }
+        
+        .two-factor-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .two-factor-desc {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Sidebar Navigation - Matches the image exactly -->
-        <div class="sidebar">
+    <div class="dashboard">
+        <!-- Sidebar - Exact match to your design -->
+        <aside class="sidebar">
             <div class="user-profile">
-                <h2>John Doe</h2>
-                <p>Member since June 2023</p>
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe" class="user-avatar">
+                <h3 class="user-name">John Doe</h3>
+                <p class="member-since">Member since June 2023</p>
             </div>
             
             <ul class="nav-menu">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#" class="active">Search Items</a></li>
-                <li><a href="#">Lost Items</a></li>
-                <li><a href="#">Found Items</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">User Profile</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Logout</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link inactive">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-search"></i>
+                        Search Items
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link inactive">
+                        <i class="fas fa-question-circle"></i>
+                        Lost Items
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link inactive">
+                        <i class="fas fa-check-circle"></i>
+                        Found Items
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link inactive">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link inactive">
+                        <i class="fas fa-user"></i>
+                        User Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link inactive">
+                        <i class="fas fa-info-circle"></i>
+                        About Us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link inactive">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
             </ul>
-        </div>
+        </aside>
         
-        <!-- Main Content Area -->
-        <div class="main-content">
-            <div class="settings-header">
-                <h1 class="settings-title">Settings</h1>
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Account Settings</h1>
             </div>
             
-            <div class="settings-container">
-                <!-- Account Settings -->
-                <div class="settings-section">
-                    <h2 class="section-title">Account Settings</h2>
+            <div class="settings-grid">
+                <!-- Profile Settings -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Profile Information</h2>
+                        <i class="fas fa-user-edit card-icon"></i>
+                    </div>
                     
                     <div class="form-group">
-                        <label for="username">Username</label>
+                        <label for="username" class="form-label">Username</label>
                         <input type="text" id="username" class="form-control" value="johndoe">
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label for="email" class="form-label">Email Address</label>
                         <input type="email" id="email" class="form-control" value="john.doe@example.com">
+                        <p class="form-note">This is the email associated with your account</p>
                     </div>
                     
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
+                        <label for="phone" class="form-label">Phone Number</label>
                         <input type="tel" id="phone" class="form-control" value="+1 (555) 123-4567">
                     </div>
                     
                     <div class="btn-group">
-                        <button class="btn">Save Changes</button>
-                        <button class="btn btn-secondary">Cancel</button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                        <button class="btn btn-outline">
+                            Cancel
+                        </button>
                     </div>
-                </div>
+                </section>
                 
-                <!-- Notification Preferences -->
-                <div class="settings-section">
-                    <h2 class="section-title">Notification Preferences</h2>
+                <!-- Notification Settings -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Notification Preferences</h2>
+                        <i class="fas fa-bell card-icon"></i>
+                    </div>
                     
+                    <h3 class="form-label">Notification Methods</h3>
                     <div class="checkbox-group">
                         <input type="checkbox" id="email-notifications" checked>
                         <label for="email-notifications">Email notifications</label>
@@ -258,52 +448,127 @@
                         <label for="sms-notifications">SMS notifications</label>
                     </div>
                     
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="push-notifications">
-                        <label for="push-notifications">Push notifications</label>
-                    </div>
+                   
                     
                     <div class="divider"></div>
                     
                     <div class="form-group">
-                        <label>Notification Frequency</label>
-                        <select class="form-control">
+                        <label for="notification-frequency" class="form-label">Notification Frequency</label>
+                        <select id="notification-frequency" class="form-control">
                             <option>Immediately</option>
                             <option selected>Daily Digest</option>
                             <option>Weekly Summary</option>
                         </select>
                     </div>
                     
-                    <div class="btn-group">
-                        <button class="btn">Update Preferences</button>
+                    <div class="form-group">
+                        <label for="do-not-disturb" class="form-label">Do Not Disturb Hours</label>
+                        <div style="display: flex; gap: 15px;">
+                            <select id="do-not-disturb-start" class="form-control" style="flex: 1;">
+                                <option>10:00 PM</option>
+                                <option>11:00 PM</option>
+                                <option selected>12:00 AM</option>
+                            </select>
+                            <span style="display: flex; align-items: center;">to</span>
+                            <select id="do-not-disturb-end" class="form-control" style="flex: 1;">
+                                <option selected>6:00 AM</option>
+                                <option>7:00 AM</option>
+                                <option>8:00 AM</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            Update Preferences
+                        </button>
+                    </div>
+                </section>
                 
                 <!-- Security Settings -->
-                <div class="settings-section">
-                    <h2 class="section-title">Security</h2>
+                <section class="settings-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Security Settings</h2>
+                        <i class="fas fa-shield-alt card-icon"></i>
+                    </div>
                     
+                    <div class="security-badge">
+                        <i class="fas fa-check-circle"></i>
+                        Your account security is strong
+                    </div>
+                    
+                    <h3 class="form-label">Change Password</h3>
                     <div class="form-group">
-                        <label for="current-password">Current Password</label>
-                        <input type="password" id="current-password" class="form-control">
+                        <label for="current-password" class="form-label">Current Password</label>
+                        <input type="password" id="current-password" class="form-control" placeholder="Enter current password">
                     </div>
                     
                     <div class="form-group">
-                        <label for="new-password">New Password</label>
-                        <input type="password" id="new-password" class="form-control">
+                        <label for="new-password" class="form-label">New Password</label>
+                        <input type="password" id="new-password" class="form-control" placeholder="Enter new password">
+                        <p class="form-note">Minimum 8 characters with at least one number and special character</p>
                     </div>
                     
                     <div class="form-group">
-                        <label for="confirm-password">Confirm New Password</label>
-                        <input type="password" id="confirm-password" class="form-control">
+                        <label for="confirm-password" class="form-label">Confirm New Password</label>
+                        <input type="password" id="confirm-password" class="form-control" placeholder="Confirm new password">
                     </div>
                     
                     <div class="btn-group">
-                        <button class="btn">Change Password</button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-key"></i>
+                            Change Password
+                        </button>
                     </div>
-                </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="two-factor-box">
+                        <div class="two-factor-info">
+                            <h3 class="two-factor-title">Two-Factor Authentication</h3>
+                            <p class="two-factor-desc">Add an extra layer of security to your account</p>
+                        </div>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-lock"></i>
+                            Enable 2FA
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- Account Actions -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Account Actions</h2>
+                        <i class="fas fa-exclamation-triangle card-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3 class="form-label">Download Your Data</h3>
+                        <p style="font-size: 0.9rem; color: var(--dark-gray); margin-bottom: 15px;">
+                            Request a copy of all your personal data stored in our system.
+                        </p>
+                        <button class="btn btn-outline" style="width: 100%;">
+                            <i class="fas fa-download"></i>
+                            Request Data Download
+                        </button>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="form-group">
+                        <h3 class="form-label">Delete Account</h3>
+                        <p style="font-size: 0.9rem; color: var(--dark-gray); margin-bottom: 15px;">
+                            Permanently delete your account and all associated data. This action cannot be undone.
+                        </p>
+                        <button class="btn btn-outline" style="width: 100%; color: var(--danger); border-color: var(--danger);">
+                            <i class="fas fa-trash-alt"></i>
+                            Delete My Account
+                        </button>
+                    </div>
+                </section>
             </div>
-        </div>
+        </main>
     </div>
 </body>
 </html>
