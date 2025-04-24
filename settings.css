@@ -263,3 +263,59 @@ body {
     gap: 12px;
     margin-top: 10px;
 }
+.divider {
+    border: 0;
+    height: 1px;
+    background: var(--gray);
+    margin: 25px 0;
+}
+
+.security-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(76, 201, 240, 0.1);
+    color: var(--success);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.security-badge i {
+    margin-right: 6px;
+}
+
+.two-factor-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(67, 97, 238, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.two-factor-info {
+    flex: 1;
+}
+
+.two-factor-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.two-factor-desc {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+}
+
+.dnd-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.dnd-separator {
+    display: flex;
+    align-items: center;
+}
