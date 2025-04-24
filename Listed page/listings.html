@@ -130,6 +130,43 @@
       font-weight: 600;
     }
     
+    /* Search Bar */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .search-bar input {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      outline: none;
+      font-size: 14px;
+      width: 200px;
+      transition: all 0.3s;
+    }
+    
+    .search-bar input:focus {
+      border-color: #4e73df;
+      box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+    }
+    
+    .search-bar button {
+      background-color: #4e73df;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    
+    .search-bar button:hover {
+      background-color: #3b65d6;
+    }
+    
     /* Filter Controls */
     .filter-controls {
       display: flex;
@@ -295,6 +332,10 @@
     <main class="main-content">
       <header class="dashboard-header">
         <h1 class="page-title"><i class="fas fa-list"></i> Listings</h1>
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search items..." />
+          <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
       </header>
       
       <!-- Filter Controls -->
@@ -613,6 +654,37 @@
       } else {
         document.querySelector('.sidebar-nav a[href*="listings.html"]').classList.add('active');
       }
+    }
+
+    // Add search functionality
+    document.getElementById('search-btn').addEventListener('click', () => {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      filterListingsBySearch(query);
+    });
+
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      filterListingsBySearch(query);
+    });
+
+    function filterListingsBySearch(query) {
+      const filteredListings = listings.filter(listing =>
+        listing.title.toLowerCase().includes(query) ||
+        listing.description.toLowerCase().includes(query) ||
+        listing.location.toLowerCase().includes(query)
+      );
+
+      listingsContainer.innerHTML = '';
+
+      if (filteredListings.length === 0) {
+        listingsContainer.innerHTML = '<p>No items found matching your search.</p>';
+        return;
+      }
+
+      filteredListings.forEach(listing => {
+        const listingCard = createListingCard(listing);
+        listingsContainer.appendChild(listingCard);
+      });
     }
   </script>
 </body>
