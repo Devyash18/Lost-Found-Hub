@@ -352,3 +352,74 @@ function checkPasswordStrength(password) {
          badge.style.color = 'var(--success)';
      }
     }
+    // Show alert message
+    function showAlert(message, type) {
+        // Remove any existing alerts
+        const existingAlert = document.querySelector('.custom-alert');
+        if (existingAlert) existingAlert.remove();
+        
+        const alert = document.createElement('div');
+        alert.className = `custom-alert alert-${type}`;
+        alert.innerHTML = `
+            <div class="alert-content">
+                <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 
+                                  type === 'success' ? 'fa-check-circle' : 
+                                  'fa-info-circle'}"></i>
+                <span>${message}</span>
+            </div>
+            <button class="alert-close">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        // Style the alert
+        alert.style.position = 'fixed';
+        alert.style.top = '20px';
+        alert.style.right = '20px';
+        alert.style.padding = '15px 20px';
+        alert.style.borderRadius = '8px';
+        alert.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        alert.style.display = 'flex';
+        alert.style.alignItems = 'center';
+        alert.style.justifyContent = 'space-between';
+        alert.style.zIndex = '1000';
+        alert.style.maxWidth = '400px';
+        alert.style.animation = 'fadeIn 0.3s ease';
+        
+        // Type-specific styling
+        if (type === 'error') {
+            alert.style.backgroundColor = 'rgba(239, 35, 60, 0.1)';
+            alert.style.borderLeft = '4px solid var(--danger)';
+            alert.style.color = 'var(--danger)';
+        } else if (type === 'success') {
+            alert.style.backgroundColor = 'rgba(76, 201, 240, 0.1)';
+            alert.style.borderLeft = '4px solid var(--success)';
+            alert.style.color = 'var(--success)';
+        } else {
+            alert.style.backgroundColor = 'rgba(67, 97, 238, 0.1)';
+            alert.style.borderLeft = '4px solid var(--primary)';
+            alert.style.color = 'var(--primary)';
+        }
+        // Close button
+        const closeBtn = alert.querySelector('.alert-close');
+        closeBtn.style.background = 'none';
+        closeBtn.style.border = 'none';
+        closeBtn.style.cursor = 'pointer';
+        closeBtn.style.marginLeft = '15px';
+        closeBtn.style.color = 'inherit';
+        
+        closeBtn.addEventListener('click', function() {
+            alert.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => alert.remove(), 300);
+        });
+        
+        document.body.appendChild(alert);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (alert.parentNode) {
+                alert.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => alert.remove(), 300);
+            }
+        }, 5000);
+    }
