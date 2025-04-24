@@ -170,12 +170,13 @@
     /* Filter Controls */
     .filter-controls {
       display: flex;
+      align-items: center;
       gap: 15px;
       margin-bottom: 30px;
       background: white;
       padding: 15px;
       border-radius: 8px;
-      box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,0.1);
+      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
     }
     
     .filter-btn {
@@ -195,6 +196,28 @@
     .filter-btn.inactive {
       background: #e9ecef;
       color: #495057;
+    }
+    
+    /* Sort Dropdown */
+    .sort-dropdown {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .sort-dropdown label {
+      font-size: 14px;
+      color: #495057;
+    }
+    
+    .sort-dropdown select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: white;
+      cursor: pointer;
     }
     
     /* Listings Grid */
@@ -343,6 +366,17 @@
         <button class="filter-btn active" id="all-btn">All Items</button>
         <button class="filter-btn inactive" id="lost-btn">Lost Items</button>
         <button class="filter-btn inactive" id="found-btn">Found Items</button>
+
+        <!-- Sort Dropdown -->
+        <div class="sort-dropdown">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select">
+            <option value="date-desc">Date (Newest)</option>
+            <option value="date-asc">Date (Oldest)</option>
+            <option value="title-asc">Title (A-Z)</option>
+            <option value="title-desc">Title (Z-A)</option>
+          </select>
+        </div>
       </div>
       
       <!-- Listings Grid -->
@@ -389,7 +423,7 @@
         id: 4,
         title: "Found Watch",
         description: "Silver wristwatch near the fountain",
-        image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2F0Y2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+        image: "https://i.ebayimg.com/images/g/TnIAAOSwqeRlPVxr/s-l400.jpg",
         location: "Fountain",
         date: "2023-05-28",
         status: "found",
@@ -399,7 +433,7 @@
         id: 5,
         title: "Lost Backpack",
         description: "Blue backpack with laptop inside",
-        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja3BhY2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+        image: "https://i.ebayimg.com/images/g/FKAAAOSwonJmgzIQ/s-l400.jpg",
         location: "University Library",
         date: "2023-05-20",
         status: "returned",
@@ -409,7 +443,7 @@
         id: 6,
         title: "Found Sunglasses",
         description: "Rayban aviator sunglasses",
-        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VuZ2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSngiB-L4wa7pS0e94IZCZVrXmRIhNvQP7hTqD-olzwUfl-Lkt_JnfLUpbH_Wf5LXvdvDU&usqp=CAU",
         location: "Parking lot",
         date: "2023-05-15",
         status: "found",
@@ -419,7 +453,7 @@
         id: 7,
         title: "Lost Glasses",
         description: "Pair of black-rimmed glasses.",
-        image: "https://static.vecteezy.com/system/resources/previews/001/959/984/non_2x/pair-of-glasses-on-table-free-photo.jpg",
+        image: "https://i.ebayimg.com/00/s/MTIwMFgxNjAw/z/eIkAAOSwvy5lGkde/$_12.JPG?set_id=880000500F",
         location: "Alpha zone",
         date: "2023-05-12",
         status: "lost",
@@ -449,7 +483,7 @@
         id: 10,
         title: "Lost Headphones",
         description: "Black wireless headphones.",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYHX7uICP0d8LruXy9EG7RWABnK8rts2G5HA&s",
+        image: "https://di2ponv0v5otw.cloudfront.net/posts/2022/09/29/633659ff2fbf1a30e994223a/m_63365a177dfcc28e8bb48156.jpg",
         location: "Near boys hostel",
         date: "2023-05-05",
         status: "lost",
@@ -489,7 +523,7 @@
         id: 14,
         title: "Lost Camera",
         description: "Digital camera with a black case.",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsddOBvIXZGJsCATaSBkXbmZOGlmbrz-m2Zw&s",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-LDQ81d2sXwAeAOZxevtOA4vs3aWQAh_dIgscBUiBCCLjOK6V38lQJlWJ7JZvzXAWFEY&usqp=CAU",
         location: "Omega zone",
         date: "2023-04-28",
         status: "lost",
@@ -686,6 +720,23 @@
         listingsContainer.appendChild(listingCard);
       });
     }
+
+    // Add sort functionality
+    document.getElementById('sort-select').addEventListener('change', (e) => {
+      const sortValue = e.target.value;
+
+      if (sortValue === 'date-desc') {
+        listings.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (sortValue === 'date-asc') {
+        listings.sort((a, b) => new Date(a.date) - new Date(b.date));
+      } else if (sortValue === 'title-asc') {
+        listings.sort((a, b) => a.title.localeCompare(b.title));
+      } else if (sortValue === 'title-desc') {
+        listings.sort((a, b) => b.title.localeCompare(a.title));
+      }
+
+      renderListings();
+    });
   </script>
 </body>
 </html>
