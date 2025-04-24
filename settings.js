@@ -132,3 +132,48 @@ document.addEventListener('DOMContentLoaded', function() {
         
         showAlert('Password changed successfully!', 'success');
     });
+     // Enable 2FA
+     enable2faBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Simulate 2FA setup flow
+        showModal(
+            'Set Up Two-Factor Authentication',
+            `
+            <div class="two-factor-setup">
+                <p>Scan this QR code with your authenticator app:</p>
+                <div class="qr-code-placeholder"></div>
+                <p>Or enter this code manually:</p>
+                <div class="manual-code">XK34 9B72 QL89 TY21</div>
+                <div class="form-group">
+                    <label for="verification-code" class="form-label">Enter verification code</label>
+                    <input type="text" id="verification-code" class="form-control" placeholder="6-digit code">
+                </div>
+            </div>
+            `,
+            [
+                {
+                    text: 'Cancel',
+                    class: 'btn-outline',
+                    handler: () => console.log('2FA setup canceled')
+                },
+                {
+                    text: 'Verify & Enable',
+                    class: 'btn-primary',
+                    handler: () => {
+                        const code = document.getElementById('verification-code').value;
+                        if (!code || code.length !== 6) {
+                            showAlert('Please enter a valid 6-digit code', 'error');
+                            return false; // Keep modal open
+                        }
+                        
+                        console.log('2FA enabled with code:', code);
+                        enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
+                        showAlert('Two-factor authentication enabled!', 'success');
+                        return true; // Close modal
+                    }
+                }
+            ]
+        );
+    });
+}
