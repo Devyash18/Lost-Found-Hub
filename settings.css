@@ -136,3 +136,34 @@ body {
     gap: 25px;
     max-width: 900px;
 } 
+.settings-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    transition: var(--transition);
+}
+
+.settings-card:hover {
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--gray);
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.card-icon {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
