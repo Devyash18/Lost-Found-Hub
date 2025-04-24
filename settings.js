@@ -423,3 +423,118 @@ function checkPasswordStrength(password) {
             }
         }, 5000);
     }
+     // Show modal dialog
+     function showModal(title, content, buttons) {
+        // Remove any existing modals
+        const existingModal = document.querySelector('.custom-modal');
+        if (existingModal) existingModal.remove();
+        
+        // Create modal overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'custom-modal-overlay';
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.right = '0';
+        overlay.style.bottom = '0';
+        overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.zIndex = '2000';
+        overlay.style.animation = 'fadeIn 0.3s ease';
+        
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'custom-modal';
+        modal.style.backgroundColor = 'white';
+        modal.style.borderRadius = '12px';
+        modal.style.width = '90%';
+        modal.style.maxWidth = '500px';
+        modal.style.maxHeight = '90vh';
+        modal.style.overflowY = 'auto';
+        modal.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+        modal.style.animation = 'scaleIn 0.3s ease';
+        
+        // Modal header
+        const modalHeader = document.createElement('div');
+        modalHeader.className = 'modal-header';
+        modalHeader.style.padding = '20px';
+        modalHeader.style.borderBottom = '1px solid var(--gray)';
+        modalHeader.style.display = 'flex';
+        modalHeader.style.justifyContent = 'space-between';
+        modalHeader.style.alignItems = 'center';
+        
+        const modalTitle = document.createElement('h3');
+        modalTitle.textContent = title;
+        modalTitle.style.margin = '0';
+        modalTitle.style.fontSize = '1.3rem';
+        modalTitle.style.color = 'var(--secondary)';
+        
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        closeBtn.style.background = 'none';
+        closeBtn.style.border = 'none';
+        closeBtn.style.fontSize = '1.2rem';
+        closeBtn.style.cursor = 'pointer';
+        closeBtn.style.color = 'var(--dark-gray)';
+        
+        modalHeader.appendChild(modalTitle);
+        modalHeader.appendChild(closeBtn);
+        
+        // Modal body
+        const modalBody = document.createElement('div');
+        modalBody.className = 'modal-body';
+        modalBody.style.padding = '20px';
+        modalBody.innerHTML = content;
+        
+        // Modal footer
+        const modalFooter = document.createElement('div');
+        modalFooter.className = 'modal-footer';
+        modalFooter.style.padding = '15px 20px';
+        modalFooter.style.borderTop = '1px solid var(--gray)';
+        modalFooter.style.display = 'flex';
+        modalFooter.style.justifyContent = 'flex-end';
+        modalFooter.style.gap = '10px';
+        
+        // Add buttons to footer
+        buttons.forEach(btn => {
+            const button = document.createElement('button');
+            button.className = `btn ${btn.class}`;
+            button.textContent = btn.text;
+            
+            if (btn.class.includes('btn-danger')) {
+                button.style.backgroundColor = 'var(--danger)';
+                button.style.color = 'white';
+                button.style.border = 'none';
+            }
+            
+            button.addEventListener('click', function() {
+                const shouldClose = btn.handler();
+                if (shouldClose !== false) {
+                    overlay.remove();
+                }
+            });
+            
+            modalFooter.appendChild(button);
+        });
+        
+        // Close modal when clicking overlay or close button
+        closeBtn.addEventListener('click', function() {
+            overlay.remove();
+        });
+        
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.remove();
+            }
+        });
+        
+        // Assemble modal
+        modal.appendChild(modalHeader);
+        modal.appendChild(modalBody);
+        modal.appendChild(modalFooter);
+        overlay.appendChild(modal);
+        
+        document.body.appendChild(overlay);
+    }
