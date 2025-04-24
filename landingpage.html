@@ -492,76 +492,9 @@
     </section><!-- /Portfolio Section -->
 
     <!-- Pricing Section -->
-    <section id="pricing" class="pricing section">
-
+   
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Our Services</h2>
-        <p>Choose the service level that fits your needs</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-            <div class="pricing-item">
-              <h3>Basic</h3>
-              <p class="description">For individuals looking to report or claim occasional lost items</p>
-              <h4><sup>$</sup>0<span> / month</span></h4>
-              <a href="#" class="cta-btn">Get Started</a>
-              <p class="text-center small">No credit card required</p>
-              <ul>
-                <li><i class="bi bi-check"></i> <span>5 item reports per month</span></li>
-                <li><i class="bi bi-check"></i> <span>Basic matching notifications</span></li>
-                <li><i class="bi bi-check"></i> <span>Community support</span></li>
-                <li class="na"><i class="bi bi-x"></i> <span>Priority matching</span></li>
-                <li class="na"><i class="bi bi-x"></i> <span>Extended search radius</span></li>
-                <li class="na"><i class="bi bi-x"></i> <span>Verified return assistance</span></li>
-                <li class="na"><i class="bi bi-x"></i> <span>24/7 support</span></li>
-              </ul>
-            </div>
-          </div><!-- End Pricing Item -->
-
-          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-            <div class="pricing-item featured">
-              <p class="popular">Most Popular</p>
-              <h3>Premium</h3>
-              <p class="description">For those who want enhanced features and better recovery chances</p>
-              <h4><sup>$</sup>5<span> / month</span></h4>
-              <a href="#" class="cta-btn">Get Started</a>
-              <p class="text-center small">No credit card required</p>
-              <ul>
-                <li><i class="bi bi-check"></i> <span>Unlimited item reports</span></li>
-                <li><i class="bi bi-check"></i> <span>Advanced matching notifications</span></li>
-                <li><i class="bi bi-check"></i> <span>Priority community support</span></li>
-                <li><i class="bi bi-check"></i> <span>3x larger search radius</span></li>
-                <li><i class="bi bi-check"></i> <span>Verified return assistance</span></li>
-                <li><i class="bi bi-check"></i> <span>Email/SMS alerts</span></li>
-                <li class="na"><i class="bi bi-x"></i> <span>24/7 support</span></li>
-              </ul>
-            </div>
-          </div><!-- End Pricing Item -->
-
-          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-            <div class="pricing-item">
-              <h3>Business</h3>
-              <p class="description">For businesses managing lost and found items regularly</p>
-              <h4><sup>$</sup>20<span> / month</span></h4>
-              <a href="#" class="cta-btn">Get Started</a>
-              <p class="text-center small">No credit card required</p>
-              <ul>
-                <li><i class="bi bi-check"></i> <span>Unlimited item reports</span></li>
-                <li><i class="bi bi-check"></i> <span>Instant matching notifications</span></li>
-                <li><i class="bi bi-check"></i> <span>Priority support</span></li>
-                <li><i class="bi bi-check"></i> <span>5x larger search radius</span></li>
-                <li><i class="bi bi-check"></i> <span>Verified return assistance</span></li>
-                <li><i class="bi bi-check"></i> <span>Custom branding</span></li>
-                <li><i class="bi bi-check"></i> <span>24/7 support</span></li>
-              </ul>
-            </div>
-          </div><!-- End Pricing Item -->
-
+    
         </div>
 
       </div>
@@ -691,38 +624,37 @@
             </div>
 
           </div>
-
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
-
+          
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                 </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+          
+                <div class="col-md-6">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                 </div>
-
+          
                 <div class="col-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
                 </div>
-
+          
                 <div class="col-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
                 </div>
-
+          
                 <div class="col-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
+                  <div class="loading" style="display: none;">Loading</div>
+                  <div class="error-message" style="display: none;"></div>
+                  <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
+          
                   <button type="submit">Send Message</button>
                 </div>
-
               </div>
             </form>
-          </div><!-- End Contact Form -->
+          </div>
+          <!-- End Contact Form -->
 
         </div>
 
@@ -734,22 +666,7 @@
 
   <footer id="footer" class="footer dark-background">
 
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>Join Our Community</h4>
-            <p>Subscribe to receive updates on recent found items and community news</p>
-            <form action="forms/newsletter.php" method="post" class="php-email-form">
-              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
     <div class="container footer-top">
       <div class="row gy-4">
@@ -831,5 +748,27 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // prevent actual form submission
+
+    const loading = this.querySelector('.loading');
+    const errorMessage = this.querySelector('.error-message');
+    const sentMessage = this.querySelector('.sent-message');
+
+    // Reset messages
+    loading.style.display = 'block';
+    errorMessage.style.display = 'none';
+    sentMessage.style.display = 'none';
+
+    // Simulate loading and show success
+    setTimeout(() => {
+      loading.style.display = 'none';
+      sentMessage.style.display = 'block';
+      this.reset(); // clear the form fields
+    }, 2000);
+  });
+</script>
+
 
 </html>

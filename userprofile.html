@@ -11,6 +11,16 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+
+    <div class="profile-header">
+        <h1 class="profile-title">My Profile</h1>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button class="edit-profile">Edit Profile</button>
+          <button class="add-profile" title="Add New Profile"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+
+      
     <style>
         /* Base Styles */
         * {
@@ -270,9 +280,9 @@
                     <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
                     <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
                     <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-                    <li><a href="userprofile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
-                    <li><a href="About  page/about_page.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    <li><a href="userprofile.html" class="active"><i class="fas fa-user"></i> My Profile</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="Login page/login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -283,6 +293,15 @@
                 <h1 class="profile-title">My Profile</h1>
                 <button class="edit-profile">Edit Profile</button>
             </div>
+
+              <div id="newProfileForm" style="display:none; margin-top: 20px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 15px;">Create New Profile</h3>
+                <input type="text" id="newName" placeholder="Full Name" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;"><br/>
+                <input type="email" id="newEmail" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;"><br/>
+                <button id="createProfileBtn" style="padding: 10px 20px; background: #10b981; color: white; border: none; border-radius: 5px; cursor: pointer;">Create Profile</button>
+              </div>
+              
+              
             
             <div class="profile-section">
                 <div class="profile-picture">
@@ -332,6 +351,48 @@
                 reader.readAsDataURL(file);
             }
         });
+
+        // Toggle form visibility
+document.querySelector('.add-profile').addEventListener('click', function () {
+    const form = document.getElementById('newProfileForm');
+    form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+});
+
+// Create profile functionality
+document.getElementById('createProfileBtn').addEventListener('click', function () {
+    const name = document.getElementById('newName').value.trim();
+    const email = document.getElementById('newEmail').value.trim();
+
+    if (name === '' || email === '') {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    // Simulate profile creation (you can replace this with actual storage/API later)
+    alert(`New profile created!\nName: ${name}\nEmail: ${email}`);
+
+    // Clear form
+    document.getElementById('newName').value = '';
+    document.getElementById('newEmail').value = '';
+    document.getElementById('newProfileForm').style.display = 'none';
+
+    // Optional: append new profile block dynamically
+    const newProfile = document.createElement('div');
+    newProfile.className = 'profile-section';
+    newProfile.innerHTML = `
+        <div class="profile-picture">
+            <img src="https://via.placeholder.com/180" alt="Profile Picture" style="width:180px; height:180px; border-radius:50%; object-fit:cover; border:5px solid #e0e7ff; margin-bottom:15px;">
+        </div>
+        <div class="profile-info">
+            <h2 class="user-name">${name}</h2>
+            <p class="user-email">${email}</p>
+            <p style="color: #64748b;">This is a new profile created dynamically.</p>
+        </div>
+    `;
+    document.querySelector('.main-content').appendChild(newProfile);
+});
+
+
     
         // Edit profile button alert
         document.querySelector('.edit-profile').addEventListener('click', function() {
