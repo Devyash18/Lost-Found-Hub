@@ -182,3 +182,22 @@ h1 {
 .btn:hover:after {
     transform: translateX(100%);
 }
+/* Floating bubbles background */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(67, 97, 238, 0.1);
+    animation: float linear infinite;
+}
+
+.particle {
+    position: absolute;
+    background: var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes float {
+    to { transform: translateY(-100vh) rotate(360deg); }
+}
