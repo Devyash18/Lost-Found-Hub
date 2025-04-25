@@ -176,10 +176,20 @@
 
   <div class="container">
 
-    <!-- Toggle Buttons -->
     <div class="toggle-buttons">
-      <button id="reportBtn" class="active">Report Item</button>
+      <button id="reportBtn" class="active">Report Lost</button>
       <button id="viewBtn">View Reports</button>
+      <button id="foundToggleBtn">Found Items</button>
+    </div>
+    
+   
+
+<!-- View Found Items -->
+<section id="foundView" class="form-section">
+  <h2>Found Items</h2>
+  <div id="foundList" class="report-list"></div>
+</section>
+
     </div>
 
     <!-- Report Form -->
@@ -218,6 +228,38 @@
     <section id="viewReports" class="form-section">
       <h2>Submitted Reports</h2>
       <div id="reportList" class="report-list"></div>
+      <section id="foundForm" class="form-section">
+        <h2>Report Found Item</h2>
+        <form id="foundItemForm">
+          <label for="found-item-name">Item Name</label>
+          <input type="text" id="found-item-name" required />
+      
+          <label for="found-category">Category</label>
+          <select id="found-category" required>
+            <option value="">Select</option>
+            <option value="phone">Phone</option>
+            <option value="wallet">Wallet</option>
+            <option value="bag">Bag</option>
+            <option value="keys">Keys</option>
+            <option value="other">Other</option>
+          </select>
+      
+          <label for="found-description">Description</label>
+          <textarea id="found-description" rows="4" required></textarea>
+      
+          <label for="found-date">Date Found</label>
+          <input type="date" id="found-date" required />
+      
+          <label for="found-location">Found Location</label>
+          <input type="text" id="found-location" required />
+      
+          <label for="found-contact">Your Contact Info</label>
+          <input type="text" id="found-contact" required />
+      
+          <button type="submit">Submit Found Report</button>
+        </form>
+      </section>
+      
     </section>
     
 
@@ -230,6 +272,44 @@
     const viewReports = document.getElementById('viewReports');
     const lostItemForm = document.getElementById('lostItemForm');
     const reportList = document.getElementById('reportList');
+  
+    const foundToggleBtn = document.getElementById('foundToggleBtn');
+    const foundForm = document.getElementById('foundForm');
+    const foundItemForm = document.getElementById('foundItemForm');
+    const foundList = document.getElementById('foundList');
+  
+    // Button toggle logic
+    reportBtn.addEventListener('click', () => {
+      reportBtn.classList.add('active');
+      viewBtn.classList.remove('active');
+      foundToggleBtn.classList.remove('active');
+  
+      reportForm.classList.add('active');
+      viewReports.classList.remove('active');
+      foundForm.classList.remove('active');
+    });
+  
+    viewBtn.addEventListener('click', () => {
+      viewBtn.classList.add('active');
+      reportBtn.classList.remove('active');
+      foundToggleBtn.classList.remove('active');
+  
+      viewReports.classList.add('active');
+      reportForm.classList.remove('active');
+      foundForm.classList.remove('active');
+  
+      renderPreloadedReports();
+    });
+  
+    foundToggleBtn.addEventListener('click', () => {
+      foundToggleBtn.classList.add('active');
+      reportBtn.classList.remove('active');
+      viewBtn.classList.remove('active');
+  
+      foundForm.classList.add('active');
+      reportForm.classList.remove('active');
+      viewReports.classList.remove('active');
+    });
   
     // Preloaded Reports
     const preloadedReports = [
@@ -262,9 +342,8 @@
       }
     ];
   
-    // Render preloaded reports
     function renderPreloadedReports() {
-      reportList.innerHTML = ""; // Clear existing
+      reportList.innerHTML = "";
       preloadedReports.forEach(report => {
         const card = document.createElement('div');
         card.className = 'report-card';
@@ -280,23 +359,7 @@
       });
     }
   
-    // Show/Hide Sections
-    reportBtn.addEventListener('click', () => {
-      reportBtn.classList.add('active');
-      viewBtn.classList.remove('active');
-      reportForm.classList.add('active');
-      viewReports.classList.remove('active');
-    });
-  
-    viewBtn.addEventListener('click', () => {
-      viewBtn.classList.add('active');
-      reportBtn.classList.remove('active');
-      reportForm.classList.remove('active');
-      viewReports.classList.add('active');
-      renderPreloadedReports();
-    });
-  
-    // Submit New Report
+    // Submit New Lost Report
     lostItemForm.addEventListener('submit', (e) => {
       e.preventDefault();
   
@@ -323,8 +386,36 @@
       viewBtn.click();
       alert("Report submitted successfully!");
     });
-
+  
+    // Submit New Found Report
+    foundItemForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+  
+      const item = document.getElementById('found-item-name').value;
+      const category = document.getElementById('found-category').value;
+      const description = document.getElementById('found-description').value;
+      const date = document.getElementById('found-date').value;
+      const location = document.getElementById('found-location').value;
+      const contact = document.getElementById('found-contact').value;
+  
+      const card = document.createElement('div');
+      card.className = 'report-card';
+      card.innerHTML = `
+        <h3>📦 Found: ${item}</h3>
+        <p><strong>Category:</strong> ${category}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Location:</strong> ${location}</p>
+        <p><strong>Contact:</strong> ${contact}</p>
+      `;
+  
+      foundList.appendChild(card);
+      foundItemForm.reset();
+      foundToggleBtn.click();
+      alert("Found report submitted successfully!");
+    });
   </script>
+  
   
 
 </body>
