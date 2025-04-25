@@ -38,6 +38,16 @@ document.addEventListener('DOMContentLoaded', function() {
             email: emailInput.value,
             phone: phoneInput.value
         }; // <-- Removed the extra closing brace here
+        usernameInput.value = userData.profile.username;
+emailInput.value = userData.profile.email;
+phoneInput.value = userData.profile.phone;
+
+// Update originalValues to match loaded data
+originalValues.username = usernameInput.value;
+originalValues.email = emailInput.value;
+originalValues.phone = phoneInput.value;
+
+// <-- Removed the extra closing brace here
             
         // Save profile changes
         saveBtn.addEventListener('click', function(e) {
