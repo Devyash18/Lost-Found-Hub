@@ -22,3 +22,47 @@ function createBubbles() {
         bubblesContainer.appendChild(bubble);
     }
 }
+// Create particle explosion effect
+function createParticles() {
+    const colors = ['#4361ee', '#3a0ca3', '#7209b7', '#4cc9f0', '#f72585'];
+    
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 15 + 5;
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 5 + 2;
+        const distance = Math.random() * 300 + 100;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.left = '50%';
+        particle.style.top = '50%';
+        particle.style.opacity = 0;
+        
+        document.body.appendChild(particle);
+        
+        // Animate particles
+        const animation = particle.animate([
+            { 
+                opacity: 1,
+                transform: 'translate(-50%, -50%) scale(1)',
+            },
+            { 
+                opacity: 0,
+                transform: `translate(
+                    ${Math.cos(angle) * distance}px, 
+                    ${Math.sin(angle) * distance}px
+                ) scale(0)`,
+            }
+        ], {
+            duration: 1000,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            delay: i * 20,
+        });
+        
+        animation.onfinish = () => particle.remove();
+    }
+}
