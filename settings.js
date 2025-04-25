@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const userData = JSON.parse(localStorage.getItem('userSettings')) || {
+        profile: {
+            username: usernameInput?.value || 'John Doe',
+            email: emailInput?.value || 'john.doe@example.com',
+            phone: phoneInput?.value || '+1234567890'
+        },
+        notifications: {
+            email: true,
+            sms: false,
+            push: true,
+            frequency: 'daily',
+            dndStart: '22:00',
+            dndEnd: '07:00'
+        },
+        security: {
+            twoFactorEnabled: false
+        }
+    };
+
     // DOM Elements
     const profileForm = document.querySelector('.settings-card:nth-child(1)');
     const notificationForm = document.querySelector('.settings-card:nth-child(2)');
