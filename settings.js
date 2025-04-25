@@ -207,9 +207,9 @@ originalValues.phone = phoneInput.value;
                             showAlert('Please enter a valid 6-digit code', 'error');
                             return false; // Keep modal open
                         }
-                        
-                        console.log('2FA enabled with code:', code);
-                        enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
+                        userData.security.twoFactorEnabled = true;
+                localStorage.setItem('userSettings', JSON.stringify(userData));
+                enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
                         showAlert('Two-factor authentication enabled!', 'success');
                         return true; // Close modal
                     }
