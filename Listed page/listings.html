@@ -14,6 +14,17 @@
   
   <style>
     /* Base Styles */
+    :root {
+      --primary: #4e73df;
+      --secondary: #858796;
+      --success: #1cc88a;
+      --info: #36b9cc;
+      --warning: #f6c23e;
+      --danger: #e74a3b;
+      --light: #f8f9fc;
+      --dark: #5a5c69;
+    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -23,9 +34,10 @@
     
     body {
       min-height: 100vh;
-      background-color: #f8f9fc;
+      background-color: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
     }
-
     /* Dashboard Container */
     .dashboard-container {
       display: flex;
@@ -34,33 +46,50 @@
 
     /* Sidebar */
     .sidebar {
-      width: 280px;
-      background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
-      color: white;
-      padding: 20px 0;
-      height: 100vh;
-      position: sticky;
-      top: 0;
-      box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-    }
+  width: 250px;
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+  color: white;
+  padding: 20px 0;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+  transition: all 0.3s;
+}
+
+    .sidebar h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
     
     .sidebar-header {
-      text-align: center;
-      padding: 0 20px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 20px;
-    }
+            text-align: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
     
-    .profile-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.2);
-      margin-bottom: 15px;
-    }
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
     
-    .sidebar-header h3 {
+     /* .sidebar-header h3 {
       margin: 5px 0;
       font-size: 18px;
       font-weight: 500;
@@ -71,49 +100,54 @@
       opacity: 0.8;
       margin: 0;
       font-weight: 300;
-    }
+    }  */
     
-    .sidebar-nav ul {
-      list-style: none;
-      padding: 0 15px;
-    }
-    
-    .sidebar-nav li {
-      margin-bottom: 5px;
-    }
-    
-    .sidebar-nav a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      display: block;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: all 0.3s;
-      font-size: 14px;
-      font-weight: 400;
-    }
-    
-    .sidebar-nav a:hover {
-      background: rgba(255,255,255,0.1);
-      color: white;
-    }
-    
-    .sidebar-nav a.active {
-      background: rgba(255,255,255,0.2);
-      color: white;
-    }
-    
-    .sidebar-nav i {
-      width: 25px;
-      text-align: center;
-      margin-right: 5px;
-      font-size: 16px;
-    }
+    .sidebar-nav {
+            padding: 20px 0;
+        }
+        
+        .sidebar-nav ul {
+            padding: 0%;
+            list-style: none;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left: 3px solid white;
+        }
+        
+        .sidebar-nav a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-nav .active a {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left: 3px solid white;
+        }
 
     /* Main Content */
     .main-content {
       flex: 1;
       padding: 30px;
+      margin-left: 250px;
       background-color: #f8f9fc;
     }
     
@@ -314,10 +348,16 @@
       }
       
       .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
+            width: 250px;
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+            transition: all 0.3s;
+        }
       
       .filter-controls {
         flex-direction: column;
@@ -329,27 +369,25 @@
 <body>
   <div class="dashboard-container">
     <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
-             alt="User Profile" class="profile-img">
-        <h3>John Doe</h3>
-        <p>Member since June 2023</p>
-      </div>
-      
-      <nav class="sidebar-nav">
-        <ul class="sidebar-menu">
-          <li><a href="../dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
-          <li><a href="listings.html"><i class="fas fa-search"></i> Search Items</a></li>
-          <li><a href="listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
-          <li><a href="listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
-          <li><a href="../settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-          <li><a href="../userprofile.html" class="active"><i class="fas fa-user"></i> My Profile</a></li>
-          <li><a href="../about.html"><i class="fas fa-cog"></i> About Us</a></li>
-          <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-      </ul>
-      </nav>
-    </aside>
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+  <div class="sidebar-header">
+    <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" alt="User Profile" class="profile-img">
+    <h3>John Doe</h3>
+    <p>Member since June 2023</p>
+  </div>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="dashboard.html"><i class="fas fa-map-pin"></i> <span>Dashboard</span></a></li>
+      <li><a href="Listed page/listings.html"><i class="fas fa-search"></i> <span>Search Items</span></a></li>
+      <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> <span>Lost Items</span></a></li>
+      <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> <span>Found Items</span></a></li>
+      <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+      <li class="active"><a href="userprofile.html"><i class="fas fa-user"></i> <span>User Profile</span></a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> <span>About Us</span></a></li>
+      <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+    </ul>
+  </nav>
+</aside>
 
     <!-- Main Content -->
     <main class="main-content">
