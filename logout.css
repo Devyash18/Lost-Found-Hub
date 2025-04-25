@@ -57,3 +57,55 @@ body {
     0%, 100% { transform: translateY(-10px); }
     50% { transform: translateY(10px); }
 }
+h1 {
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 2rem;
+    background: linear-gradient(90deg, var(--primary), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: textShine 3s ease infinite;
+}
+
+.message {
+    color: var(--dark);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.quote {
+    font-style: italic;
+    color: #6c757d;
+    margin: 2rem 0;
+    position: relative;
+    padding: 0 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.quote:before, .quote:after {
+    content: '"';
+    font-size: 2rem;
+    color: var(--primary);
+    opacity: 0.3;
+    position: absolute;
+}
+
+.quote:before {
+    left: 0;
+    top: -1rem;
+}
+
+.quote:after {
+    right: 0;
+    bottom: -2rem;
+}
+
+@keyframes textShine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
