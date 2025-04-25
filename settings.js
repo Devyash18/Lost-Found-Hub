@@ -129,30 +129,38 @@ if (notificationForm) {
     });
 }
      // Security Settings Form
-     if (securityForm) {
-        const currentPass = securityForm.querySelector('#current-password');
-        const newPass = securityForm.querySelector('#new-password');
-        const confirmPass = securityForm.querySelector('#confirm-password');
-        const changePassBtn = securityForm.querySelector('.btn-primary');
-        const enable2faBtn = securityForm.querySelector('.two-factor-box .btn-outline');
-         // ADD THESE LINES RIGHT HERE:
+if (securityForm) {
+    const currentPass = securityForm.querySelector('#current-password');
+    const newPass = securityForm.querySelector('#new-password');
+    const confirmPass = securityForm.querySelector('#confirm-password');
+    const changePassBtn = securityForm.querySelector('.btn-primary');
+    const enable2faBtn = securityForm.querySelector('.two-factor-box .btn-outline');
+    const passwordStrengthBadge = document.getElementById('password-strength') || createPasswordStrengthBadge();
+
+    // Initialize 2FA status
     if (userData.security.twoFactorEnabled) {
         enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
     }
+
+    // Password strength indicator
+    newPass.addEventListener('input', function() {
+        checkPasswordStrength(newPass.value);
+    });
+
+    // Change password functionality
+    changePassBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         
-        // Password strength indicator
-        newPass.addEventListener('input', function() {
-            checkPasswordStrength(newPass.value);
-        });
-        // Change password
-        changePassBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Validation
-            if (!currentPass.value) {
-                showAlert('Please enter your current password', 'error');
-                return;
-            }
+        // Clear previous alerts
+        const existingAlert = document.querySelector('.custom-alert');
+        if (existingAlert) existingAlert.remove();
+
+        // Validation
+        if (!currentPass.value) {
+            showAlert('Please enter your current password', 'error');
+            return;
+        }
+        
         if (!newPass.value) {
             showAlert('Please enter a new password', 'error');
             return;
@@ -167,19 +175,77 @@ if (notificationForm) {
             showAlert('Password must be at least 8 characters with one number and one special character', 'error');
             return;
         }
-          // In a real app, you would send this to the server
-          console.log('Password change requested:', {
-            currentPassword: currentPass.value,
-            newPassword: newPass.value
-        });
-        
-        // Clear form
+
+        // In a real app, you would verify current password with server here
+        // For demo, we'll just update the stored password
+        userData.security.password = newPass.value; // Store hashed password in real app
+        localStorage.setItem('userSettings', JSON.stringify(userData));
+
+        // Clear form and show success
         currentPass.value = '';
         newPass.value = '';
         confirmPass.value = '';
+        passwordStrengthBadge.style.display = 'none';
         
         showAlert('Password changed successfully!', 'success');
+        
+        // Log the change (remove in production)
+        console.log('Password changed:', {
+            newPassword: newPass.value, // In real app, never log passwords
+            strength: checkPasswordStrength(newPass.value)
+        });
     });
+
+    // Helper function to create password strength badge
+    function createPasswordStrengthBadge() {
+        const badge = document.createElement('div');
+        badge.id = 'password-strength';
+        badge.style.marginTop = '8px';
+        badge.style.fontSize = '0.85rem';
+        badge.style.borderRadius = '4px';
+        badge.style.padding = '4px 8px';
+        badge.style.display = 'none';
+        newPass.parentNode.appendChild(badge);
+        return badge;
+    }
+
+    // Enhanced password strength checker
+    function checkPasswordStrength(password) {
+        if (!password) {
+            passwordStrengthBadge.style.display = 'none';
+            return 0;
+        }
+        
+        let strength = 0;
+        const hasMinLength = password.length >= 8;
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasMixedCase = /[a-z]/.test(password) && /[A-Z]/.test(password);
+        
+        if (hasMinLength) strength += 1;
+        if (password.length >= 12) strength += 1;
+        if (hasSpecialChar) strength += 1;
+        if (hasNumber) strength += 1;
+        if (hasMixedCase) strength += 1;
+        
+        // Visual feedback
+        passwordStrengthBadge.style.display = 'inline-block';
+        if (strength <= 2) {
+            passwordStrengthBadge.textContent = 'Weak';
+            passwordStrengthBadge.style.backgroundColor = 'rgba(239, 35, 60, 0.1)';
+            passwordStrengthBadge.style.color = 'var(--danger)';
+        } else if (strength <= 4) {
+            passwordStrengthBadge.textContent = 'Medium';
+            passwordStrengthBadge.style.backgroundColor = 'rgba(248, 150, 30, 0.1)';
+            passwordStrengthBadge.style.color = 'var(--warning)';
+        } else {
+            passwordStrengthBadge.textContent = 'Strong';
+            passwordStrengthBadge.style.backgroundColor = 'rgba(76, 201, 240, 0.1)';
+            passwordStrengthBadge.style.color = 'var(--success)';
+        }
+        
+        return strength;
+    }
      // Enable 2FA
      enable2faBtn.addEventListener('click', function(e) {
         e.preventDefault();
