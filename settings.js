@@ -108,7 +108,15 @@ originalValues.phone = phoneInput.value;
                 frequency: frequencySelect.value,
                 doNotDisturb: `${dndStart.value} to ${dndEnd.value}`
             });
-            
+            userData.notifications = {
+                email: emailNotif.checked,
+                sms: smsNotif.checked,
+                push: pushNotif.checked,
+                frequency: frequencySelect.value,
+                dndStart: dndStart.value,
+                dndEnd: dndEnd.value
+            };
+            localStorage.setItem('userSettings', JSON.stringify(userData));
             showAlert('Notification preferences updated!', 'success');
         });
     }
