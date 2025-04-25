@@ -309,11 +309,9 @@ originalValues.phone = phoneInput.value;
                             return false;
                         }
                         
-                        console.log('Account deletion confirmed');
-                        // In a real app, you would send this to the server
+                        localStorage.removeItem('userSettings');
                         showAlert('Your account has been scheduled for deletion. You will receive a confirmation email.', 'info');
                         
-                        // Simulate logout after deletion
                         setTimeout(() => {
                             window.location.href = 'logout.html';
                         }, 3000);
@@ -323,6 +321,7 @@ originalValues.phone = phoneInput.value;
                 }
             ]
         );
+                    
     });
 }
  // Email validation
