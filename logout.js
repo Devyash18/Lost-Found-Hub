@@ -66,3 +66,21 @@ function createParticles() {
         animation.onfinish = () => particle.remove();
     }
 }
+// Countdown and redirect
+function startCountdown() {
+    let seconds = 5;
+    const countElement = document.getElementById('count');
+    
+    const timer = setInterval(() => {
+        countElement.textContent = --seconds;
+        countElement.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            countElement.style.transform = 'scale(1)';
+        }, 200);
+        
+        if (seconds <= 0) {
+            clearInterval(timer);
+            window.location.href = 'landingpage.html';
+        }
+    }, 1000);
+}
