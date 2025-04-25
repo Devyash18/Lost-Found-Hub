@@ -246,22 +246,68 @@ if (securityForm) {
         
         return strength;
     }
-     // Enable 2FA
-     enable2faBtn.addEventListener('click', function(e) {
-        e.preventDefault();
+     // ====== 2FA Implementation ======
+enable2faBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    if (userData.security.twoFactorEnabled) {
+        // Disable 2FA
+        if (confirm('Are you sure you want to disable two-factor authentication?')) {
+            userData.security.twoFactorEnabled = false;
+            userData.security.twoFactorSecret = null;
+            localStorage.setItem('userSettings', JSON.stringify(userData));
+            enable2faBtn.innerHTML = '<i class="fas fa-lock"></i> Enable 2FA';
+            showAlert('Two-factor authentication has been disabled', 'success');
+        }
+    } else {
+        // Enable 2FA - Generate new secret
+        const secret = generateRandomSecret();
+        const email = userData.profile.email || 'user@example.com';
+        const issuer = 'Lost & Found System';
+        const qrCodeUrl = generateQRCodeUrl(issuer, email, secret);
         
-        // Simulate 2FA setup flow
+        // Generate timestamp for cache busting
+        const timestamp = new Date().getTime();
+        const cachedQrCodeUrl = `${qrCodeUrl}&timestamp=${timestamp}`;
+
         showModal(
             'Set Up Two-Factor Authentication',
             `
             <div class="two-factor-setup">
-                <p>Scan this QR code with your authenticator app:</p>
-                <div class="qr-code-placeholder"></div>
-                <p>Or enter this code manually:</p>
-                <div class="manual-code">XK34 9B72 QL89 TY21</div>
-                <div class="form-group">
-                    <label for="verification-code" class="form-label">Enter verification code</label>
-                    <input type="text" id="verification-code" class="form-control" placeholder="6-digit code">
+                <div class="setup-instructions">
+                    <p>1. Open your authenticator app (Google Authenticator, Authy, etc.)</p>
+                    <p>2. Scan this QR code:</p>
+                </div>
+                
+                <div class="qr-code-container">
+                    <img src="${cachedQrCodeUrl}" alt="QR Code" class="qr-code-image" 
+                         onerror="this.onerror=null;this.src='${qrCodeUrl}'">
+                    <div class="qr-code-fallback" style="display:none">
+                        Unable to load QR code. Please use manual entry.
+                    </div>
+                </div>
+                
+                <div class="manual-setup">
+                    <p>3. Or enter this code manually:</p>
+                    <div class="manual-code-container">
+                        <code class="manual-code">${formatSecretForDisplay(secret)}</code>
+                        <button class="btn-copy" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="verification-section">
+                    <p>4. Enter the 6-digit code from your app:</p>
+                    <div class="form-group">
+                        <input type="text" id="verification-code" 
+                               class="form-control" 
+                               placeholder="123456"
+                               maxlength="6"
+                               inputmode="numeric"
+                               pattern="\d{6}">
+                        <div class="hint">Enter the current code from your authenticator app</div>
+                    </div>
                 </div>
             </div>
             `,
@@ -269,29 +315,166 @@ if (securityForm) {
                 {
                     text: 'Cancel',
                     class: 'btn-outline',
-                    handler: () => console.log('2FA setup canceled')
+                    handler: () => {
+                        console.log('2FA setup canceled');
+                        return true;
+                    }
                 },
-     
                 {
                     text: 'Verify & Enable',
                     class: 'btn-primary',
                     handler: () => {
-                        const code = document.getElementById('verification-code').value;
-                        if (!code || code.length !== 6) {
+                        const codeInput = document.getElementById('verification-code');
+                        const code = codeInput.value.trim();
+                        
+                        if (!code || !/^\d{6}$/.test(code)) {
                             showAlert('Please enter a valid 6-digit code', 'error');
-                            return false; // Keep modal open
+                            codeInput.focus();
+                            return false;
                         }
+                        
+                        // In a real app, verify against the secret here
+                        // For demo, we'll assume it's valid
                         userData.security.twoFactorEnabled = true;
-                localStorage.setItem('userSettings', JSON.stringify(userData));
-                enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
-                        showAlert('Two-factor authentication enabled!', 'success');
-                        return true; // Close modal
+                        userData.security.twoFactorSecret = secret;
+                        localStorage.setItem('userSettings', JSON.stringify(userData));
+                        
+                        enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
+                        showAlert('Two-factor authentication enabled successfully!', 'success');
+                        return true;
                     }
                 }
             ]
         );
+
+        // Add copy functionality after modal renders
+        setTimeout(() => {
+            const copyBtn = document.querySelector('.btn-copy');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    const secretText = document.querySelector('.manual-code').textContent;
+                    navigator.clipboard.writeText(secretText.replace(/\s/g, ''));
+                    showAlert('Secret code copied to clipboard!', 'info');
+                });
+            }
+        }, 100);
+    }
+});
+
+// Helper Functions
+function generateRandomSecret() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; // Base32 characters
+    const secretLength = 16;
+    let secret = '';
+    
+    for (let i = 0; i < secretLength; i++) {
+        secret += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return secret;
+}
+
+function generateQRCodeUrl(issuer, accountName, secret) {
+    const params = new URLSearchParams({
+        secret: secret,
+        issuer: issuer,
+        algorithm: 'SHA1',
+        digits: 6,
+        period: 30
     });
-     }
+    
+    const otpUrl = `otpauth://totp/${encodeURIComponent(issuer)}:${encodeURIComponent(accountName)}?${params}`;
+    return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(otpUrl)}`;
+}
+
+function formatSecretForDisplay(secret) {
+    return secret.match(/.{4}/g).join(' ');
+}
+
+// Styles (add to your existing styles)
+const twoFactorStyles = document.createElement('style');
+twoFactorStyles.textContent = `
+    .two-factor-setup {
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .setup-instructions {
+        text-align: left;
+        margin-bottom: 1.5rem;
+    }
+    
+    .setup-instructions p {
+        margin: 0.5rem 0;
+    }
+    
+    .qr-code-container {
+        margin: 1rem auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        display: inline-block;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .qr-code-image {
+        width: 200px;
+        height: 200px;
+        display: block;
+    }
+    
+    .qr-code-fallback {
+        padding: 1rem;
+        color: var(--danger);
+    }
+    
+    .manual-setup {
+        margin: 1.5rem 0;
+    }
+    
+    .manual-code-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+    
+    .manual-code {
+        font-family: 'Courier New', monospace;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        padding: 0.75rem 1rem;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+    }
+    
+    .btn-copy {
+        background: none;
+        border: none;
+        color: var(--primary);
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+    }
+    
+    .verification-section {
+        margin-top: 2rem;
+    }
+    
+    .verification-section .form-group {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .hint {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 0.5rem;
+    }
+`;
+document.head.appendChild(twoFactorStyles);
+}
  // Account Actions
  if (accountActions) {
     const downloadDataBtn = accountActions.querySelector('.full-width:not(.delete-btn)');
