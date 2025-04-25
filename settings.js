@@ -127,6 +127,10 @@ originalValues.phone = phoneInput.value;
         const confirmPass = securityForm.querySelector('#confirm-password');
         const changePassBtn = securityForm.querySelector('.btn-primary');
         const enable2faBtn = securityForm.querySelector('.two-factor-box .btn-outline');
+         // ADD THESE LINES RIGHT HERE:
+    if (userData.security.twoFactorEnabled) {
+        enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
+    }
         
         // Password strength indicator
         newPass.addEventListener('input', function() {
