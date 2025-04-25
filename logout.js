@@ -122,3 +122,16 @@ function setupMouseParticles() {
         }
     });
 }
+// Initialize everything when page loads
+function initializePage() {
+    createBubbles();
+    createParticles();
+    startCountdown();
+    setupMouseParticles();
+    
+    document.getElementById('returnBtn').addEventListener('click', () => {
+        window.location.href = 'landingpage.html';
+    });
+}
+
+window.addEventListener('load', initializePage);
