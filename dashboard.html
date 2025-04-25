@@ -53,10 +53,10 @@
           <li><a href="Listed page/listings.html"><i class="fas fa-search"></i> Search Items</a></li>
           <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
           <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
-          <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+          <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
           <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
           <li><a href="about.html"><i class="fas fa-cog"></i> About Us</a></li>
-          <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          <li><a href="landingpage.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
       </nav>
       
@@ -69,18 +69,15 @@
       <header class="dashboard-header">
         <h1><i class="fas fa-tachometer-alt"></i> Lost & Found</h1>
         <div class="header-actions">
-          <div class="search-box">
-            <input type="text" placeholder="Search...">
-            <button><i class="fas fa-search"></i></button>
-          </div>
+         
          
         </div>
       </header>
       
       <!-- Stats Cards -->
       <section class="stats-grid">
-        <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.1s">
-          <div class="stat-icon" style="background-color: #4e73df;">
+        <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.1s" onclick="window.location.href='Listed page/listings.html?filter=lost'">
+          <div class="stat-icon" style="background-color: #1e40af;">
             <i class="fas fa-question-circle"></i>
           </div>
           <div class="stat-info">
@@ -92,7 +89,7 @@
           </div>
         </div>
         
-        <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.2s">
+        <div class="stat-card animate__animated animate__fadeInUp" style="--delay: 0.2s" onclick="window.location.href='Listed page/listings.html?filter=found'">
           <div class="stat-icon" style="background-color: #1cc88a;">
             <i class="fas fa-check-circle"></i>
           </div>
@@ -168,7 +165,7 @@
     document.getElementById('logoutBtn').addEventListener('click', function(event) {
         const confirmLogout = confirm("Are you sure you want to log out?");
         if (confirmLogout) {
-            window.location.href = "Login page/login.html"; // Redirect to login page
+            window.location.href = "landingpage.html"; // Redirect to login page
         }
     });
 </script>
