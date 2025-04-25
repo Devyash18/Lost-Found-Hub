@@ -11,43 +11,108 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
     <style>
-        /* Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{
+            margin: 0%;
+        }
+        :root {
+            --primary: #4e73df;
+            --secondary: #858796;
+            --success: #1cc88a;
+            --info: #36b9cc;
+            --warning: #f6c23e;
+            --danger: #e74a3b;
+            --light: #f8f9fc;
+            --dark: #5a5c69;
+        }
+ 
+        body {
             font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fc;
+            color: #333;
+            overflow-x: hidden;
+        }
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
         
-        body {
-            min-height: 100vh;
-            background-color: #f8f9fc;
+        .bg-particle-1, .bg-particle-2, .bg-particle-3 {
+            position: absolute;
+            background: rgba(78, 115, 223, 0.05);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
         }
-
-        /* Dashboard Container */
+        
+        .bg-particle-1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+        }
+        
+        .bg-particle-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+        
+        .bg-particle-3 {
+            width: 200px;
+            height: 200px;
+            top: 40%;
+            right: 20%;
+            animation-delay: 8s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        
+        /* Dashboard Layout */
         .dashboard-container {
             display: flex;
             min-height: 100vh;
         }
-
-        /* Sidebar */
+        
         .sidebar {
-            width: 280px;
-            background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
+            width: 250px;
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
             color: white;
             padding: 20px 0;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
             height: 100vh;
-            position: sticky;
-            top: 0;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            z-index: 100;
+            transition: all 0.3s;
         }
         
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #f8f9fc;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styles */
         .sidebar-header {
             text-align: center;
             padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .profile-img {
@@ -55,26 +120,33 @@
             height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid rgba(255,255,255,0.2);
-            margin-bottom: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 10px;
+            transition: all 0.3s;
         }
         
-        .sidebar-header h3 {
-            margin: 5px 0;
-            font-size: 18px;
-            font-weight: 500;
+        .profile-img:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
-        .sidebar-header p {
-            font-size: 12px;
+        .sidebar h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar p {
+            font-size: 0.8rem;
             opacity: 0.8;
-            margin: 0;
-            font-weight: 300;
+        }
+        
+        .sidebar-nav {
+            padding: 20px 0;
         }
         
         .sidebar-nav ul {
+            padding: 0%;
             list-style: none;
-            padding: 0 15px;
         }
         
         .sidebar-nav li {
@@ -82,66 +154,87 @@
         }
         
         .sidebar-nav a {
-            color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            display: block;
-            padding: 10px 15px;
-            border-radius: 5px;
             transition: all 0.3s;
-            font-size: 14px;
-            font-weight: 400;
+            border-left: 3px solid transparent;
         }
         
         .sidebar-nav a:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
+            border-left: 3px solid white;
         }
         
-        .sidebar-nav a.active {
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
-        
-        .sidebar-nav i {
-            width: 25px;
+        .sidebar-nav a i {
+            margin-right: 10px;
+            width: 20px;
             text-align: center;
-            margin-right: 5px;
-            font-size: 16px;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 40px;
-            background-color: #f8f9fc;
         }
         
-        .profile-header {
+        .sidebar-nav .active a {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left: 3px solid white;
+        }
+        
+        /* Main Content Styles */
+        .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e3e6f0;
         }
         
-        .profile-title {
-            font-size: 24px;
-            color: #2d3748;
-            font-weight: 600;
+        .dashboard-header h1 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
         }
         
-        .edit-profile {
-            background: #4e73df;
+        .dashboard-header h1 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .search-box input {
+            border: none;
+            padding: 10px 15px;
+            width: 200px;
+            outline: none;
+        }
+        
+        .search-box button {
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 500;
+            padding: 0 15px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
-        .edit-profile:hover {
-            background: #3b65d6;
+        .search-box button:hover {
+            background: #3a5ccc;
         }
         
         /* Profile Section */
@@ -149,9 +242,10 @@
             display: flex;
             gap: 40px;
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
         }
         
         .profile-picture {
@@ -172,7 +266,7 @@
         }
         
         .upload-btn {
-            background: #4e73df;
+            background: var(--primary);
             color: white;
             border: none;
             padding: 8px 15px;
@@ -180,7 +274,7 @@
             font-size: 14px;
             cursor: pointer;
             width: fit-content;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
         .upload-btn:hover {
@@ -193,12 +287,12 @@
         
         .user-name {
             font-size: 24px;
-            color: #2d3748;
+            color: var(--dark);
             margin-bottom: 5px;
         }
         
         .user-email {
-            color: #64748b;
+            color: var(--secondary);
             margin-bottom: 20px;
         }
         
@@ -220,18 +314,21 @@
         .stat-number {
             font-size: 28px;
             font-weight: 700;
-            color: #1e40af;
+            color: var(--primary);
             margin-bottom: 5px;
         }
         
         .stat-label {
             font-size: 14px;
-            color: #64748b;
+            color: var(--secondary);
         }
 
         /* My Listings Section */
         .my-listings-section {
-            margin-top: 40px;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .section-header {
@@ -242,14 +339,23 @@
         }
 
         .section-title {
-            font-size: 20px;
-            color: #2d3748;
-            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--primary);
         }
 
         .filter-controls {
             display: flex;
             gap: 10px;
+            background: #e9ecef;
+            border-radius: 30px;
+            padding: 5px;
         }
 
         .filter-btn {
@@ -259,34 +365,36 @@
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
 
         .filter-btn.active {
-            background: #4e73df;
+            background: var(--primary);
             color: white;
         }
 
         .filter-btn.inactive {
-            background: #e9ecef;
-            color: #495057;
+            background: transparent;
+            color: var(--secondary);
         }
 
         .listings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
 
         .listing-card {
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
         }
 
         .listing-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .listing-img {
@@ -326,13 +434,13 @@
         .listing-title {
             font-size: 18px;
             margin-bottom: 8px;
-            color: #2d3748;
+            color: var(--dark);
         }
 
         .listing-location, .listing-date {
             display: flex;
             align-items: center;
-            color: #64748b;
+            color: var(--secondary);
             font-size: 14px;
             margin-bottom: 8px;
         }
@@ -345,7 +453,7 @@
             display: inline-block;
             margin-top: 15px;
             padding: 8px 16px;
-            background: #4e73df;
+            background: var(--primary);
             color: white;
             border-radius: 4px;
             text-decoration: none;
@@ -358,50 +466,67 @@
         }
         
         /* Responsive */
-        @media (max-width: 768px) {
-            .dashboard-container {
-                flex-direction: column;
-            }
-            
+        @media (max-width: 992px) {
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
+                width: 70px;
+                overflow: hidden;
             }
             
+            .sidebar-header h3,
+            .sidebar-header p,
+            .sidebar-nav a span {
+                display: none;
+            }
+            
+            .sidebar-nav a {
+                justify-content: center;
+                padding: 15px 0;
+            }
+            
+            .sidebar-nav a i {
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                margin-left: 70px;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .profile-section {
                 flex-direction: column;
-                gap: 20px;
             }
             
-            .user-stats {
+            .listings-grid {
                 grid-template-columns: 1fr;
             }
-
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
+        }
+        
+        @media (max-width: 576px) {
             .filter-controls {
-                width: 100%;
+                flex-direction: column;
+                border-radius: 10px;
             }
             
             .filter-btn {
-                flex: 1;
-            }
-
-            .listings-grid {
-                grid-template-columns: 1fr;
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
+   
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-particle-1"></div>
+        <div class="bg-particle-2"></div>
+        <div class="bg-particle-3"></div>
+    </div>
+
     <div class="dashboard-container">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar animate__animated animate__fadeInLeft">
             <div class="sidebar-header">
                 <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
                      alt="User Profile" class="profile-img">
@@ -411,24 +536,29 @@
             
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="Listed page/listings.html"><i class="fas fa-search"></i> Search Items</a></li>
-                    <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
-                    <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-                    <li><a href="userprofile.html" class="active"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="Login page/login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-map-pin"></i> <span>Dashboard</span></a></li>
+                    <li><a href="Listed page/listings.html"><i class="fas fa-search"></i> <span>Search Items</span></a></li>
+                    <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> <span>Lost Items</span></a></li>
+                    <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> <span>Found Items</span></a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+                    <li class="active"><a href="userprofile.html"><i class="fas fa-user"></i> <span>User Profile</span></a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> <span>About Us</span></a></li>
+                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
                 </ul>
             </nav>
         </aside>
 
         <!-- Main Content -->
-        <div class="main-content">
-            <div class="profile-header">
-                <h1 class="profile-title">My Profile</h1>
-                <button class="edit-profile">Edit Profile</button>
-            </div>
+        <div class="main-content animate__animated animate__fadeIn">
+            <header class="dashboard-header">
+                <h1><i class="fas fa-user"></i> User Profile</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </header>
             
             <div class="profile-section">
                 <div class="profile-picture">
@@ -461,7 +591,7 @@
             <!-- My Lost & Found Items Section -->
             <div class="my-listings-section">
                 <div class="section-header">
-                    <h2 class="section-title">My Lost & Found Items</h2>
+                    <h2 class="section-title"><i class="fas fa-list"></i> My Lost & Found Items</h2>
                     <div class="filter-controls">
                         <button class="filter-btn active" id="all-btn">All Items</button>
                         <button class="filter-btn inactive" id="lost-btn">Lost Items</button>
@@ -476,6 +606,7 @@
     </div>
 
     <script>
+
         // Image upload functionality
         document.getElementById('fileInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
@@ -489,11 +620,6 @@
             }
         });
     
-        // Edit profile button alert
-        document.querySelector('.edit-profile').addEventListener('click', function() {
-            alert('Edit profile form would appear here');
-        });
-
         // Logout functionality
         document.getElementById('logoutBtn').addEventListener('click', function(event) {
             const confirmLogout = confirm("Are you sure you want to log out?");
