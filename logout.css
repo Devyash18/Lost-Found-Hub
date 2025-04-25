@@ -25,3 +25,35 @@ body {
     padding: 2rem;
     overflow: hidden;
 }
+.logout-container {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    transform: scale(0.95);
+    opacity: 0;
+    animation: containerEntrance 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.logo {
+    width: 80px;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+    transform: translateY(-20px);
+    animation: logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes containerEntrance {
+    0% { transform: scale(0.95) translateY(20px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(-10px); }
+    50% { transform: translateY(10px); }
+}
