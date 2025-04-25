@@ -89,38 +89,45 @@ if (profileForm) {
 }
     
     // Notification Preferences Form
-    if (notificationForm) {
-        const emailNotif = notificationForm.querySelector('#email-notifications');
-        const smsNotif = notificationForm.querySelector('#sms-notifications');
-        const pushNotif = notificationForm.querySelector('#push-notifications');
-        const frequencySelect = notificationForm.querySelector('#notification-frequency');
-        const dndStart = notificationForm.querySelector('#do-not-disturb-start');
-        const dndEnd = notificationForm.querySelector('#do-not-disturb-end');
-        const updateBtn = notificationForm.querySelector('.btn-primary');
+if (notificationForm) {
+    const emailNotif = notificationForm.querySelector('#email-notifications');
+    const smsNotif = notificationForm.querySelector('#sms-notifications');
+    const pushNotif = notificationForm.querySelector('#push-notifications');
+    const frequencySelect = notificationForm.querySelector('#notification-frequency');
+    const dndStart = notificationForm.querySelector('#do-not-disturb-start');
+    const dndEnd = notificationForm.querySelector('#do-not-disturb-end');
+    const updateBtn = notificationForm.querySelector('.btn-primary');
+
+    // Load saved preferences
+    emailNotif.checked = userData.notifications.email;
+    smsNotif.checked = userData.notifications.sms;
+    pushNotif.checked = userData.notifications.push;
+    frequencySelect.value = userData.notifications.frequency;
+    
+    // Set time values - make sure these match your HTML options
+    dndStart.value = userData.notifications.dndStart;
+    dndEnd.value = userData.notifications.dndEnd;
+
+    updateBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         
-        updateBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // In a real app, you would send this to the server
-            console.log('Notification preferences updated:', {
-                emailNotifications: emailNotif.checked,
-                smsNotifications: smsNotif.checked,
-                pushNotifications: pushNotif.checked,
-                frequency: frequencySelect.value,
-                doNotDisturb: `${dndStart.value} to ${dndEnd.value}`
-            });
-            userData.notifications = {
-                email: emailNotif.checked,
-                sms: smsNotif.checked,
-                push: pushNotif.checked,
-                frequency: frequencySelect.value,
-                dndStart: dndStart.value,
-                dndEnd: dndEnd.value
-            };
-            localStorage.setItem('userSettings', JSON.stringify(userData));
-            showAlert('Notification preferences updated!', 'success');
-        });
-    }
+        // Update the userData object
+        userData.notifications = {
+            email: emailNotif.checked,
+            sms: smsNotif.checked,
+            push: pushNotif.checked,
+            frequency: frequencySelect.value,
+            dndStart: dndStart.value,
+            dndEnd: dndEnd.value
+        };
+
+        // Save to localStorage
+        localStorage.setItem('userSettings', JSON.stringify(userData));
+        
+        console.log('Saved notifications:', userData.notifications); // Debug log
+        showAlert('Notification preferences updated!', 'success');
+    });
+}
      // Security Settings Form
      if (securityForm) {
         const currentPass = securityForm.querySelector('#current-password');
