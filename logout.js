@@ -84,3 +84,41 @@ function startCountdown() {
         }
     }, 1000);
 }
+// Add interactive particles on mouse move
+function setupMouseParticles() {
+    document.addEventListener('mousemove', (e) => {
+        if (Math.random() > 0.7) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            particle.style.width = '5px';
+            particle.style.height = '5px';
+            particle.style.backgroundColor = '#4361ee';
+            particle.style.left = `${e.clientX}px`;
+            particle.style.top = `${e.clientY}px`;
+            particle.style.opacity = 0.7;
+            
+            document.body.appendChild(particle);
+            
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 50 + 20;
+            
+            particle.animate([
+                { 
+                    opacity: 0.7,
+                    transform: 'scale(1)',
+                },
+                { 
+                    opacity: 0,
+                    transform: `translate(
+                        ${Math.cos(angle) * distance}px, 
+                        ${Math.sin(angle) * distance}px
+                    ) scale(0)`,
+                }
+            ], {
+                duration: 1000,
+                easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            }).onfinish = () => particle.remove();
+        }
+    });
+}
