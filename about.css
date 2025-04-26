@@ -85,3 +85,51 @@ body {
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 0;
 }
+/*
+ * commit: Implement sidebar navigation
+ * desc: Style navigation links with hover and active states
+ */
+ .sidebar-nav {
+    padding: 10px 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 5px;
+}
+
+.sidebar-nav li {
+    margin-bottom: 12px;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+    font-size: 0.9rem;
+}
+
+.sidebar-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-left: 3px solid white;
+}
+
+.sidebar-nav a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.sidebar-nav .active a {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-left: 3px solid white;
+}
