@@ -116,3 +116,19 @@
     gap: 20px;
     margin-top: 30px;
   }
+@media (max-width: 992px) {
+    .sidebar {
+      width: 70px;
+      overflow: hidden;
+    }
+    
+    .sidebar-header h3,
+    .sidebar-header p,
+    .sidebar-nav a span {
+      display: none;
+    }
+    
+    .main-content {
+      margin-left: 70px;
+    }
+  }
