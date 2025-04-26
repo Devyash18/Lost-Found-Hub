@@ -357,20 +357,34 @@
     }
 
     function openModal(title, location, description, imageUrl) {
-      const modal = document.createElement('div');
-      modal.classList.add('modal');
-      modal.innerHTML = `
-        <div class="modal-content">
-          <span class="close" onclick="this.parentElement.parentElement.remove()">×</span>
-          <img src="${imageUrl}" alt="${title}" />
-          <h3>${title}</h3>
-          <p>Location: ${location}</p>
-          <p>Description: ${description}</p>
-        </div>
-      `;
-      document.body.appendChild(modal);
-      modal.style.display = 'flex';
-    }
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalLocation").textContent = "📍 Location: " + location;
+  document.getElementById("modalDescription").textContent = description;
+  document.getElementById("modalImage").src = imageUrl;
+
+  const modal = document.getElementById("modal");
+  modal.style.display = 'flex';
+  setTimeout(() => {
+    modal.classList.add('show');
+  }, 10);
+}
+
+function closeModal() {
+  const modal = document.getElementById("modal");
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 500);
+}
+
+// Optional: Close modal if clicking outside the content
+window.onclick = function(event) {
+  const modal = document.getElementById("modal");
+  if (event.target === modal) {
+    closeModal();
+  }
+};
+
 
     function showFound() {
       document.getElementById('foundSection').style.display = 'block';
