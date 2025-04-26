@@ -236,6 +236,69 @@
     transform: translateY(-5px) scale(1.03);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
+
+  /* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(to bottom, #1e40af, #3b82f6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.profile img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.profile p {
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.nav-links {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  font-size: 16px;
+  padding: 10px 20px;
+  width: 80%;
+  text-align: center;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Main content */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+}
+
   </style>
 </head>
 <body>
@@ -274,6 +337,40 @@
       </div>
     </div>
   </section>
+
+  
+  <div class="main-content">
+    <!-- Your existing content here -->
+  </div>
+  
+  
+    <div class="main-content">
+      <header class="navbar">
+        <div class="logo">🔍 Lost&Found!</div>
+      </header>
+  
+      <div class="toggle-btns">
+        <button class="toggle-btn" onclick="showFound()">Found Items</button>
+        <button class="toggle-btn" onclick="showReport()">Report Lost Item</button>
+        <button class="toggle-btn" onclick="showViewReport()">View Report</button>
+      </div>
+  
+      <!-- Your existing sections go here -->
+      <!-- Found Items Section -->
+      <section id="foundSection">...</section>
+  
+      <!-- Report Section -->
+      <section id="reportSection">...</section>
+  
+      <!-- View Report Section -->
+      <section id="viewReportSection">...</section>
+  
+      <!-- Modal -->
+      <div id="modal" class="modal">...</div>
+    </div>
+  
+  </body>
+  
 
   <!-- Report Section -->
   <section id="reportSection">
