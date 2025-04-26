@@ -202,6 +202,47 @@
       opacity: 1;
       transform: scale(1);
     }
+
+    <style>
+  /* ... existing styles ... */
+
+  /* View Report Section */
+  #viewReportSection {
+    text-align: center;
+    padding: 50px;
+    display: none;
+  }
+
+  #viewReportSection h2 {
+    font-size: 32px;
+    color: #1e40af;
+  }
+
+  .report-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .report-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 250px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .report-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+</style>
+
   </style>
 </head>
 <body>
