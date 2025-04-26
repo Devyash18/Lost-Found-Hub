@@ -275,6 +275,13 @@ footer {
 footer:hover {
   background-color: #3b82f6;
 }
+.container-no-box {
+  max-width: 1200px; /* Or 1100px if you want */
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+
 
   
   
