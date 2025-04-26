@@ -37,7 +37,7 @@
                     <li><a href="../report.html"><i class="fas fa-flag"></i> Report Item</a></li>
                     <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                     <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
-                    <li><a href="Login page/login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    <li><a href="landingpage.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -150,23 +150,27 @@
     </div>
 
     <script>
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Logout button functionality
-        document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Add logout logic here
-            console.log('User logged out');
-            alert('You have been logged out successfully');
-        });
-    </script>
+      // Add smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+              });
+          });
+      });
+  
+      // Logout button functionality with confirmation
+      document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+          e.preventDefault();
+          const confirmLogout = confirm('Are you sure you want to logout?');
+          
+          if (confirmLogout) {
+              // Redirect to landing page after confirmation
+              window.location.href = 'landingpage.html';
+          }
+          // If canceled, do nothing (stay on current page)
+      });
+  </script>
 </body>
 </html>
