@@ -1,0 +1,175 @@
+// Image upload functionality
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('profileImage').src = e.target.result;
+            alert('Profile image updated!');
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Logout functionality
+document.getElementById('logoutBtn').addEventListener('click', function(event) {
+    const confirmLogout = confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+        window.location.href = "Login page/login.html";
+    }
+});
+
+// Sample data for user's listings
+const userListings = [
+    {
+        id: 1,
+        title: "Lost Wallet",
+        description: "Black leather wallet with credit cards inside",
+        image: "https://i.pinimg.com/736x/65/36/a4/6536a4fd58a8caccc905733477fcfc0d.jpg",
+        location: "Tesla Block",
+        date: "2023-06-15",
+        status: "lost",
+        type: "lost"
+    },
+    {
+        id: 2,
+        title: "Found iPhone",
+        description: "iPhone 12 with blue case",
+        image: "https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg",
+        location: "Square One",
+        date: "2023-06-10",
+        status: "found",
+        type: "found"
+    },
+    {
+        id: 3,
+        title: "Lost Keys",
+        description: "Set of car and house keys",
+        image: "https://bettystreff.com/wp-content/uploads/2017/07/keys.jpg",
+        location: "Main Entrance",
+        date: "2023-06-05",
+        status: "lost",
+        type: "lost"
+    },
+    {
+        id: 4,
+        title: "Found Watch",
+        description: "Silver wristwatch near the fountain",
+        image: "https://i.ebayimg.com/images/g/TnIAAOSwqeRlPVxr/s-l400.jpg",
+        location: "Fountain",
+        date: "2023-05-28",
+        status: "found",
+        type: "found"
+    }
+];
+
+// Current filter state
+let currentFilter = 'all';
+
+// Function to create a listing card
+function createUserListingCard(listing) {
+    const card = document.createElement('div');
+    card.className = 'listing-card';
+    
+    // Determine status class and text
+    let statusClass, statusText;
+    if (listing.status === 'lost') {
+        statusClass = 'status-lost';
+        statusText = 'Lost';
+    } else if (listing.status === 'found') {
+        statusClass = 'status-found';
+        statusText = 'Found';
+    } else {
+        statusClass = 'status-returned';
+        statusText = 'Returned';
+    }
+    
+    card.innerHTML = `
+        <div class="listing-img" style="background-image: url('${listing.image}')"></div>
+        <div class="listing-details">
+            <span class="listing-status ${statusClass}">${statusText}</span>
+            <h3 class="listing-title">${listing.title}</h3>
+            <p>${listing.description}</p>
+            <div class="listing-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>${listing.location}</span>
+            </div>
+            <div class="listing-date">
+                <i class="far fa-calendar-alt"></i>
+                <span>${formatDate(listing.date)}</span>
+            </div>
+            <a href="listing-detail.html?id=${listing.id}" class="view-btn">View Details</a>
+        </div>
+    `;
+    
+    return card;
+}
+
+// Format date
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
+// Render user's listings based on current filter
+function renderUserListings() {
+    const container = document.getElementById('user-listings-container');
+    container.innerHTML = '';
+    
+    const filteredListings = userListings.filter(listing => {
+        if (currentFilter === 'all') return true;
+        return listing.type === currentFilter;
+    });
+    
+    if (filteredListings.length === 0) {
+        container.innerHTML = '<p>You haven\'t posted any items yet.</p>';
+        return;
+    }
+    
+    filteredListings.forEach(listing => {
+        const listingCard = createUserListingCard(listing);
+        container.appendChild(listingCard);
+    });
+}
+
+// Set up filter button event listeners
+function setupFilterButtons() {
+    document.getElementById('all-btn').addEventListener('click', () => {
+        setActiveFilter('all');
+    });
+    document.getElementById('lost-btn').addEventListener('click', () => {
+        setActiveFilter('lost');
+    });
+    document.getElementById('found-btn').addEventListener('click', () => {
+        setActiveFilter('found');
+    });
+}
+
+// Set the active filter and update UI
+function setActiveFilter(filter) {
+    currentFilter = filter;
+    
+    // Update button states
+    document.getElementById('all-btn').className = filter === 'all' ? 'filter-btn active' : 'filter-btn inactive';
+    document.getElementById('lost-btn').className = filter === 'lost' ? 'filter-btn active' : 'filter-btn inactive';
+    document.getElementById('found-btn').className = filter === 'found' ? 'filter-btn active' : 'filter-btn inactive';
+    
+    // Re-render listings
+    renderUserListings();
+}
+
+// Update stats based on user's listings
+function updateStats() {
+    const lostCount = userListings.filter(item => item.type === 'lost').length;
+    const foundCount = userListings.filter(item => item.type === 'found').length;
+    
+    document.querySelector('.stat-card:nth-child(1) .stat-number').textContent = lostCount;
+    document.querySelector('.stat-card:nth-child(2) .stat-number').textContent = foundCount;
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    renderUserListings();
+    setupFilterButtons();
+    updateStats();
+});
