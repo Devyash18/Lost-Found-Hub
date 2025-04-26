@@ -21,3 +21,16 @@ body {
     color: var(--dark);
     overflow-x: hidden;
 }
+ .app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #f8f9fc;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
