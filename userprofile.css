@@ -467,12 +467,6 @@ body {
     background: #3b65d6;
 }
 
-/* Temporary test */
-.sidebar-nav .active a {
-    background: red !important;
-    color: white !important;
-    border-left: 3px solid white !important;
-}
 
 /* Responsive */
 @media (max-width: 992px) {
