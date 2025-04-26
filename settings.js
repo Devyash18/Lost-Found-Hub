@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // First get the profile form and inputs
+    const profileForm = document.querySelector('.settings-card:nth-child(1)');
+    const notificationForm = document.querySelector('.settings-card:nth-child(2)');
+    const securityForm = document.querySelector('.settings-card:nth-child(3)');
+    const accountActions = document.querySelector('.settings-card:nth-child(4)');
+
+    // Get profile inputs
+    const usernameInput = profileForm ? profileForm.querySelector('#username') : null;
+    const emailInput = profileForm ? profileForm.querySelector('#email') : null;
+    const phoneInput = profileForm ? profileForm.querySelector('#phone') : null;
+
+    // Then initialize userData
     const userData = JSON.parse(localStorage.getItem('userSettings')) || {
         profile: {
             username: usernameInput?.value || 'John Doe',
@@ -17,130 +29,138 @@ document.addEventListener('DOMContentLoaded', function() {
             twoFactorEnabled: false
         }
     };
-
-    // DOM Elements
-    const profileForm = document.querySelector('.settings-card:nth-child(1)');
-    const notificationForm = document.querySelector('.settings-card:nth-child(2)');
-    const securityForm = document.querySelector('.settings-card:nth-child(3)');
-    const accountActions = document.querySelector('.settings-card:nth-child(4)');
-    
     // Profile Information Form
-    if (profileForm) {
-        const usernameInput = profileForm.querySelector('#username');
-        const emailInput = profileForm.querySelector('#email');
-        const phoneInput = profileForm.querySelector('#phone');
-        const saveBtn = profileForm.querySelector('.btn-primary');
-        const cancelBtn = profileForm.querySelector('.btn-outline');
+if (profileForm) {
+    const usernameInput = profileForm.querySelector('#username');
+    const emailInput = profileForm.querySelector('#email');
+    const phoneInput = profileForm.querySelector('#phone');
+    const saveBtn = profileForm.querySelector('.btn-primary');
+    const cancelBtn = profileForm.querySelector('.btn-outline');
+
+    // Store original values for cancel functionality
+    const originalValues = {
+        username: usernameInput.value,
+        email: emailInput.value,
+        phone: phoneInput.value
+    };
+
+    // Load saved values from userData
+    usernameInput.value = userData.profile.username;
+    emailInput.value = userData.profile.email;
+    phoneInput.value = userData.profile.phone;
+
+    // Update originalValues to match loaded data
+    originalValues.username = usernameInput.value;
+    originalValues.email = emailInput.value;
+    originalValues.phone = phoneInput.value;
+
+    // Save profile changes
+    saveBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         
-        // Store original values for cancel functionality
-        const originalValues = {
+        if (!usernameInput.value.trim()) {
+            showAlert('Username cannot be empty', 'error');
+            return;
+        }
+        if (!validateEmail(emailInput.value)) {
+            showAlert('Please enter a valid email address', 'error');
+            return;
+        }
+
+        // Update userData and localStorage
+        userData.profile = {
             username: usernameInput.value,
             email: emailInput.value,
             phone: phoneInput.value
-        }; // <-- Removed the extra closing brace here
-        usernameInput.value = userData.profile.username;
-emailInput.value = userData.profile.email;
-phoneInput.value = userData.profile.phone;
-
-// Update originalValues to match loaded data
-originalValues.username = usernameInput.value;
-originalValues.email = emailInput.value;
-originalValues.phone = phoneInput.value;
-
-// <-- Removed the extra closing brace here
-            
-        // Save profile changes
-        saveBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Simple validation
-            if (!usernameInput.value.trim()) {
-                showAlert('Username cannot be empty', 'error');
-                return;
-            }
-            if (!validateEmail(emailInput.value)) {
-                showAlert('Please enter a valid email address', 'error');
-                return;
-            }
-            
-            console.log('Profile updated:', {
-                username: usernameInput.value,
-                email: emailInput.value,
-                phone: phoneInput.value
-            });
-            
-            // Update original values
-            originalValues.username = usernameInput.value;
-            originalValues.email = emailInput.value;
-            originalValues.phone = phoneInput.value;
-            
-            showAlert('Profile updated successfully!', 'success');
-        });
+        };
+        localStorage.setItem('userSettings', JSON.stringify(userData));
         
-        // Cancel changes
-        cancelBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            usernameInput.value = originalValues.username;
-            emailInput.value = originalValues.email;
-            phoneInput.value = originalValues.phone;
-            showAlert('Changes discarded', 'info');
-        });
-    }
+        showAlert('Profile updated successfully!', 'success');
+    });
+
+    // Cancel changes
+    cancelBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        usernameInput.value = originalValues.username;
+        emailInput.value = originalValues.email;
+        phoneInput.value = originalValues.phone;
+        showAlert('Changes discarded', 'info');
+    });
+}
     
     // Notification Preferences Form
-    if (notificationForm) {
-        const emailNotif = notificationForm.querySelector('#email-notifications');
-        const smsNotif = notificationForm.querySelector('#sms-notifications');
-        const pushNotif = notificationForm.querySelector('#push-notifications');
-        const frequencySelect = notificationForm.querySelector('#notification-frequency');
-        const dndStart = notificationForm.querySelector('#do-not-disturb-start');
-        const dndEnd = notificationForm.querySelector('#do-not-disturb-end');
-        const updateBtn = notificationForm.querySelector('.btn-primary');
+if (notificationForm) {
+    const emailNotif = notificationForm.querySelector('#email-notifications');
+    const smsNotif = notificationForm.querySelector('#sms-notifications');
+    const pushNotif = notificationForm.querySelector('#push-notifications');
+    const frequencySelect = notificationForm.querySelector('#notification-frequency');
+    const dndStart = notificationForm.querySelector('#do-not-disturb-start');
+    const dndEnd = notificationForm.querySelector('#do-not-disturb-end');
+    const updateBtn = notificationForm.querySelector('.btn-primary');
+
+    // Load saved preferences
+    emailNotif.checked = userData.notifications.email;
+    smsNotif.checked = userData.notifications.sms;
+    pushNotif.checked = userData.notifications.push;
+    frequencySelect.value = userData.notifications.frequency;
+    
+    // Set time values - make sure these match your HTML options
+    dndStart.value = userData.notifications.dndStart;
+    dndEnd.value = userData.notifications.dndEnd;
+
+    updateBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         
-        updateBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // In a real app, you would send this to the server
-            console.log('Notification preferences updated:', {
-                emailNotifications: emailNotif.checked,
-                smsNotifications: smsNotif.checked,
-                pushNotifications: pushNotif.checked,
-                frequency: frequencySelect.value,
-                doNotDisturb: `${dndStart.value} to ${dndEnd.value}`
-            });
-            userData.notifications = {
-                email: emailNotif.checked,
-                sms: smsNotif.checked,
-                push: pushNotif.checked,
-                frequency: frequencySelect.value,
-                dndStart: dndStart.value,
-                dndEnd: dndEnd.value
-            };
-            localStorage.setItem('userSettings', JSON.stringify(userData));
-            showAlert('Notification preferences updated!', 'success');
-        });
-    }
+        // Update the userData object
+        userData.notifications = {
+            email: emailNotif.checked,
+            sms: smsNotif.checked,
+            push: pushNotif.checked,
+            frequency: frequencySelect.value,
+            dndStart: dndStart.value,
+            dndEnd: dndEnd.value
+        };
+
+        // Save to localStorage
+        localStorage.setItem('userSettings', JSON.stringify(userData));
+        
+        console.log('Saved notifications:', userData.notifications); // Debug log
+        showAlert('Notification preferences updated!', 'success');
+    });
+}
      // Security Settings Form
-     if (securityForm) {
-        const currentPass = securityForm.querySelector('#current-password');
-        const newPass = securityForm.querySelector('#new-password');
-        const confirmPass = securityForm.querySelector('#confirm-password');
-        const changePassBtn = securityForm.querySelector('.btn-primary');
-        const enable2faBtn = securityForm.querySelector('.two-factor-box .btn-outline');
+if (securityForm) {
+    const currentPass = securityForm.querySelector('#current-password');
+    const newPass = securityForm.querySelector('#new-password');
+    const confirmPass = securityForm.querySelector('#confirm-password');
+    const changePassBtn = securityForm.querySelector('.btn-primary');
+    const enable2faBtn = securityForm.querySelector('.two-factor-box .btn-outline');
+    const passwordStrengthBadge = document.getElementById('password-strength') || createPasswordStrengthBadge();
+
+    // Initialize 2FA status
+    if (userData.security.twoFactorEnabled) {
+        enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
+    }
+
+    // Password strength indicator
+    newPass.addEventListener('input', function() {
+        checkPasswordStrength(newPass.value);
+    });
+
+    // Change password functionality
+    changePassBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         
-        // Password strength indicator
-        newPass.addEventListener('input', function() {
-            checkPasswordStrength(newPass.value);
-        });
-        // Change password
-        changePassBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Validation
-            if (!currentPass.value) {
-                showAlert('Please enter your current password', 'error');
-                return;
-            }
+        // Clear previous alerts
+        const existingAlert = document.querySelector('.custom-alert');
+        if (existingAlert) existingAlert.remove();
+
+        // Validation
+        if (!currentPass.value) {
+            showAlert('Please enter your current password', 'error');
+            return;
+        }
+        
         if (!newPass.value) {
             showAlert('Please enter a new password', 'error');
             return;
@@ -155,35 +175,139 @@ originalValues.phone = phoneInput.value;
             showAlert('Password must be at least 8 characters with one number and one special character', 'error');
             return;
         }
-          // In a real app, you would send this to the server
-          console.log('Password change requested:', {
-            currentPassword: currentPass.value,
-            newPassword: newPass.value
-        });
-        
-        // Clear form
+
+        // In a real app, you would verify current password with server here
+        // For demo, we'll just update the stored password
+        userData.security.password = newPass.value; // Store hashed password in real app
+        localStorage.setItem('userSettings', JSON.stringify(userData));
+
+        // Clear form and show success
         currentPass.value = '';
         newPass.value = '';
         confirmPass.value = '';
+        passwordStrengthBadge.style.display = 'none';
         
         showAlert('Password changed successfully!', 'success');
-    });
-     // Enable 2FA
-     enable2faBtn.addEventListener('click', function(e) {
-        e.preventDefault();
         
-        // Simulate 2FA setup flow
+        // Log the change (remove in production)
+        console.log('Password changed:', {
+            newPassword: newPass.value, // In real app, never log passwords
+            strength: checkPasswordStrength(newPass.value)
+        });
+    });
+
+    // Helper function to create password strength badge
+    function createPasswordStrengthBadge() {
+        const badge = document.createElement('div');
+        badge.id = 'password-strength';
+        badge.style.marginTop = '8px';
+        badge.style.fontSize = '0.85rem';
+        badge.style.borderRadius = '4px';
+        badge.style.padding = '4px 8px';
+        badge.style.display = 'none';
+        newPass.parentNode.appendChild(badge);
+        return badge;
+    }
+
+    // Enhanced password strength checker
+    function checkPasswordStrength(password) {
+        if (!password) {
+            passwordStrengthBadge.style.display = 'none';
+            return 0;
+        }
+        
+        let strength = 0;
+        const hasMinLength = password.length >= 8;
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasMixedCase = /[a-z]/.test(password) && /[A-Z]/.test(password);
+        
+        if (hasMinLength) strength += 1;
+        if (password.length >= 12) strength += 1;
+        if (hasSpecialChar) strength += 1;
+        if (hasNumber) strength += 1;
+        if (hasMixedCase) strength += 1;
+        
+        // Visual feedback
+        passwordStrengthBadge.style.display = 'inline-block';
+        if (strength <= 2) {
+            passwordStrengthBadge.textContent = 'Weak';
+            passwordStrengthBadge.style.backgroundColor = 'rgba(239, 35, 60, 0.1)';
+            passwordStrengthBadge.style.color = 'var(--danger)';
+        } else if (strength <= 4) {
+            passwordStrengthBadge.textContent = 'Medium';
+            passwordStrengthBadge.style.backgroundColor = 'rgba(248, 150, 30, 0.1)';
+            passwordStrengthBadge.style.color = 'var(--warning)';
+        } else {
+            passwordStrengthBadge.textContent = 'Strong';
+            passwordStrengthBadge.style.backgroundColor = 'rgba(76, 201, 240, 0.1)';
+            passwordStrengthBadge.style.color = 'var(--success)';
+        }
+        
+        return strength;
+    }
+     // ====== 2FA Implementation ======
+enable2faBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    if (userData.security.twoFactorEnabled) {
+        // Disable 2FA
+        if (confirm('Are you sure you want to disable two-factor authentication?')) {
+            userData.security.twoFactorEnabled = false;
+            userData.security.twoFactorSecret = null;
+            localStorage.setItem('userSettings', JSON.stringify(userData));
+            enable2faBtn.innerHTML = '<i class="fas fa-lock"></i> Enable 2FA';
+            showAlert('Two-factor authentication has been disabled', 'success');
+        }
+    } else {
+        // Enable 2FA - Generate new secret
+        const secret = generateRandomSecret();
+        const email = userData.profile.email || 'user@example.com';
+        const issuer = 'Lost & Found System';
+        const qrCodeUrl = generateQRCodeUrl(issuer, email, secret);
+        
+        // Generate timestamp for cache busting
+        const timestamp = new Date().getTime();
+        const cachedQrCodeUrl = `${qrCodeUrl}&timestamp=${timestamp}`;
+
         showModal(
             'Set Up Two-Factor Authentication',
             `
             <div class="two-factor-setup">
-                <p>Scan this QR code with your authenticator app:</p>
-                <div class="qr-code-placeholder"></div>
-                <p>Or enter this code manually:</p>
-                <div class="manual-code">XK34 9B72 QL89 TY21</div>
-                <div class="form-group">
-                    <label for="verification-code" class="form-label">Enter verification code</label>
-                    <input type="text" id="verification-code" class="form-control" placeholder="6-digit code">
+                <div class="setup-instructions">
+                    <p>1. Open your authenticator app (Google Authenticator, Authy, etc.)</p>
+                    <p>2. Scan this QR code:</p>
+                </div>
+                
+                <div class="qr-code-container">
+                    <img src="${cachedQrCodeUrl}" alt="QR Code" class="qr-code-image" 
+                         onerror="this.onerror=null;this.src='${qrCodeUrl}'">
+                    <div class="qr-code-fallback" style="display:none">
+                        Unable to load QR code. Please use manual entry.
+                    </div>
+                </div>
+                
+                <div class="manual-setup">
+                    <p>3. Or enter this code manually:</p>
+                    <div class="manual-code-container">
+                        <code class="manual-code">${formatSecretForDisplay(secret)}</code>
+                        <button class="btn-copy" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="verification-section">
+                    <p>4. Enter the 6-digit code from your app:</p>
+                    <div class="form-group">
+                        <input type="text" id="verification-code" 
+                               class="form-control" 
+                               placeholder="123456"
+                               maxlength="6"
+                               inputmode="numeric"
+                               pattern="\d{6}">
+                        <div class="hint">Enter the current code from your authenticator app</div>
+                    </div>
                 </div>
             </div>
             `,
@@ -191,29 +315,166 @@ originalValues.phone = phoneInput.value;
                 {
                     text: 'Cancel',
                     class: 'btn-outline',
-                    handler: () => console.log('2FA setup canceled')
+                    handler: () => {
+                        console.log('2FA setup canceled');
+                        return true;
+                    }
                 },
-     
                 {
                     text: 'Verify & Enable',
                     class: 'btn-primary',
                     handler: () => {
-                        const code = document.getElementById('verification-code').value;
-                        if (!code || code.length !== 6) {
+                        const codeInput = document.getElementById('verification-code');
+                        const code = codeInput.value.trim();
+                        
+                        if (!code || !/^\d{6}$/.test(code)) {
                             showAlert('Please enter a valid 6-digit code', 'error');
-                            return false; // Keep modal open
+                            codeInput.focus();
+                            return false;
                         }
                         
-                        console.log('2FA enabled with code:', code);
+                        // In a real app, verify against the secret here
+                        // For demo, we'll assume it's valid
+                        userData.security.twoFactorEnabled = true;
+                        userData.security.twoFactorSecret = secret;
+                        localStorage.setItem('userSettings', JSON.stringify(userData));
+                        
                         enable2faBtn.innerHTML = '<i class="fas fa-lock-open"></i> Disable 2FA';
-                        showAlert('Two-factor authentication enabled!', 'success');
-                        return true; // Close modal
+                        showAlert('Two-factor authentication enabled successfully!', 'success');
+                        return true;
                     }
                 }
             ]
         );
+
+        // Add copy functionality after modal renders
+        setTimeout(() => {
+            const copyBtn = document.querySelector('.btn-copy');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    const secretText = document.querySelector('.manual-code').textContent;
+                    navigator.clipboard.writeText(secretText.replace(/\s/g, ''));
+                    showAlert('Secret code copied to clipboard!', 'info');
+                });
+            }
+        }, 100);
+    }
+});
+
+// Helper Functions
+function generateRandomSecret() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; // Base32 characters
+    const secretLength = 16;
+    let secret = '';
+    
+    for (let i = 0; i < secretLength; i++) {
+        secret += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return secret;
+}
+
+function generateQRCodeUrl(issuer, accountName, secret) {
+    const params = new URLSearchParams({
+        secret: secret,
+        issuer: issuer,
+        algorithm: 'SHA1',
+        digits: 6,
+        period: 30
     });
-     }
+    
+    const otpUrl = `otpauth://totp/${encodeURIComponent(issuer)}:${encodeURIComponent(accountName)}?${params}`;
+    return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(otpUrl)}`;
+}
+
+function formatSecretForDisplay(secret) {
+    return secret.match(/.{4}/g).join(' ');
+}
+
+// Styles (add to your existing styles)
+const twoFactorStyles = document.createElement('style');
+twoFactorStyles.textContent = `
+    .two-factor-setup {
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .setup-instructions {
+        text-align: left;
+        margin-bottom: 1.5rem;
+    }
+    
+    .setup-instructions p {
+        margin: 0.5rem 0;
+    }
+    
+    .qr-code-container {
+        margin: 1rem auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        display: inline-block;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .qr-code-image {
+        width: 200px;
+        height: 200px;
+        display: block;
+    }
+    
+    .qr-code-fallback {
+        padding: 1rem;
+        color: var(--danger);
+    }
+    
+    .manual-setup {
+        margin: 1.5rem 0;
+    }
+    
+    .manual-code-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+    
+    .manual-code {
+        font-family: 'Courier New', monospace;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        padding: 0.75rem 1rem;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+    }
+    
+    .btn-copy {
+        background: none;
+        border: none;
+        color: var(--primary);
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+    }
+    
+    .verification-section {
+        margin-top: 2rem;
+    }
+    
+    .verification-section .form-group {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .hint {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 0.5rem;
+    }
+`;
+document.head.appendChild(twoFactorStyles);
+}
  // Account Actions
  if (accountActions) {
     const downloadDataBtn = accountActions.querySelector('.full-width:not(.delete-btn)');
@@ -305,11 +566,9 @@ originalValues.phone = phoneInput.value;
                             return false;
                         }
                         
-                        console.log('Account deletion confirmed');
-                        // In a real app, you would send this to the server
+                        localStorage.removeItem('userSettings');
                         showAlert('Your account has been scheduled for deletion. You will receive a confirmation email.', 'info');
                         
-                        // Simulate logout after deletion
                         setTimeout(() => {
                             window.location.href = 'logout.html';
                         }, 3000);
@@ -319,6 +578,7 @@ originalValues.phone = phoneInput.value;
                 }
             ]
         );
+                    
     });
 }
  // Email validation
