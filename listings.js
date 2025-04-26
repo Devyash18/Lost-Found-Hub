@@ -162,22 +162,23 @@ const listings = [
   let currentFilter = 'all';
   
   // Initialize the page
-  document.addEventListener('DOMContentLoaded', function () {
-    renderListings();
-    setupFilterButtons();
-  
-    // Check URL parameters for filter
-    const urlParams = new URLSearchParams(window.location.search);
-    const filter = urlParams.get('filter');
-  
-    if (filter === 'lost' || filter === 'found') {
-      setActiveFilter(filter);
-      updateSidebarActiveState(filter);
-    } else {
-      setActiveFilter('all');
-      updateSidebarActiveState('all');
-    }
-  });
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function () {
+  renderListings();
+  setupFilterButtons();
+
+  // Check URL parameters for filter
+  const urlParams = new URLSearchParams(window.location.search);
+  const filter = urlParams.get('filter');
+
+  if (filter === 'lost' || filter === 'found') {
+    setActiveFilter(filter);
+    updateSidebarActiveState(filter);
+  } else {
+    setActiveFilter('all');
+    updateSidebarActiveState('all');
+  }
+});
   
   // Render listings based on current filter
   function renderListings() {
@@ -283,23 +284,30 @@ const listings = [
   }
   
   // Update sidebar active state based on filter
-  function updateSidebarActiveState(filter) {
-    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+  // Update sidebar active state based on filter
+function updateSidebarActiveState(filter) {
+  const sidebarLinks = document.querySelectorAll('.sidebar-nav li');
   
-    // Remove active class from all links first
-    sidebarLinks.forEach(link => {
-      link.classList.remove('active');
-    });
-  
-    // Set active class based on filter
-    if (filter === 'lost') {
-      document.querySelector('.sidebar-nav a[href*="filter=lost"]').classList.add('active');
-    } else if (filter === 'found') {
-      document.querySelector('.sidebar-nav a[href*="filter=found"]').classList.add('active');
-    } else {
-      document.querySelector('.sidebar-nav a[href*="listings.html"]').classList.add('active');
-    }
+  // Remove active class from all links first
+  sidebarLinks.forEach(link => {
+    link.classList.remove('active');
+  });
+
+  // Set active class based on filter
+  if (filter === 'lost') {
+    // Find the "Lost Items" link in sidebar
+    const lostItemsLink = document.querySelector('.sidebar-nav a[href*="filter=lost"]').parentElement;
+    lostItemsLink.classList.add('active');
+  } else if (filter === 'found') {
+    // Find the "Found Items" link in sidebar
+    const foundItemsLink = document.querySelector('.sidebar-nav a[href*="filter=found"]').parentElement;
+    foundItemsLink.classList.add('active');
+  } else {
+    // Default to "Search Items" link
+    const searchItemsLink = document.querySelector('.sidebar-nav a[href="listings.html"]').parentElement;
+    searchItemsLink.classList.add('active');
   }
+}
   
   // Add search functionality
   document.getElementById('search-btn').addEventListener('click', () => {
