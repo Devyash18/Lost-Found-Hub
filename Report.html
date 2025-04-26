@@ -236,225 +236,19 @@
     transform: translateY(-5px) scale(1.03);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
-
-  /* Sidebar Styles */
-.sidebar {
-  width: 250px;
-  height: 100vh;
-  background: linear-gradient(to bottom, #1e40af, #3b82f6);
-  position: fixed;
-  top: 0;
-  left: 0;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
-}
-
-.profile img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.profile h2 {
-  font-size: 20px;
-  margin-bottom: 5px;
-}
-
-.profile p {
-  font-size: 14px;
-  color: #cbd5e1;
-}
-
-.nav-links {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  margin: 10px 0;
-  font-size: 16px;
-  padding: 10px 20px;
-  width: 80%;
-  text-align: center;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.nav-links a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Main content */
-.main-content {
-  margin-left: 250px;
-  padding: 20px;
-}
-
-/* Sidebar Styling */
-.sidebar-nav {
-  width: 220px;
-  height: 100vh;
-  background: linear-gradient(to bottom, #1e40af, #3b82f6);
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding-top: 30px;
-}
-
-.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-nav ul li {
-  margin: 20px 0;
-  text-align: center;
-}
-
-.sidebar-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 20px;
-  transition: background 0.3s, color 0.3s;
-  border-radius: 6px;
-}
-
-.sidebar-nav ul li a:hover,
-.sidebar-nav ul li a.active {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-/* Icons adjust (optional small size) */
-.sidebar-nav ul li a i {
-  font-size: 18px;
-}
-
-/* Main content shift */
-.main-content {
-  margin-left: 220px;
-  padding: 20px;
-}
-
-/* Sidebar Styling */
-.sidebar-nav {
-  width: 250px;
-  height: 100vh;
-  background: linear-gradient(to bottom, #1e40af, #3b82f6);
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding-top: 20px;
-  overflow-y: auto;
-}
-
-/* Profile Image Section */
-.profile-section {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.profile-section img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #fff;
-}
-
-.profile-section h3 {
-  color: white;
-  font-size: 18px;
-  margin-top: 10px;
-}
-
-.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-nav ul li {
-  margin: 15px 0;
-  text-align: center;
-}
-
-.sidebar-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 20px;
-  transition: background 0.3s, color 0.3s;
-  border-radius: 6px;
-}
-
-.sidebar-nav ul li a:hover,
-.sidebar-nav ul li a.active {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-/* Icon Size */
-.sidebar-nav ul li a i {
-  font-size: 18px;
-}
-
-/* Main Content */
-.main-content {
-  margin-left: 250px;
-  padding: 20px;
-}
-
-
   </style>
 </head>
 <body>
 
-  <div class="main-content">
-    <header class="navbar">
-      <div class="logo">🔍 Lost&Found!</div>
-    </header>
+  <header class="navbar">
+    <div class="logo">🔍 Lost&Found!</div>
+  </header>
 
-    <div class="toggle-btns">
-      <button class="toggle-btn" onclick="showFound()">Found Items</button>
-      <button class="toggle-btn" onclick="showReport()">Report Lost Item</button>
-      <button class="toggle-btn" onclick="showViewReport()">View Report</button>
-    </div>
-
-    <!-- Your existing sections go here -->
-    <!-- Found Items Section -->
-    <section id="foundSection">...</section>
-
-    <!-- Report Section -->
-    <section id="reportSection">...</section>
-
-    <!-- View Report Section -->
-    <section id="viewReportSection">...</section>
-
-    <!-- Modal -->
-    <div id="modal" class="modal">...</div>
+  <div class="toggle-btns">
+    <button class="toggle-btn" onclick="showFound()">Found Items</button>
+    <button class="toggle-btn" onclick="showReport()">Report Lost Item</button>
+    <button class="toggle-btn" onclick="showViewReport()">View Report</button>
   </div>
-
-</body>
 
   <!-- Found Items Section -->
   <section id="foundSection">
@@ -480,38 +274,6 @@
       </div>
     </div>
   </section>
-  <body>
-
-    <body>
-    <div class="app-container">
-        <!-- Modern Sidebar -->
-        <aside class="sidebar animate__animated animate__fadeInLeft">
-            <div class="sidebar-header">
-                <a href="userprofile.html">
-                    <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
-                         alt="User Profile" class="profile-img">
-                </a>
-                <h3>John Doe</h3>
-                <p>Member since June 2023</p>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="listed_page.html" class="active"><i class="fas fa-search"></i> Search Items</a></li>
-                    <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
-                    <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
-                    <li><a href="../report.html"><i class="fas fa-flag"></i> Report Item</a></li>
-                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                    <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
-                    <li><a href="landingpage.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
-            </nav>
-        </aside>
-
-  
-  
-  
 
   <!-- Report Section -->
   <section id="reportSection">
@@ -595,34 +357,20 @@
     }
 
     function openModal(title, location, description, imageUrl) {
-  document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modalLocation").textContent = "📍 Location: " + location;
-  document.getElementById("modalDescription").textContent = description;
-  document.getElementById("modalImage").src = imageUrl;
-
-  const modal = document.getElementById("modal");
-  modal.style.display = 'flex';
-  setTimeout(() => {
-    modal.classList.add('show');
-  }, 10);
-}
-
-function closeModal() {
-  const modal = document.getElementById("modal");
-  modal.classList.remove('show');
-  setTimeout(() => {
-    modal.style.display = 'none';
-  }, 500);
-}
-
-// Optional: Close modal if clicking outside the content
-window.onclick = function(event) {
-  const modal = document.getElementById("modal");
-  if (event.target === modal) {
-    closeModal();
-  }
-};
-
+      const modal = document.createElement('div');
+      modal.classList.add('modal');
+      modal.innerHTML = `
+        <div class="modal-content">
+          <span class="close" onclick="this.parentElement.parentElement.remove()">×</span>
+          <img src="${imageUrl}" alt="${title}" />
+          <h3>${title}</h3>
+          <p>Location: ${location}</p>
+          <p>Description: ${description}</p>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      modal.style.display = 'flex';
+    }
 
     function showFound() {
       document.getElementById('foundSection').style.display = 'block';
@@ -642,23 +390,5 @@ window.onclick = function(event) {
       document.getElementById('viewReportSection').style.display = 'block';
     }
   </script>
-
-  <!-- Modal for displaying found item details -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <img id="modalImage" src="" alt="Item Image" />
-    <h3 id="modalTitle"></h3>
-    <p id="modalLocation"></p>
-    <p id="modalDescription"></p>
-  </div>
-</div>
-
 </body>
-</html>
-
-
-
-
-
-
+</html> 
