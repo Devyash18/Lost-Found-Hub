@@ -351,6 +351,79 @@
   padding: 20px;
 }
 
+/* Sidebar Styling */
+.sidebar-nav {
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(to bottom, #1e40af, #3b82f6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+  overflow-y: auto;
+}
+
+/* Profile Image Section */
+.profile-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-section img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+}
+
+.profile-section h3 {
+  color: white;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav ul li {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.sidebar-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 6px;
+}
+
+.sidebar-nav ul li a:hover,
+.sidebar-nav ul li a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Icon Size */
+.sidebar-nav ul li a i {
+  font-size: 18px;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+}
+
 
   </style>
 </head>
