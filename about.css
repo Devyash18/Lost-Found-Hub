@@ -62,3 +62,33 @@
     margin-bottom: 10px;
     transition: all 0.3s;
   }
+  /*
+ * commit: Style sidebar navigation
+ * desc: Add hover effects and active states for nav links
+ */
+.sidebar-nav {
+    padding: 10px 0;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  
+  .sidebar-nav ul {
+    list-style: none;
+    padding: 5px;
+  }
+  
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+  }
+  
+  .sidebar-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-left: 3px solid white;
+  }
