@@ -341,3 +341,59 @@ body {
 .social-links a:hover {
     color: var(--primary);
 }
+/*
+ * commit: Implement responsive design adjustments
+ * desc: Add media queries for tablet and mobile layouts
+ */
+ @media (max-width: 992px) {
+    .sidebar {
+        width: 70px;
+        overflow: hidden;
+    }
+    
+    .sidebar-header h3,
+    .sidebar-header p,
+    .sidebar-nav a span {
+        display: none;
+    }
+    
+    .sidebar-nav a {
+        justify-content: center;
+        padding: 15px 0;
+    }
+    
+    .sidebar-nav a i {
+        margin-right: 0;
+        font-size: 1.2rem;
+    }
+    
+    .main-content {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-container,
+    .team-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-container,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-title {
+        font-size: 1.8rem;
+    }
+    
+    .about-subtitle {
+        font-size: 1rem;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+}
