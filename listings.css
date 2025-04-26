@@ -1,0 +1,339 @@
+/* Base Styles */
+:root {
+    --primary: #4e73df;
+    --secondary: #858796;
+    --success: #1cc88a;
+    --info: #36b9cc;
+    --warning: #f6c23e;
+    --danger: #e74a3b;
+    --light: #f8f9fc;
+    --dark: #5a5c69;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    min-height: 100vh;
+    background-color: var(--light);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+  
+  /* Dashboard Container */
+  .dashboard-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    color: white;
+    padding: 20px 0;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+    transition: all 0.3s;
+  }
+  
+  .sidebar h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
+  .sidebar p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+  
+  .sidebar-header {
+    text-align: center;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+    transition: all 0.3s;
+  }
+  
+  .profile-img:hover {
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .sidebar-nav {
+    padding: 20px 0;
+  }
+  
+  .sidebar-nav ul {
+    padding: 0%;
+    list-style: none;
+  }
+  
+  .sidebar-nav li {
+    margin-bottom: 5px;
+  }
+  
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+  }
+  
+  .sidebar-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-left: 3px solid white;
+  }
+  
+  .sidebar-nav a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .sidebar-nav .active a {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-left: 3px solid white;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 250px;
+    background-color: #f8f9fc;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .page-title {
+    font-size: 24px;
+    color: #2d3748;
+    font-weight: 600;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .search-bar input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    width: 200px;
+    transition: all 0.3s;
+  }
+  
+  .search-bar input:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+  }
+  
+  .search-bar button {
+    background-color: #4e73df;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .search-bar button:hover {
+    background-color: #3b65d6;
+  }
+  
+  /* Filter Controls */
+  .filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+  }
+  
+  .filter-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  
+  .filter-btn.active {
+    background: #4e73df;
+    color: white;
+  }
+  
+  .filter-btn.inactive {
+    background: #e9ecef;
+    color: #495057;
+  }
+  
+  /* Sort Dropdown */
+  .sort-dropdown {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .sort-dropdown label {
+    font-size: 14px;
+    color: #495057;
+  }
+  
+  .sort-dropdown select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  /* Listings Grid */
+  .listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .listing-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .listing-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .listing-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .listing-details {
+    padding: 20px;
+  }
+  
+  .listing-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .status-lost {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+  
+  .status-found {
+    background: #dcfce7;
+    color: #166534;
+  }
+  
+  .status-returned {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .listing-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #2d3748;
+  }
+  
+  .listing-location,
+  .listing-date {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  .listing-location i,
+  .listing-date i {
+    margin-right: 8px;
+  }
+  
+  .view-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #4e73df;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+  
+  .view-btn:hover {
+    background: #3b65d6;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      height: 100vh;
+      z-index: 100;
+      transition: all 0.3s;
+    }
+  
+    .filter-controls {
+      flex-direction: column;
+    }
+  }
