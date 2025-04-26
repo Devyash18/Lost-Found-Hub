@@ -47,3 +47,41 @@ body {
     display: flex;
     flex-direction: column;
 }
+/*
+ * commit: Style sidebar profile section
+ * desc: Add profile image and header styling with hover effects
+ */
+ .sidebar-header {
+    text-align: center;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.sidebar p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+}
