@@ -299,6 +299,59 @@
   padding: 20px;
 }
 
+/* Sidebar Styling */
+.sidebar-nav {
+  width: 220px;
+  height: 100vh;
+  background: linear-gradient(to bottom, #1e40af, #3b82f6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 30px;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav ul li {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.sidebar-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 6px;
+}
+
+.sidebar-nav ul li a:hover,
+.sidebar-nav ul li a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Icons adjust (optional small size) */
+.sidebar-nav ul li a i {
+  font-size: 18px;
+}
+
+/* Main content shift */
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+
   </style>
 </head>
 <body>
@@ -340,6 +393,11 @@
 
 
   <nav class="sidebar-nav">
+
+    <div class="profile-section">
+      <img src="80bc9ee3-64c0-4c20-a9a6-b2d4899efe0b.png" alt="Profile Picture">
+      <h3>John Doe</h3>
+  </div>
     <ul>
         <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
         <li><a href="listed_page.html" class="active"><i class="fas fa-search"></i> Search Items</a></li>
