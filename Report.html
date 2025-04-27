@@ -74,3 +74,78 @@
   }
   /* More sidebar styles... */
 </style>
+
+<!-- Main Content -->
+<div class="main-content">
+  <header class="navbar">
+    <div class="logo">🔍 Lost&Found!</div>
+  </header>
+
+  <div class="toggle-btns">
+    <button class="toggle-btn" onclick="showFound()">Found Items</button>
+    <button class="toggle-btn" onclick="showReport()">Report Lost Item</button>
+    <button class="toggle-btn" onclick="showViewReport()">View Report</button>
+  </div>
+</div>
+
+<style>
+  /* Main Content Styles */
+  .main-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #f8f9fc;
+    min-height: 100vh;
+  }
+  /* More main content styles... */
+</style>
+
+<!-- Found Items Section -->
+<section id="foundSection">
+  <h2>Recently Found Items</h2>
+  <div class="found-list">
+    <div class="found-card" onclick="openModal('📱 iPhone 11', 'Library', 'Black iPhone 11 found without case', 'https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg')">
+      <img src="https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg" alt="iPhone 11">
+      <h3>📱 iPhone 11</h3>
+      <p>Location: Library</p>
+      <p>Click to see details</p>
+    </div>
+    <!-- More found items... -->
+  </div>
+</section>
+
+<style>
+  /* Found Items Styles */
+  .found-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  /* More found items styles... */
+</style>
+
+<!-- Report Section -->
+<section id="reportSection">
+  <h2>Report Lost Item</h2>
+  <form class="report-form" onsubmit="handleSubmit(event)">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <!-- More form fields... -->
+    <button type="submit">Submit Report</button>
+  </form>
+</section>
+
+<style>
+  /* Report Form Styles */
+  .report-form {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  /* More form styles... */
+</style>
