@@ -151,18 +151,26 @@ if (item) {
     document.getElementById('item-location').textContent = item.location;
     document.getElementById('item-date').textContent = item.date;
 
-    // Dynamically set the button text based on the item's status
+    // Dynamically set the button text and tooltip based on the item's status
     const claimButton = document.getElementById('claim-button');
     if (item.status === "lost") {
         claimButton.textContent = "Found";
+        claimButton.setAttribute('data-tooltip', 'Mark this item as found');
     } else if (item.status === "found") {
         claimButton.textContent = "Claim";
+        claimButton.setAttribute('data-tooltip', 'Claim this item if it belongs to you');
     }
 
     // Set the status badge
     const statusBadge = document.getElementById('item-status-badge');
     statusBadge.textContent = item.status === 'lost' ? 'Lost' : 'Found';
     statusBadge.classList.add(item.status === 'lost' ? 'status-lost' : 'status-found');
+
+    // Populate Open Graph meta tags
+    document.getElementById('og-title').setAttribute('content', item.title);
+    document.getElementById('og-description').setAttribute('content', item.description);
+    document.getElementById('og-image').setAttribute('content', item.image);
+    document.getElementById('og-url').setAttribute('content', window.location.href);
 } else {
     document.querySelector('.item-details').innerHTML = '<p>Item not found.</p>';
 }
@@ -197,10 +205,28 @@ document.getElementById('claim-button').addEventListener('click', () => {
 
 // Add functionality for the "Share" button
 document.getElementById('share-button').addEventListener('click', () => {
-    const shareText = `Check out this item: ${item.title}\nDescription: ${item.description}\nLocation: ${item.location}\nDate: ${item.date}`;
-    navigator.share
-        ? navigator.share({ title: 'Lost & Found Item', text: shareText })
-        : alert('Sharing is not supported on this browser.');
+    const shareData = {
+        title: document.getElementById('item-title').textContent,
+        text: `Check out this item on Lost & Found Hub: ${document.getElementById('item-title').textContent}\nDescription: ${document.getElementById('item-description').textContent}\nLocation: ${document.getElementById('item-location').textContent}`,
+        url: window.location.href // Share the current page URL
+    };
+
+    if (navigator.share) {
+        // Use the Web Share API if supported
+        navigator.share(shareData)
+            .then(() => console.log('Item shared successfully!'))
+            .catch((error) => console.error('Error sharing:', error));
+    } else {
+        // Fallback: Copy the link to the clipboard
+        navigator.clipboard.writeText(shareData.url)
+            .then(() => {
+                alert('Link copied to clipboard! You can now share it manually.');
+            })
+            .catch((error) => {
+                console.error('Error copying link:', error);
+                alert('Failed to copy the link. Please try again.');
+            });
+    }
 });
 
 // Add functionality for the "Add Comment" button
