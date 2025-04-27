@@ -25,6 +25,27 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         reader.readAsDataURL(file);
     }
 });
+// Load saved image on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const savedImage = localStorage.getItem('profileImage');
+    if (savedImage) {
+        document.getElementById('profileImage').src = savedImage;
+    }
+});
+
+// Remove profile image button
+document.getElementById('removeImageBtn').addEventListener('click', function() {
+    // Clear from localStorage
+    localStorage.removeItem('profileImage');
+    
+    // Reset to default placeholder (change the path as needed)
+    document.getElementById('profileImage').src = 'https://via.placeholder.com/150';
+    
+    // Clear the file input (optional)
+    document.getElementById('fileInput').value = '';
+    
+    alert('Profile image removed!');
+});
 
 // Load saved image from localStorage when the page loads
 document.addEventListener('DOMContentLoaded', function() {
