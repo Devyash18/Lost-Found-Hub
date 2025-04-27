@@ -21,8 +21,10 @@
         <aside class="sidebar animate__animated animate__fadeInLeft">
             <div class="sidebar-header">
                 <a href="userprofile.html">
-                    <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
-                         alt="User Profile" class="profile-img">
+                    <img id="sidebarProfileImage" 
+               class="profile-image profile-img"
+               src="" 
+               alt="User Profile">
                 </a>
                 <h3>John Doe</h3>
                 <p>Member since June 2023</p>
@@ -37,7 +39,7 @@
                     <li><a href="report.html"><i class="fas fa-flag"></i> Report Item</a></li>
                     <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                     <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li class="active"><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
                     <li><a href="../landingpage.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
@@ -173,5 +175,6 @@
           // If canceled, do nothing (stay on current page)
       });
   </script>
+<script src="../Js/profileimage.js"></script>
 </body>
 </html>
