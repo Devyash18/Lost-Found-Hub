@@ -173,3 +173,72 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFilterButtons();
     updateStats();
 });
+ <script>
+        // Image upload functionality
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                    alert('Profile image updated!');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Toggle form visibility
+document.querySelector('.add-profile').addEventListener('click', function () {
+    const form = document.getElementById('newProfileForm');
+    form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+});
+
+// Create profile functionality
+document.getElementById('createProfileBtn').addEventListener('click', function () {
+    const name = document.getElementById('newName').value.trim();
+    const email = document.getElementById('newEmail').value.trim();
+
+    if (name === '' || email === '') {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    // Simulate profile creation (you can replace this with actual storage/API later)
+    alert(`New profile created!\nName: ${name}\nEmail: ${email}`);
+
+    // Clear form
+    document.getElementById('newName').value = '';
+    document.getElementById('newEmail').value = '';
+    document.getElementById('newProfileForm').style.display = 'none';
+
+    // Optional: append new profile block dynamically
+    const newProfile = document.createElement('div');
+    newProfile.className = 'profile-section';
+    newProfile.innerHTML = `
+        <div class="profile-picture">
+            <img src="https://via.placeholder.com/180" alt="Profile Picture" style="width:180px; height:180px; border-radius:50%; object-fit:cover; border:5px solid #e0e7ff; margin-bottom:15px;">
+        </div>
+        <div class="profile-info">
+            <h2 class="user-name">${name}</h2>
+            <p class="user-email">${email}</p>
+            <p style="color: #64748b;">This is a new profile created dynamically.</p>
+        </div>
+    `;
+    document.querySelector('.main-content').appendChild(newProfile);
+});
+
+
+    
+        // Edit profile button alert
+        document.querySelector('.edit-profile').addEventListener('click', function() {
+            alert('Edit profile form would appear here');
+        });
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function(event) {
+            const confirmLogout = confirm("Are you sure you want to log out?");
+            if (confirmLogout) {
+                window.location.href = "Login page/login.html"; // Redirect to login page
+            }
+        });
+    </script>
