@@ -1,29 +1,43 @@
 // Image upload functionality with localStorage
+// Function to update all profile images on the page
+function updateAllProfileImages(imageUrl) {
+    // Update main profile image
+    document.getElementById('profileImage').src = imageUrl;
+    // Update sidebar profile image (assuming it has ID 'sidebarProfileImage')
+    const sidebarImage = document.getElementById('sidebarProfileImage');
+    if (sidebarImage) {
+        sidebarImage.src = imageUrl;
+    }
+}
+
+// Image upload functionality
 document.getElementById('fileInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
-    if (file) {
-        // Validate if the file is an image
-        if (!file.type.match('image.*')) {
-            alert('Please select an image file (JPEG, PNG, etc.).');
-            return;
-        }
-
+    if (file && file.type.match('image.*')) {
         const reader = new FileReader();
         reader.onload = function(e) {
             const imageData = e.target.result;
-            
-            // Save the image data to localStorage
             localStorage.setItem('profileImage', imageData);
-            
-            // Update the displayed image
-            document.getElementById('profileImage').src = imageData;
-            alert('Profile image updated and saved!');
+            updateAllProfileImages(imageData); // Update both images
+            alert('Profile image updated!');
         };
-        reader.onerror = function() {
-            alert('Error reading file!');
-        };
+        reader.onerror = () => alert('Error reading file!');
         reader.readAsDataURL(file);
     }
+});
+
+// Remove profile image
+document.getElementById('removeImageBtn').addEventListener('click', function() {
+    localStorage.removeItem('profileImage');
+    const defaultImage = 'https://via.placeholder.com/150'; // Fallback image
+    updateAllProfileImages(defaultImage); // Reset both images
+    alert('Profile image removed!');
+});
+
+// Load saved image on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const savedImage = localStorage.getItem('profileImage') || 'https://via.placeholder.com/150';
+    updateAllProfileImages(savedImage); // Initialize both images
 });
 // Load saved image on page load
 document.addEventListener('DOMContentLoaded', function() {
