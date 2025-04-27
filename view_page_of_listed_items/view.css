@@ -27,8 +27,8 @@ header h1 {
 .item-details {
     border: 1px solid #ddd;
     padding: 20px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    border-radius: 10px;
+    background-color: #fff;
     margin-bottom: 20px;
 }
 
@@ -54,8 +54,8 @@ header h1 {
 
 .action-buttons {
     display: flex;
-    justify-content: space-between; /* Align buttons to the left and right */
-    margin-bottom: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .btn {
@@ -64,7 +64,6 @@ header h1 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .claim-btn {
@@ -105,4 +104,48 @@ header h1 {
     text-align: center;
     margin-top: 10px;
     display: none; /* Initially hidden */
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #fff;
+}
+.status-lost {
+    background-color: #e74a3b; /* Red for lost */
+}
+.status-found {
+    background-color: #1cc88a; /* Green for found */
+}
+
+.share-btn {
+    background-color: #36b9cc; /* Blue for sharing */
+    color: #fff;
+}
+.share-btn:hover {
+    background-color: #258fa3;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+.comments-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.comments-section ul {
+    list-style: none;
+    padding: 0;
+}
+.comments-section li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }

@@ -158,6 +158,11 @@ if (item) {
     } else if (item.status === "found") {
         claimButton.textContent = "Claim";
     }
+
+    // Set the status badge
+    const statusBadge = document.getElementById('item-status-badge');
+    statusBadge.textContent = item.status === 'lost' ? 'Lost' : 'Found';
+    statusBadge.classList.add(item.status === 'lost' ? 'status-lost' : 'status-found');
 } else {
     document.querySelector('.item-details').innerHTML = '<p>Item not found.</p>';
 }
@@ -187,5 +192,28 @@ document.getElementById('claim-button').addEventListener('click', () => {
         } else if (item.status === "found") {
             alert('You have successfully claimed this item.');
         }
+    }
+});
+
+// Add functionality for the "Share" button
+document.getElementById('share-button').addEventListener('click', () => {
+    const shareText = `Check out this item: ${item.title}\nDescription: ${item.description}\nLocation: ${item.location}\nDate: ${item.date}`;
+    navigator.share
+        ? navigator.share({ title: 'Lost & Found Item', text: shareText })
+        : alert('Sharing is not supported on this browser.');
+});
+
+// Add functionality for the "Add Comment" button
+const commentsList = document.getElementById('comments-list');
+const commentInput = document.getElementById('comment-input');
+document.getElementById('add-comment').addEventListener('click', () => {
+    const comment = commentInput.value.trim();
+    if (comment) {
+        const commentItem = document.createElement('li');
+        commentItem.textContent = comment;
+        commentsList.appendChild(commentItem);
+        commentInput.value = '';
+    } else {
+        alert('Please enter a comment.');
     }
 });
