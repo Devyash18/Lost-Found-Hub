@@ -447,9 +447,44 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .toggle-btns {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .toggle-btn {
+        width: 100%;
+        margin: 5px 0;
+      }
+      
+      .found-list,
+      .report-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    @media (max-width: 576px) {
+      #foundSection,
+      #reportSection,
+      #viewReportSection {
+        padding: 30px 15px;
+      }
+      
+      .report-form {
+        padding: 20px 15px;
+      }
+      
+      .modal-content {
+        width: 95%;
+        padding: 20px 15px;
+      }
+    }
 
 
   </style>
+  </head>
   <body>
 
 <div class="sidebar">
