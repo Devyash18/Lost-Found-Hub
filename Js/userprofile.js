@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFilterButtons();
     updateStats();
 });
- <script>
+
         // Image upload functionality
         document.getElementById('fileInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
@@ -241,4 +241,3 @@ document.getElementById('createProfileBtn').addEventListener('click', function (
                 window.location.href = "Login page/login.html"; // Redirect to login page
             }
         });
-    </script>
