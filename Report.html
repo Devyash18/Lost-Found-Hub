@@ -112,100 +112,28 @@
 </section>
 
 
-<style>
-  /* Found Items Styles (Unchanged) */
-  #foundSection {
-    text-align: center;
-    padding: 50px 0;
-    display: none;
-  }
 
-  #foundSection h2 {
-    font-size: 32px;
-    color: var(--dark);
-    margin-bottom: 30px;
-  }
-
-  .found-list {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-  }
-
-  .found-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 250px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .found-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
-
-  .found-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-
-  .found-card h3 {
-    color: var(--dark);
-    margin-bottom: 8px;
-  }
-
-  .found-card p {
-    color: var(--secondary);
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-  }
-
-    /* === SIDEBAR === */
-    .sidebar {
-    width: 250px;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 20px 0;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    height: 100vh;
-    z-index: 100;
-    transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
-  }
-  /* ... (all sidebar styles preserved exactly) ... */
-
-</style>
 
 <!-- Report Section -->
 <section id="reportSection">
   <h2>Report Lost Item</h2>
   <form class="report-form" onsubmit="handleSubmit(event)">
     <input type="text" id="name" placeholder="Your Name" required>
-    <!-- More form fields... -->
+    <input type="text" id="location" placeholder="Last Seen Location" required>
+    <input type="text" id="item" placeholder="Item Name" required>
+    <select id="option" required>
+      <option value="">Select Option</option>
+      <option value="phone">Phone</option>
+      <option value="wallet">Wallet</option>
+      <option value="keys">Keys</option>
+      <option value="id card">Id card</option>
+      <option value="watch">Watch</option>
+      <option value="charger">Charger</option>
+    </select>
+    <input type="date" id="date" required>
+    <textarea id="description" placeholder="Describe the item" required></textarea>
     <button type="submit">Submit Report</button>
   </form>
 </section>
 
-<style>
-  /* Report Form Styles */
-  .report-form {
-    text-align: left;
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  }
-  /* More form styles... */
-</style>
+
