@@ -47,10 +47,20 @@ if (item) {
     document.getElementById('item-title').textContent = item.title;
     document.getElementById('item-description').textContent = item.description;
     document.getElementById('item-location').textContent = item.location;
-    document.getElementById('item-date').textContent = formatDate(item.date);
+    document.getElementById('item-date').textContent = item.date;
 } else {
     document.querySelector('.item-details').innerHTML = '<p>Item not found.</p>';
 }
+
+// Add functionality for the "Claim" button
+document.getElementById('claim-button').addEventListener('click', () => {
+    alert('You have claimed this item. The owner will be notified.');
+});
+
+// Add functionality for the "Verify" button
+document.getElementById('verify-button').addEventListener('click', () => {
+    alert('You have verified this item. The status will be updated.');
+});
 
 // Format date
 function formatDate(dateString) {
