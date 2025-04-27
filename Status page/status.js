@@ -25,4 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Add dismiss button to alerts
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+        const closeButton = document.createElement('span');
+        closeButton.innerHTML = '&times;';
+        closeButton.style.float = 'right';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.fontSize = '20px';
+        closeButton.style.marginLeft = '10px';
+
+        closeButton.addEventListener('click', () => {
+            alert.style.display = 'none';
+        });
+
+        alert.appendChild(closeButton);
+    });
+
+    // Page fade-in animation
+    document.body.style.opacity = 0;
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 1s ease';
+        document.body.style.opacity = 1;
+    }, 100);
 });
