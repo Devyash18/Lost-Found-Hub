@@ -7,6 +7,9 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
             document.getElementById('profileImage').src = e.target.result;
             alert('Profile image updated!');
         };
+        reader.onerror = function() {
+            alert('Error reading file!');
+        };
         reader.readAsDataURL(file);
     }
 });
@@ -173,20 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFilterButtons();
     updateStats();
 });
-
-        // Image upload functionality
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
-                    alert('Profile image updated!');
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
         // Toggle form visibility
 document.querySelector('.add-profile').addEventListener('click', function () {
     const form = document.getElementById('newProfileForm');
