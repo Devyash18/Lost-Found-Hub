@@ -142,8 +142,29 @@ body {
     font-size: 32px;
 }
 
-/* My Code */
-.main-content h1 {
-    margin-bottom: 20px;
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .search-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .main-content {
+        padding: 20px;
+    }
 }
 
