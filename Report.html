@@ -40,7 +40,6 @@
     }
   </style>
 
-  <!-- Sidebar Component -->
 <div class="sidebar">
   <div class="sidebar-header">
     <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-img">
@@ -52,28 +51,16 @@
     <ul>
       <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
       <li><a href="Listed page/listings.html"><i class="fas fa-search"></i> Search Items</a></li>
-      <!-- Other nav items -->
+      <li><a href="Listed page/listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
+      <li><a href="Listed page/listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
+      <li class="active"><a href="Report.html"><i class="fas fa-flag"></i> Report Item</a></li>
+      <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+      <li><a href="userprofile.html"><i class="fas fa-user"></i> User Profile</a></li>
+      <li><a href="about.html"><i class="fas fa-cog"></i> About Us</a></li>
+      <li><a href="landingpage.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
   </nav>
 </div>
-
-<style>
-  /* Sidebar Styles */
-  .sidebar {
-    width: 250px;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 20px 0;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    height: 100vh;
-    z-index: 100;
-    transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
-  }
-  /* More sidebar styles... */
-</style>
 
 <!-- Main Content -->
 <div class="main-content">
