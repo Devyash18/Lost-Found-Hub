@@ -1,16 +1,36 @@
-// Image upload functionality
+// Image upload functionality with localStorage
 document.getElementById('fileInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
+        // Validate if the file is an image
+        if (!file.type.match('image.*')) {
+            alert('Please select an image file (JPEG, PNG, etc.).');
+            return;
+        }
+
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('profileImage').src = e.target.result;
-            alert('Profile image updated!');
+            const imageData = e.target.result;
+            
+            // Save the image data to localStorage
+            localStorage.setItem('profileImage', imageData);
+            
+            // Update the displayed image
+            document.getElementById('profileImage').src = imageData;
+            alert('Profile image updated and saved!');
         };
         reader.onerror = function() {
             alert('Error reading file!');
         };
         reader.readAsDataURL(file);
+    }
+});
+
+// Load saved image from localStorage when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const savedImage = localStorage.getItem('profileImage');
+    if (savedImage) {
+        document.getElementById('profileImage').src = savedImage;
     }
 });
 
