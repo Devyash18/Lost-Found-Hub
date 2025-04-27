@@ -64,6 +64,16 @@ header h1 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn i {
+    margin-right: 8px; /* Add space between the icon and text */
+    font-size: 1.2rem; /* Adjust icon size */
+    vertical-align: middle; /* Align icon with text */
 }
 
 .claim-btn {
@@ -96,6 +106,12 @@ header h1 {
 
 .back-button:hover {
     background-color: #0056b3;
+}
+
+.back-button i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+    vertical-align: middle;
 }
 
 .message {
@@ -148,4 +164,17 @@ header h1 {
     padding: 10px;
     margin-bottom: 5px;
     border-radius: 5px;
+}
+
+.modal {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
