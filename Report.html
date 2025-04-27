@@ -169,3 +169,26 @@
   </div>
 </section>
 
+<script>
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const location = document.getElementById('location').value;
+    const item = document.getElementById('item').value;
+    const option = document.getElementById('option').value;
+    const date = document.getElementById('date').value;
+    const description = document.getElementById('description').value;
+
+    // For now, we just log the data
+    console.log('Lost Item Reported:', name, location, item, option, date, description);
+
+    alert('Report Submitted Successfully!');
+    // Clear the form
+    document.getElementById('name').value = '';
+    document.getElementById('location').value = '';
+    document.getElementById('item').value = '';
+    document.getElementById('option').value = '';
+    document.getElementById('date').value = '';
+    document.getElementById('description').value = '';
+  }
