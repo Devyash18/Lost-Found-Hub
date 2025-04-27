@@ -58,3 +58,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 300);
   }
 });
+// Load profile image on every page
+document.addEventListener('DOMContentLoaded', function() {
+  const savedImage = localStorage.getItem('profileImage');
+  const defaultImage = 'https://example.com/default-profile.jpg'; // Same default as above
+  const profileImages = document.querySelectorAll('.profile-image'); // Match all profile images
+  
+  profileImages.forEach(img => {
+      img.src = savedImage || defaultImage;
+  });
+});

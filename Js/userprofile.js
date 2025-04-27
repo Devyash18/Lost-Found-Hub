@@ -1,14 +1,44 @@
+// Function to update all profile images on the page
+function updateAllProfileImages(imageUrl) {
+    // Update main profile image
+    document.getElementById('profileImage').src = imageUrl;
+    // Update sidebar profile image
+    const sidebarImage = document.getElementById('sidebarProfileImage');
+    if (sidebarImage) {
+        sidebarImage.src = imageUrl;
+    }
+}
+
 // Image upload functionality
 document.getElementById('fileInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
-    if (file) {
+    if (file && file.type.match('image.*')) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('profileImage').src = e.target.result;
+            const imageData = e.target.result;
+            localStorage.setItem('profileImage', imageData);
+            updateAllProfileImages(imageData);
             alert('Profile image updated!');
         };
+        reader.onerror = () => alert('Error reading file!');
         reader.readAsDataURL(file);
     }
+});
+
+// Remove profile image
+document.getElementById('removeImageBtn').addEventListener('click', function() {
+    localStorage.removeItem('profileImage');
+    const defaultImage = 'https://as1.ftcdn.net/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg';
+    updateAllProfileImages(defaultImage);
+    document.getElementById('fileInput').value = ''; // Clear file input
+    alert('Profile image removed!');
+});
+
+// Load saved image on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const savedImage = localStorage.getItem('profileImage');
+    const defaultImage = 'https://as1.ftcdn.net/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg';
+    updateAllProfileImages(savedImage || defaultImage);
 });
 
 // Logout functionality
@@ -173,20 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setupFilterButtons();
     updateStats();
 });
-
-        // Image upload functionality
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
-                    alert('Profile image updated!');
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
         // Toggle form visibility
 document.querySelector('.add-profile').addEventListener('click', function () {
     const form = document.getElementById('newProfileForm');

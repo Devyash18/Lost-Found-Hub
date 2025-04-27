@@ -6,6 +6,14 @@
     <title>Item Details</title>
     <link rel="stylesheet" href="view.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="" id="og-title">
+    <meta property="og:description" content="" id="og-description">
+    <meta property="og:image" content="" id="og-image">
+    <meta property="og:url" content="" id="og-url">
+    <meta property="og:type" content="website">
 </head>
 <body>
     <div class="container">
@@ -18,12 +26,31 @@
             <p id="item-description"></p>
             <p><strong>Location:</strong> <span id="item-location"></span></p>
             <p><strong>Date:</strong> <span id="item-date"></span></p>
+            <p><span id="item-status-badge" class="status-badge">
+                <i class="fas fa-info-circle"></i> Lost
+            </span></p>
         </div>
         <div class="action-buttons">
-            <button id="claim-button" class="btn claim-btn">Claim</button>
-            <button id="verify-button" class="btn verify-btn">Verify</button>
+            <button id="verify-button" class="btn verify-btn" data-tooltip="Verify the item to proceed">
+                <i class="fas fa-check-circle"></i> Verify
+            </button>
+            <button id="claim-button" class="btn claim-btn" data-tooltip="Claim this item if it belongs to you">
+                <i class="fas fa-hand-holding"></i> Claim
+            </button>
+            <button id="share-button" class="btn share-btn" data-tooltip="Share this item with others">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
         </div>
-        <a href="../HTML/listings.html" class="back-button">Back to Listings</a>
+        <div class="comments-section">
+            <h3>Comments</h3>
+            <textarea id="comment-input" placeholder="Leave a comment..."></textarea>
+            <button id="add-comment" class="btn">Add Comment</button>
+            <ul id="comments-list"></ul>
+        </div>
+        <p id="message" class="message"></p> <!-- Message container -->
+        <a href="../HTML/listings.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Listings
+        </a>
     </div>
     <script src="../Js/listings.js"></script>
     <script src="view.js"></script>

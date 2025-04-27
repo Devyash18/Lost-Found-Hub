@@ -3,8 +3,8 @@ const listings = [
     {
         id: 1,
         title: "Lost Wallet",
-        description: "Black leather wallet with credit cards inside",
-        image: "https://i.pinimg.com/736x/65/36/a4/6536a4fd58a8caccc905733477fcfc0d.jpg",
+        description: "Black leather wallet with credit cards inside.",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwwjJYpkBMKSlpwszfXP_llkhmViIQixo3Q&s",
         location: "Tesla Block",
         date: "2023-06-15",
         status: "lost",
@@ -13,8 +13,8 @@ const listings = [
     {
         id: 2,
         title: "Found iPhone",
-        description: "iPhone 12 with blue case",
-        image: "https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg",
+        description: "iPhone 12 with blue case.",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQELTlvTr3Z3WLD56BctGEQraOzG0g61CASAemP7AQTwYXUCDk9NGRrJlLdwbmWgfasNo8&usqp=CAU",
         location: "Square One",
         date: "2023-06-10",
         status: "found",
@@ -23,7 +23,7 @@ const listings = [
     {
         id: 3,
         title: "Lost Keys",
-        description: "Set of car and house keys",
+        description: "Set of car and house keys.",
         image: "https://bettystreff.com/wp-content/uploads/2017/07/keys.jpg",
         location: "Main Entrance",
         date: "2023-06-05",
@@ -33,7 +33,7 @@ const listings = [
     {
         id: 4,
         title: "Found Watch",
-        description: "Silver wristwatch near the fountain",
+        description: "Silver wristwatch near the fountain.",
         image: "https://i.ebayimg.com/images/g/TnIAAOSwqeRlPVxr/s-l400.jpg",
         location: "Fountain",
         date: "2023-05-28",
@@ -43,7 +43,7 @@ const listings = [
     {
         id: 5,
         title: "Lost Backpack",
-        description: "Blue backpack with laptop inside",
+        description: "Blue backpack with laptop inside.",
         image: "https://i.ebayimg.com/images/g/FKAAAOSwonJmgzIQ/s-l400.jpg",
         location: "University Library",
         date: "2023-05-20",
@@ -53,7 +53,7 @@ const listings = [
     {
         id: 6,
         title: "Found Sunglasses",
-        description: "Rayban aviator sunglasses",
+        description: "Rayban aviator sunglasses.",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSngiB-L4wa7pS0e94IZCZVrXmRIhNvQP7hTqD-olzwUfl-Lkt_JnfLUpbH_Wf5LXvdvDU&usqp=CAU",
         location: "Parking lot",
         date: "2023-05-15",
@@ -114,7 +114,7 @@ const listings = [
         id: 12,
         title: "Lost Phone Charger",
         description: "Black phone charger found in the library.",
-        image: "https://apollo.olx.in/v1/files/u7j5tm2awz9v1-ADVIN/image;s=300x600;q=60",
+        image: "https://www.shutterstock.com/image-photo/hand-holding-phone-charger-260nw-477029953.jpg",
         location: "Library",
         date: "2023-05-01",
         status: "lost",
