@@ -5,326 +5,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Listings | Lost & Found</title>
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    /* Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    
-    body {
-      min-height: 100vh;
-      background-color: #f8f9fc;
-    }
 
-    /* Dashboard Container */
-    .dashboard-container {
-      display: flex;
-      min-height: 100vh;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      width: 280px;
-      background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
-      color: white;
-      padding: 20px 0;
-      height: 100vh;
-      position: sticky;
-      top: 0;
-      box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-    }
-    
-    .sidebar-header {
-      text-align: center;
-      padding: 0 20px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 20px;
-    }
-    
-    .profile-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.2);
-      margin-bottom: 15px;
-    }
-    
-    .sidebar-header h3 {
-      margin: 5px 0;
-      font-size: 18px;
-      font-weight: 500;
-    }
-    
-    .sidebar-header p {
-      font-size: 12px;
-      opacity: 0.8;
-      margin: 0;
-      font-weight: 300;
-    }
-    
-    .sidebar-nav ul {
-      list-style: none;
-      padding: 0 15px;
-    }
-    
-    .sidebar-nav li {
-      margin-bottom: 5px;
-    }
-    
-    .sidebar-nav a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      display: block;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: all 0.3s;
-      font-size: 14px;
-      font-weight: 400;
-    }
-    
-    .sidebar-nav a:hover {
-      background: rgba(255,255,255,0.1);
-      color: white;
-    }
-    
-    .sidebar-nav a.active {
-      background: rgba(255,255,255,0.2);
-      color: white;
-    }
-    
-    .sidebar-nav i {
-      width: 25px;
-      text-align: center;
-      margin-right: 5px;
-      font-size: 16px;
-    }
-
-    /* Main Content */
-    .main-content {
-      flex: 1;
-      padding: 30px;
-      background-color: #f8f9fc;
-    }
-    
-    .dashboard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-    
-    .page-title {
-      font-size: 24px;
-      color: #2d3748;
-      font-weight: 600;
-    }
-    
-    /* Search Bar */
-    .search-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .search-bar input {
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-      border-radius: 20px;
-      outline: none;
-      font-size: 14px;
-      width: 200px;
-      transition: all 0.3s;
-    }
-    
-    .search-bar input:focus {
-      border-color: #4e73df;
-      box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
-    }
-    
-    .search-bar button {
-      background-color: #4e73df;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s;
-    }
-    
-    .search-bar button:hover {
-      background-color: #3b65d6;
-    }
-    
-    /* Filter Controls */
-    .filter-controls {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 30px;
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,0.1);
-    }
-    
-    .filter-btn {
-      padding: 8px 20px;
-      border-radius: 20px;
-      border: none;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-    
-    .filter-btn.active {
-      background: #4e73df;
-      color: white;
-    }
-    
-    .filter-btn.inactive {
-      background: #e9ecef;
-      color: #495057;
-    }
-    
-    /* Listings Grid */
-    .listings-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    
-    .listing-card {
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,0.1);
-      transition: transform 0.3s;
-    }
-    
-    .listing-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .listing-img {
-      height: 200px;
-      background-size: cover;
-      background-position: center;
-    }
-    
-    .listing-details {
-      padding: 20px;
-    }
-    
-    .listing-status {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    
-    .status-lost {
-      background: #fee2e2;
-      color: #b91c1c;
-    }
-    
-    .status-found {
-      background: #dcfce7;
-      color: #166534;
-    }
-    
-    .status-returned {
-      background: #dbeafe;
-      color: #1e40af;
-    }
-    
-    .listing-title {
-      font-size: 18px;
-      margin-bottom: 8px;
-      color: #2d3748;
-    }
-    
-    .listing-location, .listing-date {
-      display: flex;
-      align-items: center;
-      color: #64748b;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-    
-    .listing-location i, .listing-date i {
-      margin-right: 8px;
-    }
-    
-    .view-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 8px 16px;
-      background: #4e73df;
-      color: white;
-      border-radius: 4px;
-      text-decoration: none;
-      font-size: 14px;
-      transition: background 0.3s;
-    }
-    
-    .view-btn:hover {
-      background: #3b65d6;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .dashboard-container {
-        flex-direction: column;
-      }
-      
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
-      
-      .filter-controls {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../listings.css">
 </head>
 
 <body>
   <div class="dashboard-container">
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar animate__animated animate__fadeInLeft">
       <div class="sidebar-header">
-        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" 
-             alt="User Profile" class="profile-img">
+        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=200&q=60" alt="User Profile" class="profile-img">
         <h3>John Doe</h3>
         <p>Member since June 2023</p>
       </div>
-      
       <nav class="sidebar-nav">
-        <ul class="sidebar-menu">
-          <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
-          <li><a href="listings.html"><i class="fas fa-search"></i> Search Items</a></li>
-          <li><a href="listings.html?filter=lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
-          <li><a href="listings.html?filter=found"><i class="fas fa-check-circle"></i> Found Items</a></li>
-          <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-          <li><a href="../userprofile.html" class="active"><i class="fas fa-user"></i> My Profile</a></li>
-          <li><a href="../about.html"><i class="fas fa-cog"></i> About Us</a></li>
-          <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-      </ul>
+        <ul>
+          <li><a href="../dashboard.html"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+          <li class="active"><a href="listings.html"><i class="fas fa-search"></i> <span>Search Items</span></a></li>
+          <li><a href="listings.html?filter=lost"><i class="fas fa-question-circle"></i> <span>Lost Items</span></a></li>
+          <li><a href="listings.html?filter=found"><i class="fas fa-check-circle"></i> <span>Found Items</span></a></li>
+          <li><a href="../Report.html"><i class="fas fa-flag"></i> Report Item</a></li>
+          <li><a href="../settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+          <li><a href="../userprofile.html"><i class="fas fa-user"></i> <span>User Profile</span></a></li>
+          <li><a href="../about.html"><i class="fas fa-info-circle"></i> <span>About Us</span></a></li>
+          <li><a href="../landingpage.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+        </ul>
       </nav>
     </aside>
 
@@ -337,14 +49,25 @@
           <button id="search-btn"><i class="fas fa-search"></i></button>
         </div>
       </header>
-      
+
       <!-- Filter Controls -->
       <div class="filter-controls">
         <button class="filter-btn active" id="all-btn">All Items</button>
         <button class="filter-btn inactive" id="lost-btn">Lost Items</button>
         <button class="filter-btn inactive" id="found-btn">Found Items</button>
+
+        <!-- Sort Dropdown -->
+        <div class="sort-dropdown">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select">
+            <option value="date-desc">Date (Newest)</option>
+            <option value="date-asc">Date (Oldest)</option>
+            <option value="title-asc">Title (A-Z)</option>
+            <option value="title-desc">Title (Z-A)</option>
+          </select>
+        </div>
       </div>
-      
+
       <!-- Listings Grid -->
       <div class="listings-grid" id="listings-container">
         <!-- Listing cards will be populated here -->
@@ -352,340 +75,8 @@
     </main>
   </div>
 
-  <script>
-    // Sample data for listings
-    const listings = [
-      {
-        id: 1,
-        title: "Lost Wallet",
-        description: "Black leather wallet with credit cards inside",
-        image: "https://i.pinimg.com/736x/65/36/a4/6536a4fd58a8caccc905733477fcfc0d.jpg",
-        location: "Tesla Block",
-        date: "2023-06-15",
-        status: "lost",
-        type: "lost"
-      },
-      {
-        id: 2,
-        title: "Found iPhone",
-        description: "iPhone 12 with blue case",
-        image: "https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg",
-        location: "Square One",
-        date: "2023-06-10",
-        status: "found",
-        type: "found"
-      },
-      {
-        id: 3,
-        title: "Lost Keys",
-        description: "Set of car and house keys",
-        image: "https://bettystreff.com/wp-content/uploads/2017/07/keys.jpg",
-        location: "Main Entrance",
-        date: "2023-06-05",
-        status: "lost",
-        type: "lost"
-      },
-      {
-        id: 4,
-        title: "Found Watch",
-        description: "Silver wristwatch near the fountain",
-        image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2F0Y2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-        location: "Fountain",
-        date: "2023-05-28",
-        status: "found",
-        type: "found"
-      },
-      {
-        id: 5,
-        title: "Lost Backpack",
-        description: "Blue backpack with laptop inside",
-        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja3BhY2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-        location: "University Library",
-        date: "2023-05-20",
-        status: "returned",
-        type: "lost"
-      },
-      {
-        id: 6,
-        title: "Found Sunglasses",
-        description: "Rayban aviator sunglasses",
-        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VuZ2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-        location: "Parking lot",
-        date: "2023-05-15",
-        status: "found",
-        type: "found"
-      },
-      {
-        id: 7,
-        title: "Lost Glasses",
-        description: "Pair of black-rimmed glasses.",
-        image: "https://static.vecteezy.com/system/resources/previews/001/959/984/non_2x/pair-of-glasses-on-table-free-photo.jpg",
-        location: "Alpha zone",
-        date: "2023-05-12",
-        status: "lost",
-        type: "lost"
-      },
-      {
-        id: 8,
-        title: "Found Umbrella",
-        description: "Blue umbrella found at the bus stop.",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1LBQLdpth2JrMLn8qERRqygj1eMvaBjNN7A&s",
-        location: "Bus Stop",
-        date: "2023-05-10",
-        status: "found",
-        type: "found"
-      },
-      {
-        id: 9,
-        title: "Found Book",
-        description: "Hardcover book titled 'The Great Gatsby' found in the library.",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJ9Rlz5DpA8MXu16gzvgLUiNiyPQJpbNBOA&s",
-        location: "Library",
-        date: "2023-05-08",
-        status: "found",
-        type: "found"
-      },
-      {
-        id: 10,
-        title: "Lost Headphones",
-        description: "Black wireless headphones.",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYHX7uICP0d8LruXy9EG7RWABnK8rts2G5HA&s",
-        location: "Near boys hostel",
-        date: "2023-05-05",
-        status: "lost",
-        type: "lost"
-      },
-      {
-        id: 11,
-        title: "Found Ring",
-        description: "Gold ring with a diamond.",
-        image: "https://shop.kenanddanadesign.com/cdn/shop/products/IMG_1381_7ba77f24-c6f5-4e84-8999-64151428d647.jpg?v=1733934429&width=1946",
-        location: "flameing block",
-        date: "2023-05-02",
-        status: "found",
-        type: "found"
-      },
-      {
-        id: 12,
-        title: "Lost Phone Charger",
-        description: "Black phone charger found in the library.",
-        image: "data:image/jpeg;base64,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",
-        location: "Library",
-        date: "2023-05-01",
-        status: "lost",
-        type: "lost"
-      },
-      {
-        id: 13,
-        title: "Found Scarf",
-        description: "Red scarf found at the pythagroes block.",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkp0-RcbdkWP1WuyBrh116DqMQFdsvaCUezg&s",
-        location: "Pythagroes block",
-        date: "2023-04-30",
-        status: "found",
-        type: "found"
-      },
-      {
-        id: 14,
-        title: "Lost Camera",
-        description: "Digital camera with a black case.",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsddOBvIXZGJsCATaSBkXbmZOGlmbrz-m2Zw&s",
-        location: "Omega zone",
-        date: "2023-04-28",
-        status: "lost",
-        type: "lost"
-      },
-      {
-        id: 15,
-        title: "Found locket",
-        description: "Silver locket with a heart pendant.",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2t18BKLiE0Ix5WGqc6SCfW6xHaLZ_B36QYwDYJOvl4bE7P8UTVltb762rdTIrIiXWS5E&usqp=CAU",
-        location: "Square one",
-        date: "2023-04-25",
-        status: "found",
-        type: "found"
-      }
-    ];
-
-    // DOM Elements
-    const listingsContainer = document.getElementById('listings-container');
-    const allBtn = document.getElementById('all-btn');
-    const lostBtn = document.getElementById('lost-btn');
-    const foundBtn = document.getElementById('found-btn');
-
-    // Current filter state
-    let currentFilter = 'all';
-
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-      renderListings();
-      setupFilterButtons();
-      
-      // Check URL parameters for filter
-      const urlParams = new URLSearchParams(window.location.search);
-      const filter = urlParams.get('filter');
-      
-      if (filter === 'lost' || filter === 'found') {
-        setActiveFilter(filter);
-        updateSidebarActiveState(filter);
-      } else {
-        setActiveFilter('all');
-        updateSidebarActiveState('all');
-      }
-    });
-
-    // Render listings based on current filter
-    function renderListings() {
-      listingsContainer.innerHTML = '';
-      
-      const filteredListings = listings.filter(listing => {
-        if (currentFilter === 'all') return true;
-        return listing.type === currentFilter;
-      });
-      
-      if (filteredListings.length === 0) {
-        listingsContainer.innerHTML = '<p>No items found matching your criteria.</p>';
-        return;
-      }
-      
-      filteredListings.forEach(listing => {
-        const listingCard = createListingCard(listing);
-        listingsContainer.appendChild(listingCard);
-      });
-    }
-
-    // Create a listing card element
-    function createListingCard(listing) {
-      const card = document.createElement('div');
-      card.className = 'listing-card';
-      
-      // Determine status class and text
-      let statusClass, statusText;
-      if (listing.status === 'lost') {
-        statusClass = 'status-lost';
-        statusText = 'Lost';
-      } else if (listing.status === 'found') {
-        statusClass = 'status-found';
-        statusText = 'Found';
-      } else {
-        statusClass = 'status-returned';
-        statusText = 'Returned';
-      }
-      
-      card.innerHTML = `
-        <div class="listing-img" style="background-image: url('${listing.image}')"></div>
-        <div class="listing-details">
-          <span class="listing-status ${statusClass}">${statusText}</span>
-          <h3 class="listing-title">${listing.title}</h3>
-          <p>${listing.description}</p>
-          <div class="listing-location">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>${listing.location}</span>
-          </div>
-          <div class="listing-date">
-            <i class="far fa-calendar-alt"></i>
-            <span>${formatDate(listing.date)}</span>
-          </div>
-          <a href="listing-detail.html?id=${listing.id}" class="view-btn">View Details</a>
-        </div>
-      `;
-      
-      return card;
-    }
-
-    // Format date
-    function formatDate(dateString) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(dateString).toLocaleDateString(undefined, options);
-    }
-
-    // Set up filter button event listeners
-    function setupFilterButtons() {
-      allBtn.addEventListener('click', () => {
-        setActiveFilter('all');
-        updateSidebarActiveState('all');
-      });
-      lostBtn.addEventListener('click', () => {
-        setActiveFilter('lost');
-        updateSidebarActiveState('lost');
-      });
-      foundBtn.addEventListener('click', () => {
-        setActiveFilter('found');
-        updateSidebarActiveState('found');
-      });
-    }
-
-    // Set the active filter and update UI
-    function setActiveFilter(filter) {
-      currentFilter = filter;
-      
-      // Update button states
-      allBtn.className = filter === 'all' ? 'filter-btn active' : 'filter-btn inactive';
-      lostBtn.className = filter === 'lost' ? 'filter-btn active' : 'filter-btn inactive';
-      foundBtn.className = filter === 'found' ? 'filter-btn active' : 'filter-btn inactive';
-      
-      // Update URL without reloading
-      const url = new URL(window.location);
-      if (filter === 'all') {
-        url.searchParams.delete('filter');
-      } else {
-        url.searchParams.set('filter', filter);
-      }
-      window.history.pushState({}, '', url);
-      
-      // Re-render listings
-      renderListings();
-    }
-
-    // Update sidebar active state based on filter
-    function updateSidebarActiveState(filter) {
-      const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
-      
-      // Remove active class from all links first
-      sidebarLinks.forEach(link => {
-        link.classList.remove('active');
-      });
-      
-      // Set active class based on filter
-      if (filter === 'lost') {
-        document.querySelector('.sidebar-nav a[href*="filter=lost"]').classList.add('active');
-      } else if (filter === 'found') {
-        document.querySelector('.sidebar-nav a[href*="filter=found"]').classList.add('active');
-      } else {
-        document.querySelector('.sidebar-nav a[href*="listings.html"]').classList.add('active');
-      }
-    }
-
-    // Add search functionality
-    document.getElementById('search-btn').addEventListener('click', () => {
-      const query = document.getElementById('search-input').value.toLowerCase();
-      filterListingsBySearch(query);
-    });
-
-    document.getElementById('search-input').addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase();
-      filterListingsBySearch(query);
-    });
-
-    function filterListingsBySearch(query) {
-      const filteredListings = listings.filter(listing =>
-        listing.title.toLowerCase().includes(query) ||
-        listing.description.toLowerCase().includes(query) ||
-        listing.location.toLowerCase().includes(query)
-      );
-
-      listingsContainer.innerHTML = '';
-
-      if (filteredListings.length === 0) {
-        listingsContainer.innerHTML = '<p>No items found matching your search.</p>';
-        return;
-      }
-
-      filteredListings.forEach(listing => {
-        const listingCard = createListingCard(listing);
-        listingsContainer.appendChild(listingCard);
-      });
-    }
-  </script>
+  <!-- JavaScript -->
+  <script src="../listings.js"></script>
 </body>
+
 </html>

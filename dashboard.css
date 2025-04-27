@@ -1,6 +1,6 @@
 /* Base Styles */
 :root {
-    --primary: #4e73df;
+    --primary: #1e40af;
     --secondary: #858796;
     --success: #1cc88a;
     --info: #36b9cc;
@@ -32,7 +32,7 @@
   height: 70px;
   border-radius: 50%;
   background: conic-gradient(
-    #4e73df 0% 25%,
+    #1e40af 0% 25%,
     #1cc88a 25% 50%,
     #f6c23e 50% 75%,
     #e74a3b 75% 100%
@@ -128,7 +128,7 @@
     height: 100vh;
     z-index: 100;
     transition: all 0.3s;
-  }
+}
   
   .main-content {
     flex: 1;
@@ -138,51 +138,53 @@
     min-height: 100vh;
   }
   
-  /* Sidebar Styles */
+  /* Sidebar Styles - Unified Version */
+
   .sidebar-header {
     text-align: center;
     padding: 0 20px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .profile-img {
-    width: 80px;
-    height: 80px;
+}
+
+.profile-img {
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 10px;
     transition: all 0.3s;
-  }
-  
-  .profile-img:hover {
+}
+
+.profile-img:hover {
     transform: scale(1.05);
     border-color: rgba(255, 255, 255, 0.5);
-  }
-  
-  .sidebar h3 {
+}
+
+.sidebar h3 {
     font-size: 1.1rem;
     margin-bottom: 5px;
-  }
-  
-  .sidebar p {
+}
+
+.sidebar p {
     font-size: 0.8rem;
     opacity: 0.8;
-  }
-  
-  .sidebar-nav {
+}
+
+.sidebar-nav {
     padding: 20px 0;
-  }
-  
-  .sidebar-nav ul {
+}
+
+.sidebar-nav ul {
+    padding: 0%;
     list-style: none;
-  }
-  
-  .sidebar-nav li {
+}
+
+.sidebar-nav li {
     margin-bottom: 5px;
-  }
-  
-  .sidebar-nav a {
+}
+
+.sidebar-nav a {
     display: flex;
     align-items: center;
     padding: 12px 20px;
@@ -190,74 +192,104 @@
     text-decoration: none;
     transition: all 0.3s;
     border-left: 3px solid transparent;
-  }
-  
-  .sidebar-nav a:hover {
+}
+
+.sidebar-nav a:hover {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border-left: 3px solid white;
-  }
-  
-  .sidebar-nav a i {
+}
+
+.sidebar-nav a i {
     margin-right: 10px;
     width: 20px;
     text-align: center;
-  }
-  
-  .sidebar-nav .active a {
+}
+
+.sidebar-nav .active a {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border-left: 3px solid white;
+}
+
+.notification-badge {
+  background: var(--danger);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.progress-circle {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+}
+
+.progress-ring circle {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-dasharray: 214;
+  stroke-dashoffset: 214;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.progress-circle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Responsive Adjustments */
+/* @media (max-width: 992px) {
+  .sidebar {
+      width: 70px;
+      overflow: hidden;
   }
   
-  .notification-badge {
-    background: var(--danger);
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    margin-left: auto;
-  }
-  
+  .sidebar-header h3,
+  .sidebar-header p,
+  .sidebar-nav a span,
+  .notification-badge,
   .sidebar-footer {
-    padding: 20px;
-    text-align: center;
+      display: none;
   }
   
-  .trust-score {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 10px;
+  .sidebar-nav a {
+      justify-content: center;
+      padding: 15px 0;
   }
   
-  .progress-circle {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 10px;
+  .sidebar-nav a i {
+      margin-right: 0;
+      font-size: 1.2rem;
   }
   
-  .progress-ring circle {
-    stroke: rgba(255, 255, 255, 0.3);
-    stroke-dasharray: 214;
-    stroke-dashoffset: 214;
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-    transition: stroke-dashoffset 1s ease-in-out;
+  .profile-img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 15px;
   }
-  
-  .progress-circle span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
+} */
   
   /* Main Content Styles */
   .dashboard-header {
@@ -312,7 +344,7 @@
   }
   
   .search-box button:hover {
-    background: #3a5ccc;
+    background: #1e40af;
   }
   
   .notifications {

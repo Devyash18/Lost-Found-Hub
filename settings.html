@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | Lost & Found</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <a href="userprofile.html" class="profile-link">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe" class="user-avatar">
+                </a>
+                <h3 class="user-name">John Doe</h3>
+                <p class="member-since">Member since June 2023</p>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="Listed page/listings.html" class="nav-link ">
+                        <i class="fas fa-search"></i>
+                        Search Items
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="Listed page/listings.html?filter=lost" class="nav-link">
+                        <i class="fas fa-question-circle"></i>
+                        Lost Items
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="Listed page/listings.html?filter=found" class="nav-link">
+                        <i class="fas fa-check-circle"></i>
+                        Found Items
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../report.html" class="nav-link">
+                        <i class="fas fa-flag"></i>
+                        Report Item
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="userprofile.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        User Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        About Us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="landingpage.html" id="logoutBtn" class="nav-link">
+                        <i class="fas fa-sign-out-alt" ></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Account Settings</h1>
+            </div>
+            
+            <div class="settings-grid">
+                <!-- Profile Settings -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Profile Information</h2>
+                        <i class="fas fa-user-edit card-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" class="form-control" value="johndoe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" value="john.doe@example.com">
+                        <p class="form-note">This is the email associated with your account</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" value="+1 (555) 123-4567">
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                        <button class="btn btn-outline">
+                            Cancel
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- Notification Settings -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Notification Preferences</h2>
+                        <i class="fas fa-bell card-icon"></i>
+                    </div>
+                    
+                    <h3 class="form-label">Notification Methods</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="email-notifications" checked>
+                        <label for="email-notifications">Email notifications</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="sms-notifications" checked>
+                        <label for="sms-notifications">SMS notifications</label>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="push-notifications">
+                        <label for="push-notifications">Push notifications</label>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="form-group">
+                        <label for="notification-frequency" class="form-label">Notification Frequency</label>
+                        <select id="notification-frequency" class="form-control">
+                            <option>Immediately</option>
+                            <option selected>Daily Digest</option>
+                            <option>Weekly Summary</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="do-not-disturb" class="form-label">Do Not Disturb Hours</label>
+                        <div class="dnd-container">
+                            <select id="do-not-disturb-start" class="form-control">
+                                <option>10:00 PM</option>
+                                <option>11:00 PM</option>
+                                <option selected>12:00 AM</option>
+                            </select>
+                            <span class="dnd-separator">to</span>
+                            <select id="do-not-disturb-end" class="form-control">
+                                <option selected>6:00 AM</option>
+                                <option>7:00 AM</option>
+                                <option>8:00 AM</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            Update Preferences
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- Security Settings -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Security Settings</h2>
+                        <i class="fas fa-shield-alt card-icon"></i>
+                    </div>
+                    
+                    <div class="security-badge">
+                        <i class="fas fa-check-circle"></i>
+                        Your account security is strong
+                    </div>
+                    
+                    <h3 class="form-label">Change Password</h3>
+                    <div class="form-group">
+                        <label for="current-password" class="form-label">Current Password</label>
+                        <input type="password" id="current-password" class="form-control" placeholder="Enter current password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-password" class="form-label">New Password</label>
+                        <input type="password" id="new-password" class="form-control" placeholder="Enter new password">
+                        <p class="form-note">Minimum 8 characters with at least one number and special character</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password" class="form-label">Confirm New Password</label>
+                        <input type="password" id="confirm-password" class="form-control" placeholder="Confirm new password">
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-key"></i>
+                            Change Password
+                        </button>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="two-factor-box">
+                        <div class="two-factor-info">
+                            <h3 class="two-factor-title">Two-Factor Authentication</h3>
+                            <p class="two-factor-desc">Add an extra layer of security to your account</p>
+                        </div>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-lock"></i>
+                            Enable 2FA
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- Account Actions -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Account Actions</h2>
+                        <i class="fas fa-exclamation-triangle card-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3 class="form-label">Download Your Data</h3>
+                        <p class="form-description">
+                            Request a copy of all your personal data stored in our system.
+                        </p>
+                        <button class="btn btn-outline full-width">
+                            <i class="fas fa-download"></i>
+                            Request Data Download
+                        </button>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="form-group">
+                        <h3 class="form-label">Delete Account</h3>
+                        <p class="form-description">
+                            Permanently delete your account and all associated data. This action cannot be undone.
+                        </p>
+                        <button class="btn btn-outline full-width delete-btn">
+                            <i class="fas fa-trash-alt"></i>
+                            Delete My Account
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+<script>
+    document.getElementById('logoutBtn').addEventListener('click', function(event) {
+        const confirmLogout = confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+            window.location.href = "landingpage.html"; // Redirect to login page
+        }
+    });
+</script>
+<script src="settings.js"></script>
+</html>
