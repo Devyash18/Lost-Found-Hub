@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Found Items | Lost & Found</title>
+  <style>
+    /* General Body and Layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .navbar {
+      background-color: #1e40af;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+    }
+
+    /* Found Items Section */
+    .found-items {
+      text-align: center;
+      padding: 50px 0;
+    }
+
+    .found-items h2 {
+      font-size: 32px;
+      color: #1e40af;
+    }
+
+    .found-list {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .found-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 250px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .found-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .found-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .found-card p {
+      font-size: 14px;
+      color: #777;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 70%;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal img {
+      width: 100%;
+      max-height: 400px; /* Limit the height */
+      object-fit: contain; /* Ensure the aspect ratio is preserved */
+      border-radius: 8px;
+      opacity: 0; /* Initially hide the image */
+      transform: scale(0.95); /* Slightly scale the image down initially */
+      transition: opacity 0.5s ease, transform 0.5s ease; /* Apply transition for smooth effect */
+    }
+
+    /* Close Button */
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 28px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    /* Modal Active State */
+    .modal.show img {
+      opacity: 1; /* Make the image visible */
+      transform: scale(1); /* Scale the image to normal size */
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🔍 Lost&Found!</div>
+  </header>
+
+  <section class="found-items">
+    <h2>Recently Found Items</h2>
+    <div class="found-list">
+      <div class="found-card" onclick="openModal(' 📱 iPhone 11', 'Library', 'Black iPhone 11 found without case', 'https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg')">
+        <h3>📱 iPhone 11</h3>
+        <p>Click to see details</p>
+      </div>
+      <div class="found-card" onclick="openModal('🗝️ Bunch of Keys', 'Barista', 'Keys found at the last corner table', 'https://i.pinimg.com/736x/42/04/0d/42040dc9ed3418cfaee1cd7da316dae0.jpg')">
+        <h3>🗝️ Bunch of Keys</h3>
+        <p>Click to see details</p>
+      </div>
+      <div class="found-card" onclick="openModal('👛 Wallet', 'Lecture Hall 4', 'brown wallet found near last row seat', 'https://i.pinimg.com/736x/67/2d/5e/672d5ec7ec735e00cf4de053143c27e8.jpg')">
+        <h3>👛 Wallet</h3>
+        <p>Click to see details</p>
+      </div>
+      <div class="found-card" onclick="openModal('⌚ Watch', 'Cafeteria', 'Silver color wrist watch found near mirror side table', 'https://i.pinimg.com/736x/6f/13/96/6f13968e3c5f3047b40e6967c87bd35c.jpg')">
+        <h3>⌚ Watch</h3>
+        <p>Click to see details</p>
+      </div>  
+      <div class="found-card" onclick="openModal('🔌 iphone charger', 'library', 'found on desk', 'https://i.pinimg.com/736x/fd/50/08/fd50088523d6c9191f321c44fb620cc3.jpg')">
+        <h3> 🔌 Charger</h3>
+        <p>Click to see details</p>
+      </div>  
+      <div class="found-card" onclick="openModal(' 💍 Ring', 'Cabinet couch', 'Gold ring found placed on Cabinet couch ', 'https://i.pinimg.com/736x/b7/38/75/b73875595c4d98c2dbaca1b3b082ab77.jpg')">
+        <h3> 💍 Ring</h3>
+        <p>Click to see details</p>
+      </div>      
+    </div>
+  </section>
+
+  <!-- Modal for displaying found item details -->
+  <div id="foundModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="Item Image" />
+      <h3 id="modalTitle"></h3>
+      <p id="modalLocation"></p>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(title, location, description, imageUrl) {
+      // Set the modal content
+      document.getElementById("modalTitle").textContent = title;
+      document.getElementById("modalLocation").textContent = "📍 Location: " + location;
+      document.getElementById("modalDescription").textContent = description;
+      document.getElementById("modalImage").src = imageUrl;
+
+      // Show the modal
+      const modal = document.getElementById("foundModal");
+      modal.style.display = "flex";
+
+      // Trigger transition of the image
+      setTimeout(function () {
+        modal.classList.add('show'); // Add class 'show' to trigger transition
+      }, 10); // Delay to allow for the modal to be displayed before transitioning
+    }
+
+    function closeModal() {
+      const modal = document.getElementById("foundModal");
+      modal.classList.remove('show'); // Remove class 'show' to reset the transition
+
+      // Hide the modal after transition
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 500); // Match the transition time for smooth closing
+    }
+
+    // Close modal if clicked outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById("foundModal");
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
+
