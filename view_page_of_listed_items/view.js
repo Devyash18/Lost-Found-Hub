@@ -6,7 +6,7 @@ const items = [
         description: "Black leather wallet with credit cards inside.",
         location: "Tesla Block",
         date: "15 June 2023",
-        image: "wallet.jpg"
+        image: "images/wallet.jpg" // Ensure the path to the image is correct
     },
     {
         id: 2,
@@ -14,7 +14,7 @@ const items = [
         description: "iPhone 12 with blue case.",
         location: "Square One",
         date: "10 June 2023",
-        image: "iphone.jpg"
+        image: "images/iphone.jpg"
     },
     {
         id: 3,
@@ -22,7 +22,7 @@ const items = [
         description: "Set of car and house keys.",
         location: "Main Entrance",
         date: "5 June 2023",
-        image: "keys.jpg"
+        image: "images/keys.jpg"
     }
 ];
 
@@ -30,19 +30,30 @@ const items = [
 document.querySelectorAll('.view-details-button').forEach((button, index) => {
     button.addEventListener('click', () => {
         const item = items[index];
-        localStorage.setItem('selectedItem', JSON.stringify(item));
-        window.location.href = 'item-details.html';
+        window.location.href = `item-details.html?id=${item.id}`;
     });
 });
 
-// Populate the item-details.html page
-if (window.location.pathname.includes('item-details.html')) {
-    const selectedItem = JSON.parse(localStorage.getItem('selectedItem'));
-    if (selectedItem) {
-        document.getElementById('item-image').src = selectedItem.image;
-        document.getElementById('item-title').textContent = selectedItem.title;
-        document.getElementById('item-description').textContent = selectedItem.description;
-        document.getElementById('item-location').textContent = selectedItem.location;
-        document.getElementById('item-date').textContent = selectedItem.date;
-    }
+// Get the item ID from the URL query parameters
+const urlParams = new URLSearchParams(window.location.search);
+const itemId = parseInt(urlParams.get('id'), 10);
+
+// Find the item in the listings data
+const item = items.find(listing => listing.id === itemId);
+
+// Populate the page with the item's details
+if (item) {
+    document.getElementById('item-image').src = item.image || '../images/placeholder.jpg';
+    document.getElementById('item-title').textContent = item.title;
+    document.getElementById('item-description').textContent = item.description;
+    document.getElementById('item-location').textContent = item.location;
+    document.getElementById('item-date').textContent = formatDate(item.date);
+} else {
+    document.querySelector('.item-details').innerHTML = '<p>Item not found.</p>';
+}
+
+// Format date
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
 }
