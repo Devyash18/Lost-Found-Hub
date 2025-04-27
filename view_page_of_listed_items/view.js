@@ -6,7 +6,7 @@ const items = [
         location: "Tesla Block",
         date: "15 June 2023",
         status: "lost", // Added status field
-        image: "https://i.pinimg.com/736x/65/36/a4/6536a4fd58a8caccc905733477fcfc0d.jpg"
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwwjJYpkBMKSlpwszfXP_llkhmViIQixo3Q&s"
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ const items = [
         location: "Square One",
         date: "10 June 2023",
         status: "found", // Added status field
-        image: "https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg"
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQELTlvTr3Z3WLD56BctGEQraOzG0g61CASAemP7AQTwYXUCDk9NGRrJlLdwbmWgfasNo8&usqp=CAU"
     },
     {
         id: 3,
@@ -105,7 +105,7 @@ const items = [
         location: "Library",
         date: "1 May 2023",
         status: "lost",
-        image: "https://apollo.olx.in/v1/files/u7j5tm2awz9v1-ADVIN/image;s=300x600;q=60"
+        image: "https://www.shutterstock.com/image-photo/hand-holding-phone-charger-260nw-477029953.jpg"
     },
     {
         id: 13,
