@@ -52,14 +52,28 @@ if (item) {
     document.querySelector('.item-details').innerHTML = '<p>Item not found.</p>';
 }
 
-// Add functionality for the "Claim" button
-document.getElementById('claim-button').addEventListener('click', () => {
-    alert('You have claimed this item. The owner will be notified.');
-});
+// Track whether the item has been verified
+let isVerified = false;
 
 // Add functionality for the "Verify" button
 document.getElementById('verify-button').addEventListener('click', () => {
-    alert('You have verified this item. The status will be updated.');
+    isVerified = true; // Mark the item as verified
+    const messageElement = document.getElementById('message');
+    messageElement.style.display = 'none'; // Hide the warning message if it was displayed
+    alert('You have verified this item. You can now claim it.');
+});
+
+// Add functionality for the "Claim" button
+document.getElementById('claim-button').addEventListener('click', () => {
+    const messageElement = document.getElementById('message');
+    if (!isVerified) {
+        // Show the warning message if the item is not verified
+        messageElement.textContent = 'Please verify the item before claiming it.';
+        messageElement.style.display = 'block';
+    } else {
+        // Proceed with claiming the item
+        alert('You have successfully claimed this item.');
+    }
 });
 
 // Format date
