@@ -39,7 +39,7 @@ document.getElementById('removeImageBtn').addEventListener('click', function() {
     localStorage.removeItem('profileImage');
     
     // Reset to default placeholder (change the path as needed)
-    document.getElementById('profileImage').src = 'https://via.placeholder.com/150';
+    document.getElementById('profileImage').src = 'https://as1.ftcdn.net/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg';
     
     // Clear the file input (optional)
     document.getElementById('fileInput').value = '';
