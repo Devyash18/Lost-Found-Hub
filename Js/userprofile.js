@@ -1,9 +1,8 @@
-// Image upload functionality with localStorage
 // Function to update all profile images on the page
 function updateAllProfileImages(imageUrl) {
     // Update main profile image
     document.getElementById('profileImage').src = imageUrl;
-    // Update sidebar profile image (assuming it has ID 'sidebarProfileImage')
+    // Update sidebar profile image
     const sidebarImage = document.getElementById('sidebarProfileImage');
     if (sidebarImage) {
         sidebarImage.src = imageUrl;
@@ -18,7 +17,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         reader.onload = function(e) {
             const imageData = e.target.result;
             localStorage.setItem('profileImage', imageData);
-            updateAllProfileImages(imageData); // Update both images
+            updateAllProfileImages(imageData);
             alert('Profile image updated!');
         };
         reader.onerror = () => alert('Error reading file!');
@@ -29,44 +28,17 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 // Remove profile image
 document.getElementById('removeImageBtn').addEventListener('click', function() {
     localStorage.removeItem('profileImage');
-    const defaultImage = 'https://via.placeholder.com/150'; // Fallback image
-    updateAllProfileImages(defaultImage); // Reset both images
+    const defaultImage = 'https://as1.ftcdn.net/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg';
+    updateAllProfileImages(defaultImage);
+    document.getElementById('fileInput').value = ''; // Clear file input
     alert('Profile image removed!');
 });
 
 // Load saved image on page load
 document.addEventListener('DOMContentLoaded', function() {
-    const savedImage = localStorage.getItem('profileImage') || 'https://via.placeholder.com/150';
-    updateAllProfileImages(savedImage); // Initialize both images
-});
-// Load saved image on page load
-document.addEventListener('DOMContentLoaded', function() {
     const savedImage = localStorage.getItem('profileImage');
-    if (savedImage) {
-        document.getElementById('profileImage').src = savedImage;
-    }
-});
-
-// Remove profile image button
-document.getElementById('removeImageBtn').addEventListener('click', function() {
-    // Clear from localStorage
-    localStorage.removeItem('profileImage');
-    
-    // Reset to default placeholder (change the path as needed)
-    document.getElementById('profileImage').src = 'https://as1.ftcdn.net/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg';
-    
-    // Clear the file input (optional)
-    document.getElementById('fileInput').value = '';
-    
-    alert('Profile image removed!');
-});
-
-// Load saved image from localStorage when the page loads
-document.addEventListener('DOMContentLoaded', function() {
-    const savedImage = localStorage.getItem('profileImage');
-    if (savedImage) {
-        document.getElementById('profileImage').src = savedImage;
-    }
+    const defaultImage = 'https://as1.ftcdn.net/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg';
+    updateAllProfileImages(savedImage || defaultImage);
 });
 
 // Logout functionality
