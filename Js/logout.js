@@ -80,7 +80,7 @@ function startCountdown() {
         
         if (seconds <= 0) {
             clearInterval(timer);
-            window.location.href = 'landingpage.html';
+            window.location.href = '../landingpage.html';
         }
     }, 1000);
 }
@@ -130,7 +130,7 @@ function initializePage() {
     setupMouseParticles();
     
     document.getElementById('returnBtn').addEventListener('click', () => {
-        window.location.href = 'landingpage.html';
+        window.location.href = '../landingpage.html';
     });
 }
 
