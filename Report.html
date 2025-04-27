@@ -39,3 +39,38 @@
       min-height: 100vh;
     }
   </style>
+
+  <!-- Sidebar Component -->
+<div class="sidebar">
+  <div class="sidebar-header">
+    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-img">
+    <h3>John Doe</h3>
+    <p>Member since June 2023</p>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="Listed page/listings.html"><i class="fas fa-search"></i> Search Items</a></li>
+      <!-- Other nav items -->
+    </ul>
+  </nav>
+</div>
+
+<style>
+  /* Sidebar Styles */
+  .sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 20px 0;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  /* More sidebar styles... */
+</style>
