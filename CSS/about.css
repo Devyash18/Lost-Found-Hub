@@ -34,7 +34,7 @@ body {
     min-height: 100vh;
     transition: all 0.3s;
 }
- .sidebar {
+.sidebar {
     width: 250px;
     background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
     color: white;
@@ -44,8 +44,6 @@ body {
     height: 100vh;
     z-index: 100;
     transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
 }
 /*
  * commit: Style sidebar profile section
@@ -55,12 +53,12 @@ body {
     text-align: center;
     padding: 0 20px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 10px;
 }
+
 
 .profile-img {
     width: 80px;
-    height: 80px;
+    height: 85px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid rgba(255, 255, 255, 0.2);
@@ -72,36 +70,30 @@ body {
     transform: scale(1.05);
     border-color: rgba(255, 255, 255, 0.5);
 }
-
 .sidebar h3 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin-bottom: 5px;
-    color: white;
-    font-weight: 600;
 }
 
 .sidebar p {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 0;
+    opacity: 0.8;
 }
 /*
  * commit: Implement sidebar navigation
  * desc: Style navigation links with hover and active states
  */
  .sidebar-nav {
-    padding: 10px 0;
-    flex-grow: 1;
-    overflow-y: auto;
+    padding: 20px 0;
 }
 
 .sidebar-nav ul {
+    padding: 0%;
     list-style: none;
-    padding: 5px;
 }
 
 .sidebar-nav li {
-    margin-bottom: 12px;
+    margin-bottom: 5px;
 }
 
 .sidebar-nav a {
@@ -112,8 +104,8 @@ body {
     text-decoration: none;
     transition: all 0.3s;
     border-left: 3px solid transparent;
-    font-size: 0.9rem;
 }
+
 
 .sidebar-nav a:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -125,7 +117,6 @@ body {
     margin-right: 10px;
     width: 20px;
     text-align: center;
-    font-size: 1rem;
 }
 
 .sidebar-nav .active a {
