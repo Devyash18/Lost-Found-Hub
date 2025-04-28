@@ -1,15 +1,17 @@
+/* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f9;
+    background: linear-gradient(135deg, #f4f4f9, #e9ecef);
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 .container {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -20,15 +22,17 @@ header {
 }
 
 header h1 {
-    font-size: 2rem;
-    color: #333;
+    font-size: 2.5rem;
+    color: #007bff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* Item Details */
 .item-details {
     border: 1px solid #ddd;
     padding: 20px;
     border-radius: 10px;
-    background-color: #fff;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
     margin-bottom: 20px;
 }
 
@@ -41,7 +45,7 @@ header h1 {
 }
 
 .item-details h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #333;
     margin: 10px 0;
 }
@@ -52,13 +56,24 @@ header h1 {
     margin: 5px 0;
 }
 
-.action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.status-lost {
+    background: linear-gradient(135deg, #e74a3b, #c0392b); /* Red gradient */
+}
+.status-found {
+    background: linear-gradient(135deg, #1cc88a, #16a085); /* Green gradient */
 }
 
-/* Tooltip container */
+/* Buttons */
 .btn {
     padding: 10px 20px;
     font-size: 1rem;
@@ -67,16 +82,95 @@ header h1 {
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.3s ease;
     position: relative;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-/* Tooltip text */
+.btn i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.claim-btn {
+    background: linear-gradient(135deg, #28a745, #218838); /* Green gradient */
+}
+
+.claim-btn:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+}
+
+.verify-btn {
+    background: linear-gradient(135deg, #ffc107, #e0a800); /* Yellow gradient */
+}
+
+.verify-btn:hover {
+    background: linear-gradient(135deg, #e0a800, #d39e00);
+}
+
+.share-btn {
+    background: linear-gradient(135deg, #36b9cc, #2c9faf); /* Blue gradient */
+}
+
+.share-btn:hover {
+    background: linear-gradient(135deg, #2c9faf, #258fa3);
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Blue gradient */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+}
+
+/* Comments Section */
+.comments-section {
+    margin-top: 20px;
+}
+
+.comments-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.comments-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.comments-section li {
+    background: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tooltip */
 .btn::after {
-    content: attr(data-tooltip); /* Use the data-tooltip attribute for the tooltip text */
+    content: attr(data-tooltip);
     position: absolute;
-    bottom: 120%; /* Position above the button */
+    bottom: 120%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
+    background: #333;
     color: #fff;
     padding: 5px 10px;
     border-radius: 5px;
@@ -87,126 +181,21 @@ header h1 {
     transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
-/* Show the tooltip on hover */
 .btn:hover::after {
     opacity: 1;
     visibility: visible;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-}
-
-.btn i {
-    margin-right: 8px; /* Add space between the icon and text */
-    font-size: 1.2rem; /* Adjust icon size */
-    vertical-align: middle; /* Align icon with text */
-}
-
-.claim-btn {
-    background-color: #28a745; /* Green color for Claim button */
-    color: #fff;
-}
-
-.claim-btn:hover {
-    background-color: #1e7e34;
-}
-
-.verify-btn {
-    background-color: #ffc107; /* Yellow color for Verify button */
-    color: #fff;
-}
-
-.verify-btn:hover {
-    background-color: #e0a800;
-}
-
-.back-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff; /* Blue color for Back to Listings button */
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.back-button:hover {
-    background-color: #0056b3;
-}
-
-.back-button i {
-    margin-right: 8px;
-    font-size: 1.2rem;
-    vertical-align: middle;
-}
-
+/* Message */
 .message {
     font-size: 1rem;
-    color: red; /* Red color for the warning message */
+    color: #e74a3b;
     text-align: center;
     margin-top: 10px;
-    display: none; /* Initially hidden */
+    display: none;
 }
 
-.status-badge {
-    display: inline-block;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    border-radius: 5px;
-    color: #fff;
-}
-.status-lost {
-    background-color: #e74a3b; /* Red for lost */
-}
-.status-found {
-    background-color: #1cc88a; /* Green for found */
-}
-
-.share-btn {
-    background-color: #36b9cc; /* Blue for sharing */
-    color: #fff;
-    position: relative;
-}
-.share-btn:hover {
-    background-color: #258fa3;
-}
-.share-btn:hover::after {
-    content: "Share this item";
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    white-space: nowrap;
-}
-
-.comments-section {
-    margin-top: 20px;
-}
-.comments-section textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-.comments-section ul {
-    list-style: none;
-    padding: 0;
-}
-.comments-section li {
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-}
-
+/* Modal Animation */
 .modal {
     animation: fadeIn 0.3s ease;
 }
@@ -218,4 +207,17 @@ header h1 {
     to {
         opacity: 1;
     }
+}
+
+/* Listing Card */
+.listing-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
