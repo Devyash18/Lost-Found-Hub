@@ -5,8 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact Us - Lost & Found Hub</title>
   <link rel="stylesheet" href="../CSS/contact.css">
+  <style>
+    /* Simple back button style */
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(135deg, #4b6cb7, #182848);
+      border: 1px solid #ccc;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .back-button:hover {
+      transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 5px 15px rgba(75, 108, 183, 0.3); /* Shadow effect */
+    }
+  </style>
 </head>
 <body>
+  <!-- Simple back button -->
+  <button class="back-button" onclick="window.history.back()">← Go Back</button>
+
   <div class="container">
     <div class="left-panel">
       <h1>Reuniting Lost Things With Their Owners</h1>
@@ -30,6 +51,7 @@
       </form>
     </div>
   </div>
+  
   <script src="../JS/contact.js"></script>
 </body>
 </html>
