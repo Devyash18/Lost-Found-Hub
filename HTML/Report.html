@@ -493,6 +493,58 @@
   align-items: center;
   padding: 20px;
 }
+/* Fix main-content sections */
+#foundSection, #reportSection, #viewReportSection {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  margin-top: 20px;
+}
+
+/* Ensure found-list and report-list are responsive */
+.found-list, .report-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+  .toggle-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .toggle-btn {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+
+  .report-form {
+    width: 100%;
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .report-card, .found-card {
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toggle-btn {
+    width: 100%;
+  }
+}
+
   </style>
   </head>
   <body>
@@ -533,32 +585,33 @@
     <button class="toggle-btn" onclick="showReport()">Report Lost Item</button>
     <button class="toggle-btn" onclick="showViewReport()">View Report</button>
   </div>
-</div>
 
 
-<section id="foundSection">
-  <h2>Recently Found Items</h2>
-  <div class="found-list">
-    <div class="found-card" onclick="openModal('📱 iPhone 11', 'Library', 'Black iPhone 11 found without case', 'https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg')">
-      <img src="https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg" alt="iPhone 11">
-      <h3>📱 iPhone 11</h3>
-      <p>Location: Library</p>
-      <p>Click to see details</p>
+  <section id="foundSection">
+    <h2>Recently Found Items</h2>
+    <div class="found-list">
+      <div class="found-card" onclick="openModal('📱 iPhone 11', 'Library', 'Black iPhone 11 found without case', 'https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg')">
+        <img src="https://i.pinimg.com/736x/c2/0f/2a/c20f2a16bd32dbb321041bc2477818e7.jpg" alt="iPhone 11" class="item-image">
+        <h3>📱 iPhone 11</h3>
+        <p>Location: Library</p>
+        <p>Click to see details</p>
+      </div>
+
+      <div class="found-card" onclick="openModal('🗝️ Bunch of Keys', 'Barista', 'Keys found at the last corner table', 'https://i.pinimg.com/736x/42/04/0d/42040dc9ed3418cfaee1cd7da316dae0.jpg')">
+        <img src="https://i.pinimg.com/736x/42/04/0d/42040dc9ed3418cfaee1cd7da316dae0.jpg" alt="Bunch of Keys" class="item-image">
+        <h3>🗝️ Bunch of Keys</h3>
+        <p>Location: Barista</p>
+        <p>Click to see details</p>
+      </div>
+
+      <div class="found-card" onclick="openModal('👛 Wallet', 'Lecture Hall 4', 'Brown leather wallet found near last row seat', 'https://i.pinimg.com/736x/4d/92/3b/4d923bc1d354c3cc2f8fe66925825a1a.jpg')">
+        <img src="https://i.pinimg.com/736x/4d/92/3b/4d923bc1d354c3cc2f8fe66925825a1a.jpg" alt="Wallet" class="item-image">
+        <h3>👛 Wallet</h3>
+        <p>Location: Lecture Hall 4</p>
+        <p>Click to see details</p>
+      </div>
     </div>
-    <div class="found-card" onclick="openModal('🗝 Bunch of Keys', 'Barista', 'Keys found at the last corner table', 'https://i.pinimg.com/736x/42/04/0d/42040dc9ed3418cfaee1cd7da316dae0.jpg')">
-      <img src="https://i.pinimg.com/736x/42/04/0d/42040dc9ed3418cfaee1cd7da316dae0.jpg" alt="Bunch of Keys">
-      <h3>🗝 Bunch of Keys</h3>
-      <p>Location: Barista</p>
-      <p>Click to see details</p>
-    </div>
-    <div class="found-card" onclick="openModal('👛 Wallet', 'Lecture Hall 4', 'Brown leather wallet found near last row seat', 'https://i.pinimg.com/736x/4d/92/3b/4d923bc1d354c3cc2f8fe66925825a1a.jpg')">
-      <img src="https://i.pinimg.com/736x/4d/92/3b/4d923bc1d354c3cc2f8fe66925825a1a.jpg" alt="Wallet">
-      <h3>👛 Wallet</h3>
-      <p>Location: Lecture Hall 4</p>
-      <p>Click to see details</p>
-    </div>
-  </div>
-</section>
+  </section>
 
 
 <!-- Report Section -->
@@ -568,17 +621,20 @@
     <input type="text" id="name" placeholder="Your Name" required>
     <input type="text" id="location" placeholder="Last Seen Location" required>
     <input type="text" id="item" placeholder="Item Name" required>
+
     <select id="option" required>
       <option value="">Select Option</option>
       <option value="phone">Phone</option>
       <option value="wallet">Wallet</option>
       <option value="keys">Keys</option>
-      <option value="id card">Id card</option>
+      <option value="id card">ID Card</option>
       <option value="watch">Watch</option>
       <option value="charger">Charger</option>
     </select>
+
     <input type="date" id="date" required>
     <textarea id="description" placeholder="Describe the item" required></textarea>
+
     <button type="submit">Submit Report</button>
   </form>
 </section>
@@ -593,6 +649,7 @@
       <p>Description: Black iPhone 11 found without case</p>
       <p>Date: 2025-02-25</p>
     </div>
+
     <div class="report-card">
       <h3>🗝️ Bunch of Keys</h3>
       <p>Last seen at Barista</p>
@@ -600,28 +657,29 @@
       <p>Description: Keys found at the last corner table</p>
       <p>Date: 2025-03-25</p>
     </div>
+
     <div class="report-card">
       <h3>👛 Wallet</h3>
-      <p>Last seen at pytha Lecture Hall</p>
+      <p>Last seen at Pytha Lecture Hall</p>
       <p>Option: Accessories</p>
       <p>Description: Brown leather wallet found near last row seat</p>
       <p>Date: 2025-04-19</p>
     </div>
+
     <div class="report-card">
-      <h4> ⌚ Watch</h4>
-      <p>Last seen at cafeteria</p>
+      <h3>⌚ Watch</h3>
+      <p>Last seen at Cafeteria</p>
       <p>Option: Accessories</p>
-      <p>Description: Silver Colour Rolex Watch found at mirror side </p>
+      <p>Description: Silver Color Rolex Watch found at mirror side</p>
       <p>Date: 2025-04-25</p>
     </div>
   </div>
-  </div>
 </section>
+</div>
 
 <script>
   function handleSubmit(event) {
     event.preventDefault();
-
     const name = document.getElementById('name').value;
     const location = document.getElementById('location').value;
     const item = document.getElementById('item').value;
@@ -629,11 +687,9 @@
     const date = document.getElementById('date').value;
     const description = document.getElementById('description').value;
 
-    // For now, we just log the data
     console.log('Lost Item Reported:', name, location, item, option, date, description);
-
     alert('Report Submitted Successfully!');
-    // Clear the form
+
     document.getElementById('name').value = '';
     document.getElementById('location').value = '';
     document.getElementById('item').value = '';
@@ -643,38 +699,39 @@
   }
 
   function openModal(title, location, description, imageUrl) {
-      const modal = document.createElement('div');
-      modal.classList.add('modal');
-      modal.innerHTML = `
-        <div class="modal-content">
-          <span class="close" onclick="this.parentElement.parentElement.remove()">×</span>
-          <img src="${imageUrl}" alt="${title}" />
-          <h3>${title}</h3>
-          <p>Location: ${location}</p>
-          <p>Description: ${description}</p>
-        </div>
-      `;
-      document.body.appendChild(modal);
-      modal.style.display = 'flex';
-    }
-    function showFound() {
-      document.getElementById('foundSection').style.display = 'block';
-      document.getElementById('reportSection').style.display = 'none';
-      document.getElementById('viewReportSection').style.display = 'none';
-    }
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.innerHTML = `
+      <div class="modal-content">
+        <span class="close" onclick="this.parentElement.parentElement.remove()">×</span>
+        <img src="${imageUrl}" alt="${title}" />
+        <h3>${title}</h3>
+        <p>Location: ${location}</p>
+        <p>Description: ${description}</p>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    modal.style.display = 'flex';
+  }
 
-    function showReport() {
-      document.getElementById('foundSection').style.display = 'none';
-      document.getElementById('reportSection').style.display = 'block';
-      document.getElementById('viewReportSection').style.display = 'none';
-    }
-    function showViewReport() {
-      document.getElementById('foundSection').style.display = 'none';
-      document.getElementById('reportSection').style.display = 'none';
-      document.getElementById('viewReportSection').style.display = 'block';
-    }
+  function showFound() {
+    document.getElementById('foundSection').style.display = 'flex';
+    document.getElementById('reportSection').style.display = 'none';
+    document.getElementById('viewReportSection').style.display = 'none';
+  }
 
-  </script>
+  function showReport() {
+    document.getElementById('foundSection').style.display = 'none';
+    document.getElementById('reportSection').style.display = 'flex';
+    document.getElementById('viewReportSection').style.display = 'none';
+  }
+
+  function showViewReport() {
+    document.getElementById('foundSection').style.display = 'none';
+    document.getElementById('reportSection').style.display = 'none';
+    document.getElementById('viewReportSection').style.display = 'flex';
+  }
+</script>
   <script src="../Js/profileimage.js"></script>
 </body>
 </html>
