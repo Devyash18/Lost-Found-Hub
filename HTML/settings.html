@@ -13,7 +13,10 @@
         <aside class="sidebar">
             <div class="user-profile">
                 <a href="../HTML/userprofile.html" class="profile-link">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe" class="user-avatar">
+                    <img id="sidebarProfileImage" 
+                    class="profile-img profile-image user-avatar" 
+                    src="" 
+                    alt="User Profile">
                 </a>
                 <h3 class="user-name">John Doe</h3>
                 <p class="member-since">Member since June 2023</p>
@@ -51,7 +54,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../HTML/settings.html" class="nav-link">
+                    <a href="../HTML/settings.html" class="nav-link active">
                         <i class="fas fa-cog"></i>
                         Settings
                     </a>
@@ -69,7 +72,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../landingpage.html" id="logoutBtn" class="nav-link">
+                    <a href="../HTML/contact.html" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        Contact Us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html" id="logoutBtn" class="nav-link">
                         <i class="fas fa-sign-out-alt" ></i>
                         Logout
                     </a>
@@ -271,4 +280,5 @@
     });
 </script>
 <script src="../Js/settings.js"></script>
+<script src="../Js/profileimage.js"></script>
 </html>

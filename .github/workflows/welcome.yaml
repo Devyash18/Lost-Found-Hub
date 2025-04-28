@@ -1,0 +1,26 @@
+name: Personalized Welcome
+
+on:
+  workflow_dispatch: # Manual trigger
+  push:
+    branches: [ main ]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Display personalized welcome
+        run: |
+          echo "╔════════════════════════════════════╗"
+          echo "║                                    ║"
+          echo "║   🎉 Welcome, ${{ github.actor }}! 🎉  ║"
+          echo "║                                    ║"
+          echo "╚════════════════════════════════════╝"
+          echo ""
+          echo "📅 Today is $(date +'%A, %B %d %Y')"
+          echo "🕒 Time: $(date +'%H:%M:%S %Z')"
+          echo "🔢 Run Number: ${{ github.run_number }}"
+          echo "📝 Commit: ${{ github.sha }}"
+          echo ""
+          echo "Thanks for contributing to ${{ github.repository }}!"
