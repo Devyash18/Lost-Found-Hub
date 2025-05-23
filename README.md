@@ -11,11 +11,11 @@ A system to help users report and find lost items **easily**.
 
 
 ## 👥 Meet Our Team  
-- 🖥️ **YB** - Frontend Developer  
-- 💾 **Member 2** - Backend Developer  
-- 🎨 **Member 3** - UI/UX Designer  
-- 🗄️ **Member 4** - Database Manager  
-- 📌 **Member 5** - Project Coordinator  
+- 🖥️ **YB** - Frontend Developer & Team Leader 
+- 💾 **Kishna** - Frontend Dev & Tester 
+- 🎨 **Sarika** - Frontend developer
+- 🗄️ **Smrit** - Frontend developer
+- 📌 **Ayush** - Frontend developer  
 
 ---
 
